@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="AllimoreQuest:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb420465-0ab9-4ab0-a3c5-513f45b82453" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-81041788">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="47" />
+          <entry key="java" value="32722" />
+          <entry key="txt" value="489" />
+          <entry key="yml" value="1704" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="32722" />
+          <entry key="PLAIN_TEXT" value="536" />
+          <entry key="YAML" value="1704" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="java" value="145" />
+          <entry key="txt" value="1" />
+          <entry key="yml" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="145" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="YAML" value="12" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Allimorequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/ConfigWrapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+              <caret line="32" column="68" selection-start-line="32" selection-start-column="67" selection-end-line="32" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournalGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#OpenGUI#0;class#QuestJournalGUI#0" />
+                <element signature="method#PopulateInventoryWithQuestButtons#0;class#QuestJournalGUI#0" />
+                <element signature="method#CreateQuestButton#0;class#QuestJournalGUI#0" />
+                <element signature="e#825#833#0" expanded="true" />
+                <element signature="method#CreateGUIItem#0;class#QuestJournalGUI#0" />
+                <element signature="method#Notify#0;class#QuestJournalGUI#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="536">
+              <caret line="93" column="82" lean-forward="true" selection-start-line="93" selection-start-column="82" selection-end-line="93" selection-end-column="82" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#ItemNameMatch#0;class#Utils#0" />
+                <element signature="method#ItemMatch#0;class#Utils#0" />
+                <element signature="method#InventoryContains#0;class#Utils#0" />
+                <element signature="method#GetAmountOfMaterialFromInventory#0;class#Utils#0" />
+                <element signature="method#RemoveQuantityOfMaterial#0;class#Utils#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerQuestData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="553">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#WriteToConfig#0;class#PlayerQuestData#0" />
+                <element signature="method#AcceptQuest#0;class#PlayerQuestData#0" />
+                <element signature="method#AbandonQuest#0;class#PlayerQuestData#0" />
+                <element signature="method#AbandonQuest#1;class#PlayerQuestData#0" />
+                <element signature="method#CompleteQuest#0;class#PlayerQuestData#0" />
+                <element signature="method#TryCompleteQuestObjective#0;class#PlayerQuestData#0" />
+                <element signature="method#TryCompleteQuestObjective#1;class#PlayerQuestData#0" />
+                <element signature="method#SendQuestsToChat#0;class#PlayerQuestData#0" />
+                <element signature="method#SendQuestStatusToChat#0;class#PlayerQuestData#0" />
+                <element signature="e#3107#3108#0" expanded="true" />
+                <element signature="e#3148#3149#0" expanded="true" />
+                <element signature="e#3051#3052#0" expanded="true" />
+                <element signature="e#3087#3088#0" expanded="true" />
+                <element signature="method#GetOnlinePlayer#0;class#PlayerQuestData#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CommandManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#RunAbandonQuestCommand#0;class#CommandManager#0" />
+                <element signature="method#RunGenerateQuestCommand#0;class#CommandManager#0" />
+                <element signature="method#RunCompleteQuestCommand#0;class#CommandManager#0" />
+                <element signature="method#RunQuestStatusCommand#0;class#CommandManager#0" />
+                <element signature="method#RunWriteDataCommand#0;class#CommandManager#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CollectObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CollectMaterialObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/CollectObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/SoundFX.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/NullableInt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestPlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerQuesters.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestDisplay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/QuestLogger.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/Conventions.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/NotificationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Observer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/EntityDeathObserver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/ColorStringUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/QuestDisplay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/ObjectiveType.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/PlayerData.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/ConversionUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/Objective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/SoundFX.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestNotifications.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/CollectMaterialObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/GoToObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/KillPlayerObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Quest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/KillObjective.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/QuestDataWrapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerDataIndex.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/TabCompleter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/TabComplete.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/ConfigWrapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerQuestData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/InventoryClickObserver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/EntityListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/EventListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Allimorequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CommandManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournalGUI.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="AllimoreQuest" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="allimorequest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AllimoreQuest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AllimoreQuest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="{&#9;null&#9;null" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558179879463" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Allimore Dev/The Wild Frontier/plugins/Vault.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="taurasi.marc.allimorequest.Utils.QuestLogger" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JAR Application.Spigot 1.14.1">
+    <configuration name="Spigot 1.14.1" type="JarApplication" factoryName="JAR Application">
+      <option name="JAR_PATH" value="$USER_HOME$/Desktop/Allimore Dev/The Wild Frontier/spigot-1.14.1.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\altai\Desktop\Allimore Dev\The Wild Frontier" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AllimoreQuest build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JAR Application.Spigot 1.14.1" />
+      <item itemvalue="Maven.AllimoreQuest build" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb420465-0ab9-4ab0-a3c5-513f45b82453" name="Default Changelist" comment="" />
+      <created>1558087069517</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558087069517</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32995737" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.25" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.329718" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.329718" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.3991323" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournal.java</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CommandManager.java</url>
+          <line>15</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/CollectObjective.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/NullableInt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="e#130#131#0" expanded="true" />
+            <element signature="e#164#165#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/command/PluginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/command/SimpleCommandMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Conventions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/QuestLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="method#LogInfo#0;class#QuestLogger#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/NotificationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/Allimore Dev/The Wild Frontier/plugins/Vault.jar!/net/milkbowl/vault/economy/Economy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1751">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/PlayerData.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="42" lean-forward="true" selection-start-column="42" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/ConversionUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/ObjectiveType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/Objective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/SoundFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestNotifications.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#PlayStartNotification#0;class#QuestNotifications#0" />
+            <element signature="method#PlayCompleteNotification#0;class#QuestNotifications#0" />
+            <element signature="method#PlayAbandonNotification#0;class#QuestNotifications#0" />
+            <element signature="method#DisplayQuestBriefInChat#0;class#QuestNotifications#0" />
+            <element signature="method#SendQuestBriefToChat#0;class#QuestNotifications#0" />
+            <element signature="method#SendObjectiveProgressToChat#0;class#QuestNotifications#0" />
+            <element signature="method#SendNewObjectiveToChat#0;class#QuestNotifications#0" />
+            <element signature="method#SendQuestCompleteToChat#0;class#QuestNotifications#0" />
+            <element signature="method#SendQuestAbandonedToChat#0;class#QuestNotifications#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/CollectMaterialObjective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/GoToObjective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/KillPlayerObjective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Objectives/KillObjective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Quest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2679#2680#0" expanded="true" />
+            <element signature="e#2724#2725#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/QuestDataWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerDataIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ReadData#0;class#PlayerDataIndex#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/TabComplete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/PlayerQuestData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#WriteToConfig#0;class#PlayerQuestData#0" />
+            <element signature="method#AcceptQuest#0;class#PlayerQuestData#0" />
+            <element signature="method#AbandonQuest#0;class#PlayerQuestData#0" />
+            <element signature="method#AbandonQuest#1;class#PlayerQuestData#0" />
+            <element signature="method#CompleteQuest#0;class#PlayerQuestData#0" />
+            <element signature="method#TryCompleteQuestObjective#0;class#PlayerQuestData#0" />
+            <element signature="method#TryCompleteQuestObjective#1;class#PlayerQuestData#0" />
+            <element signature="method#SendQuestsToChat#0;class#PlayerQuestData#0" />
+            <element signature="method#SendQuestStatusToChat#0;class#PlayerQuestData#0" />
+            <element signature="e#3107#3108#0" expanded="true" />
+            <element signature="e#3148#3149#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+            <element signature="e#3087#3088#0" expanded="true" />
+            <element signature="method#GetOnlinePlayer#0;class#PlayerQuestData#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/EntityDeathObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/InventoryClickObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/EventListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Allimorequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#AddQuestToJournal#0;class#QuestJournal#0" />
+            <element signature="method#RemoveQuestFromJournal#0;class#QuestJournal#0" />
+            <element signature="method#RemoveQuestFromJournal#1;class#QuestJournal#0" />
+            <element signature="method#Find#0;class#QuestJournal#0" />
+            <element signature="method#FirstEmpty#0;class#QuestJournal#0" />
+            <element signature="e#2689#2690#0" expanded="true" />
+            <element signature="e#2718#2719#0" expanded="true" />
+            <element signature="e#2757#2765#0" expanded="true" />
+            <element signature="method#TrySendQuestsToChat#0;class#QuestJournal#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/CommandManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#RunAbandonQuestCommand#0;class#CommandManager#0" />
+            <element signature="method#RunGenerateQuestCommand#0;class#CommandManager#0" />
+            <element signature="method#RunCompleteQuestCommand#0;class#CommandManager#0" />
+            <element signature="method#RunQuestStatusCommand#0;class#CommandManager#0" />
+            <element signature="method#RunWriteDataCommand#0;class#CommandManager#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="93" column="82" lean-forward="true" selection-start-line="93" selection-start-column="82" selection-end-line="93" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ItemNameMatch#0;class#Utils#0" />
+            <element signature="method#ItemMatch#0;class#Utils#0" />
+            <element signature="method#InventoryContains#0;class#Utils#0" />
+            <element signature="method#GetAmountOfMaterialFromInventory#0;class#Utils#0" />
+            <element signature="method#RemoveQuantityOfMaterial#0;class#Utils#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/Config/ConfigWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="32" column="68" selection-start-line="32" selection-start-column="67" selection-end-line="32" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/taurasi/marc/allimorequest/QuestJournalGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#OpenGUI#0;class#QuestJournalGUI#0" />
+            <element signature="method#PopulateInventoryWithQuestButtons#0;class#QuestJournalGUI#0" />
+            <element signature="method#CreateQuestButton#0;class#QuestJournalGUI#0" />
+            <element signature="e#825#833#0" expanded="true" />
+            <element signature="method#CreateGUIItem#0;class#QuestJournalGUI#0" />
+            <element signature="method#Notify#0;class#QuestJournalGUI#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>AllimoreQuest:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Minecraft</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>AllimoreQuest</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Vault</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

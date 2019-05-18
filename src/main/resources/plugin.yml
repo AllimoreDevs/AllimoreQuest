@@ -1,0 +1,20 @@
+name: AllimoreQuest
+version: ${project.version}
+main: taurasi.marc.allimorequest.Allimorequest
+prefix: AllimoreQuest
+authors: [TodAtsu]
+description: Quest Framework for Allimore Wildlands
+api-version: 1.14
+commands:
+  AbandonQuest:
+    description: Abandons a quest, removing it from your quest journal and freeing up one slot.
+  GenerateQuest:
+    description: Adds a randomly generated Quest to your journal if you have a free slot.
+  QuestJournal:
+    description: Displays your quests in the chat log.
+  QuestStatus:
+    description: Displays the status of a specified quest.
+  CompleteQuest:
+    description: Attempts to complete the current Quest Objective.
+  WriteData:
+    description: Attempts to write quest data to config.

@@ -2,8 +2,9 @@ package taurasi.marc.allimorequest.Objectives;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import taurasi.marc.allimorecore.ConversionUtils;
+import taurasi.marc.allimorecore.InventoryUtils;
 import taurasi.marc.allimorequest.Quest;
-import taurasi.marc.allimorequest.Utils.Utils;
 
 public class CollectMaterialObjective extends Objective {
     private Material itemMaterial;
@@ -16,7 +17,7 @@ public class CollectMaterialObjective extends Objective {
     }
     public CollectMaterialObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
-        itemMaterial = Utils.ConvertStringToMaterial(config.getString(path + "Material"));
+        itemMaterial = ConversionUtils.ConvertStringToMaterial(config.getString(path + "Material"));
         amount = config.getInt(path + "Amount");
     }
 
@@ -28,7 +29,7 @@ public class CollectMaterialObjective extends Objective {
     }
 
     private void Complete(){
-        Utils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), itemMaterial, amount);
+        InventoryUtils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), itemMaterial, amount);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class CollectMaterialObjective extends Objective {
 
     @Override
     public String GetProgress() {
-        int amountGathered = Utils.GetAmountOfMaterialFromInventory(itemMaterial, quest.GetOnlinePlayer().getInventory());
+        int amountGathered = InventoryUtils.GetAmountOfMaterialFromInventory(itemMaterial, quest.GetOnlinePlayer().getInventory());
         return String.format("%s/%s", Math.min(amountGathered, amount), amount);
     }
 

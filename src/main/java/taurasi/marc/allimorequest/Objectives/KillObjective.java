@@ -3,10 +3,10 @@ package taurasi.marc.allimorequest.Objectives;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityDeathEvent;
+import taurasi.marc.allimorecore.ConversionUtils;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.EntityDeathObserver;
 import taurasi.marc.allimorequest.Quest;
-import taurasi.marc.allimorequest.Utils.Utils;
 
 public class KillObjective extends Objective implements EntityDeathObserver {
     private int targetAmount;
@@ -21,7 +21,7 @@ public class KillObjective extends Objective implements EntityDeathObserver {
     }
     public KillObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
-        targetType = Utils.ConvertStringtoEntityType(config.getString(path + "Target Type"));
+        targetType = ConversionUtils.ConvertStringtoEntityType(config.getString(path + "Target Type"));
         targetAmount = config.getInt(path + "Target Amount");
         killedAmount = config.getInt(path + "Killed Amount");
         Allimorequest.EVENT_LISTENER.Subscribe(this);

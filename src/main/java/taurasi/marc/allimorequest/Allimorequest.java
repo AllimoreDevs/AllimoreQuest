@@ -2,6 +2,7 @@ package taurasi.marc.allimorequest;
 
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
+import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 
 public final class Allimorequest extends JavaPlugin {
@@ -18,7 +19,7 @@ public final class Allimorequest extends JavaPlugin {
         // Plugin startup logic
         INSTANCE = this;
         EVENT_LISTENER = new EventListener();
-        PLAYER_DATA = new PlayerDataIndex();
+        PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
 

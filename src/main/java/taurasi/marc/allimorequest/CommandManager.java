@@ -5,9 +5,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
-import taurasi.marc.allimorequest.Utils.QuestLogger;
 
 public class CommandManager implements CommandExecutor {
 
@@ -36,7 +36,7 @@ public class CommandManager implements CommandExecutor {
             }
 
         }else{
-            QuestLogger.LogInfo("Only players can run quest commands!");
+            AllimoreLogger.LogInfo("Only players can run quest commands!");
         }
 
         return false;
@@ -48,8 +48,8 @@ public class CommandManager implements CommandExecutor {
     }
     private boolean RunAbandonQuestCommand(Player player, String[] args){
         if(args.length != 1){
-            QuestLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
-            QuestLogger.LogInfo(ConfigWrapper.INFO_ABANDON_QUEST_USAGE , player);
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_ABANDON_QUEST_USAGE , player);
             return false;
         }
         Allimorequest.PLAYER_DATA.GetPlayerData(player).AbandonQuest(args[0]);
@@ -69,8 +69,8 @@ public class CommandManager implements CommandExecutor {
     }
     private boolean RunCompleteQuestCommand(Player player, String[] args){
         if(args.length != 1){
-            QuestLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
-            QuestLogger.LogInfo(ConfigWrapper.INFO_COMPLETE_QUEST_USAGE , player);
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_COMPLETE_QUEST_USAGE , player);
             return false;
         }
         return Allimorequest.PLAYER_DATA.GetPlayerData(player).TryCompleteQuestObjective(args[0]);

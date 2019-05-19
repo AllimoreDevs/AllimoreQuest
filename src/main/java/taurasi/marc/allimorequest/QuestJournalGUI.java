@@ -1,16 +1,14 @@
 package taurasi.marc.allimorequest;
 
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
-import taurasi.marc.allimorequest.Utils.Utils;
 
 import java.util.ArrayList;
 
@@ -59,7 +57,7 @@ public class QuestJournalGUI implements InventoryClickObserver {
         displayedQuest = quest;
 
         String itemTitle = ConfigWrapper.QUEST_BUTTON_TITLE_COLOR + quest.GetQuestName();
-        ArrayList<String> itemLore = Utils.WrapLore(quest.GetSummary(), ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
+        ArrayList<String> itemLore = StringUtils.WrapLore(quest.GetSummary(), ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
 
         inv.addItem(CreateGUIItem(itemTitle, itemLore, ConfigWrapper.QUEST_GUI_ITEM));
 
@@ -71,12 +69,12 @@ public class QuestJournalGUI implements InventoryClickObserver {
         inv.addItem(CreateGUIItem(itemTitle, itemLore, ConfigWrapper.QUEST_GUI_ITEM));
 
         itemTitle = ConfigWrapper.DANGEROUS_BUTTON_COLOR + "Abandon Quest";
-        itemLore = Utils.WrapLore("Abandons this quest, removing it from your quest journal.", ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
+        itemLore = StringUtils.WrapLore("Abandons this quest, removing it from your quest journal.", ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
 
         inv.addItem(CreateGUIItem(itemTitle, itemLore, ConfigWrapper.DANGEROUS_BUTTON_ITEM));
 
         itemTitle = ConfigWrapper.POSITIVE_BUTTON_COLOR + "Complete Quest";
-        itemLore = Utils.WrapLore("Attempts to complete the quest, collect quests will automatically consume items.", ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
+        itemLore = StringUtils.WrapLore("Attempts to complete the quest, collect quests will automatically consume items.", ConfigWrapper.QUEST_LORE_WRAPPING, ConfigWrapper.QUEST_BUTTON_LORE_COLOR.toString());
 
         inv.addItem(CreateGUIItem(itemTitle, itemLore, ConfigWrapper.POSITIVE_BUTTON_ITEM));
 

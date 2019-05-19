@@ -2,18 +2,18 @@ package taurasi.marc.allimorequest;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import taurasi.marc.allimorequest.Config.QuestDataWrapper;
+import taurasi.marc.allimorecore.CustomConfig;
 
 import java.util.ArrayList;
 import java.util.Set;
 
 public class PlayerDataIndex {
     private ArrayList<PlayerQuestData> questPlayers;
-    private QuestDataWrapper wrapper;
+    private CustomConfig configWrapper;
 
-    public PlayerDataIndex(){
-        questPlayers = new ArrayList<PlayerQuestData>();
-        wrapper = new QuestDataWrapper();
+    public PlayerDataIndex(CustomConfig configWrapper){
+        questPlayers = new ArrayList<>();
+        this.configWrapper = configWrapper;
         ReadData();
     }
 
@@ -41,14 +41,14 @@ public class PlayerDataIndex {
         for(int i = 0; i < questPlayers.size(); i++){
             questPlayers.get(i).WriteToConfig(config);
         }
-        wrapper.SaveOverConfig(config);
+        configWrapper.OverrwriteFile(config);
     }
     public void ReadData(){
-        Set<String> keys = wrapper.GetConfig().getKeys(false);
+        Set<String> keys = configWrapper.GetConfig().getKeys(false);
         Object[] uuidKeys = keys.toArray();
 
         for(int i = 0; i < keys.size(); i++){
-            AddPlayerData(new PlayerQuestData(wrapper.GetConfig(), (String)uuidKeys[i]));
+            AddPlayerData(new PlayerQuestData(configWrapper.GetConfig(), (String)uuidKeys[i]));
         }
     }
 }

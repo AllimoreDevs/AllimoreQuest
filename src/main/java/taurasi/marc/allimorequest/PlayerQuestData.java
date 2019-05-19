@@ -3,8 +3,8 @@ package taurasi.marc.allimorequest;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
-import taurasi.marc.allimorequest.Utils.QuestLogger;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -33,7 +33,7 @@ public class PlayerQuestData {
 
     public void AcceptQuest(Quest quest){
        if( !(questJorunal.AddQuestToJournal(quest)) ){
-           QuestLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_NO_FREE_SLOTS, GetOnlinePlayer());
+           AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_NO_FREE_SLOTS, GetOnlinePlayer());
         }
 
         quest.notificationService.PlayStartNotification();
@@ -66,14 +66,14 @@ public class PlayerQuestData {
             CompleteQuest(quest);
         }else{
             quest.notificationService.DisplayQuestBriefInChat(GetOnlinePlayer());
-            QuestLogger.LogInfo( ConfigWrapper.INFO_CANNOT_COMPLETE_QUEST, GetOnlinePlayer());
+            AllimoreLogger.LogInfo( ConfigWrapper.INFO_CANNOT_COMPLETE_QUEST, GetOnlinePlayer());
         }
         return succesful;
     }
 
     public void SendQuestsToChat(){
         if(questJorunal.TrySendQuestsToChat()){
-           QuestLogger.LogInfo(ConfigWrapper.INFO_EMPTY_QUEST_JOURNAL, GetOnlinePlayer());
+           AllimoreLogger.LogInfo(ConfigWrapper.INFO_EMPTY_QUEST_JOURNAL, GetOnlinePlayer());
         }
     }
     public void SendQuestStatusToChat(String name){
@@ -100,7 +100,7 @@ public class PlayerQuestData {
         if(offlinePlayer.isOnline()){
             return Allimorequest.INSTANCE.getServer().getPlayer(offlinePlayer.getUniqueId());
         }else{
-            QuestLogger.LogError("Player is not currently online!");
+            AllimoreLogger.LogError("Player is not currently online!");
             return null;
         }
     }

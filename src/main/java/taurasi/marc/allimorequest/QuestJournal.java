@@ -1,9 +1,9 @@
 package taurasi.marc.allimorequest;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import taurasi.marc.allimorecore.AllimoreLogger;
+import taurasi.marc.allimorecore.NullableInt;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
-import taurasi.marc.allimorequest.Utils.NullableInt;
-import taurasi.marc.allimorequest.Utils.QuestLogger;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class QuestJournal {
                 return;
             }
         }
-        QuestLogger.LogError("Could not find quest in quest journal! Player:" + playerData.GetPlayer().getName());
+        AllimoreLogger.LogError("Could not find quest in quest journal! Player:" + playerData.GetPlayer().getName());
     }
     public void RemoveQuestFromJournal(String name){
         Quest quest = Find(name);
@@ -66,7 +66,7 @@ public class QuestJournal {
                 return quests[i];
             }
         }
-        QuestLogger.LogError(ConfigWrapper.INFO_CANNOT_FIND_QUEST, playerData.GetOnlinePlayer());
+        AllimoreLogger.LogError(ConfigWrapper.INFO_CANNOT_FIND_QUEST, playerData.GetOnlinePlayer());
         return null;
     }
     private NullableInt FirstEmpty(){

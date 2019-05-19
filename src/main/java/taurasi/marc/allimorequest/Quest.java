@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Objectives.Objective;
-import taurasi.marc.allimorequest.Utils.QuestLogger;
 
 public class Quest {
     private String questGiverName;

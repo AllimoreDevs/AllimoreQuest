@@ -4,8 +4,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
-import taurasi.marc.allimorequest.Utils.SoundFX;
-import taurasi.marc.allimorequest.Utils.Utils;
+import taurasi.marc.allimorecore.ConversionUtils;
+import taurasi.marc.allimorecore.SoundFX;
 
 public class ConfigWrapper {
     // Chat Notificaiton Settings
@@ -51,11 +51,11 @@ public class ConfigWrapper {
 
     public static void ReadFromConfig(FileConfiguration config){
         String chatSection = "Chat Notifications.";
-        QUEST_TITLE_COLOR = Utils.ConvertStringToColor( config.getString(chatSection + "Title Color") );
-        QUEST_SUMMARY_COLOR = Utils.ConvertStringToColor( config.getString(chatSection + "Summary Color"));
-        QUEST_OBJECTIVE_COLOR = Utils.ConvertStringToColor( config.getString(chatSection + "Objective Color"));
-        QUEST_ABANDOEN_COLOR = Utils.ConvertStringToColor( config.getString(chatSection + "Abandon Quest Color"));
-        QUEST_COMPLETE_COLOR = Utils.ConvertStringToColor( config.getString(chatSection + "Complete Quest Color"));
+        QUEST_TITLE_COLOR = ConversionUtils.ConvertStringToColor( config.getString(chatSection + "Title Color") );
+        QUEST_SUMMARY_COLOR = ConversionUtils.ConvertStringToColor( config.getString(chatSection + "Summary Color"));
+        QUEST_OBJECTIVE_COLOR = ConversionUtils.ConvertStringToColor( config.getString(chatSection + "Objective Color"));
+        QUEST_ABANDOEN_COLOR = ConversionUtils.ConvertStringToColor( config.getString(chatSection + "Abandon Quest Color"));
+        QUEST_COMPLETE_COLOR = ConversionUtils.ConvertStringToColor( config.getString(chatSection + "Complete Quest Color"));
 
         String soundSection = "Sound Notifications.";
         QUEST_START_SOUNDFX = new SoundFX("Quest Start", config, soundSection);
@@ -63,8 +63,8 @@ public class ConfigWrapper {
         QUEST_ABANDON_SOUNDFX = new SoundFX("Quest Abandon", config, soundSection);
 
         String titleSections = "Title Notifications.";
-        QUEST_NOTIFICATION_TITLE_COLOR = Utils.ConvertStringToColor( config.getString(titleSections + "Title Color"));
-        QUEST_NOTIFICATION_SUBTITLE_COLOR = Utils.ConvertStringToColor( config.getString(titleSections + "Subtitle Color"));
+        QUEST_NOTIFICATION_TITLE_COLOR = ConversionUtils.ConvertStringToColor( config.getString(titleSections + "Title Color"));
+        QUEST_NOTIFICATION_SUBTITLE_COLOR = ConversionUtils.ConvertStringToColor( config.getString(titleSections + "Subtitle Color"));
         QUEST_NOTIFICATION_FADEIN = config.getInt(titleSections + "Quest Notification Fade In");
         QUEST_NOTIFICATION_STAY = config.getInt(titleSections + "Quest Notification Stay");
         QUEST_NOTIFICATION_FADEOUT = config.getInt(titleSections + "Quest Notification Fade Out");

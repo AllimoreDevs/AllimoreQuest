@@ -1,8 +1,8 @@
 package taurasi.marc.allimorequest.Objectives;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Quest;
-import taurasi.marc.allimorequest.Utils.QuestLogger;
 
 public abstract class Objective {
     protected String name;
@@ -26,7 +26,7 @@ public abstract class Objective {
             case GO_TO:
                 return new GoToObjective(config, path, name, quest);
         }
-        QuestLogger.LogError("Could not resolve quest type!");
+        AllimoreLogger.LogError("Could not resolve quest type!");
         return null;
     }
     public void WriteToConfig(FileConfiguration config, String section){

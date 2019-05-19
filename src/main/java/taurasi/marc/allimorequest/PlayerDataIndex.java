@@ -2,7 +2,6 @@ package taurasi.marc.allimorequest;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 import taurasi.marc.allimorecore.AllimoreLogger;
@@ -18,13 +17,14 @@ public class PlayerDataIndex {
     private ArrayList<PlayerQuestData> questPlayers;
     private CustomConfig configWrapper;
 
-    private long autoSavedelay = (20 * 60) * ConfigWrapper.PLAYER_DATA_AUTOSAVE_INTERVAL;
+    private long autoSaveDelay;
 
     public PlayerDataIndex(CustomConfig configWrapper){
         questPlayers = new ArrayList<>();
         this.configWrapper = configWrapper;
+        autoSaveDelay = (20 * 60) * ConfigWrapper.PLAYER_DATA_AUTOSAVE_INTERVAL;
 
-        BukkitTask autoSaveTask = new AutoSaveDataTask().runTaskTimer(Allimorequest.INSTANCE, autoSavedelay, autoSavedelay);
+        BukkitTask autoSaveTask = new AutoSaveDataTask().runTaskTimer(Allimorequest.INSTANCE, autoSaveDelay, autoSaveDelay);
     }
 
     private void AddPlayerData(PlayerQuestData questPlayer){

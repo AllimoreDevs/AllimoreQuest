@@ -4,6 +4,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.Observers.EventListener;
 
 public final class Allimorequest extends JavaPlugin {
 
@@ -12,7 +13,7 @@ public final class Allimorequest extends JavaPlugin {
     public static EventListener EVENT_LISTENER;
 
     private static CommandManager cmdManager;
-    private static TabComplete tabComplete;
+    private static QuestNameTabComplete tabComplete;
 
     @Override
     public void onEnable() {
@@ -36,7 +37,7 @@ public final class Allimorequest extends JavaPlugin {
         this.getCommand("ForceCompleteQuest").setExecutor(cmdManager);
         this.getCommand("WriteData").setExecutor(cmdManager);
 
-        tabComplete = new TabComplete();
+        tabComplete = new QuestNameTabComplete();
         this.getCommand("QuestStatus").setTabCompleter(tabComplete);
         this.getCommand("AbandonQuest").setTabCompleter(tabComplete);
         this.getCommand("CompleteQuest").setTabCompleter(tabComplete);

@@ -5,13 +5,13 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityDeathEvent;
 import taurasi.marc.allimorecore.ConversionUtils;
 import taurasi.marc.allimorequest.Allimorequest;
-import taurasi.marc.allimorequest.EntityDeathObserver;
+import taurasi.marc.allimorequest.Observers.EntityDeathObserver;
 import taurasi.marc.allimorequest.Quest;
 
 public class KillObjective extends Objective implements EntityDeathObserver {
-    private int targetAmount;
-    private int killedAmount;
-    private EntityType targetType;
+    int targetAmount;
+    int killedAmount;
+    EntityType targetType;
 
     public KillObjective(String name, Quest quest, EntityType targetType, int targetAmount) {
         super(name, quest);

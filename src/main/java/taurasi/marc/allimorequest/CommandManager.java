@@ -1,4 +1,5 @@
 package taurasi.marc.allimorequest;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 
 import org.bukkit.command.CommandExecutor;
@@ -7,6 +8,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.Objectives.CraftItemObjective;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 
 public class CommandManager implements CommandExecutor {
@@ -63,8 +65,12 @@ public class CommandManager implements CommandExecutor {
         //CollectMaterialObjective objective = new CollectMaterialObjective("Collect 10 leads", dummyQuest, Material.LEAD, 10);
         //dummyQuest.SetCurrentObjective(objective);
 
-        Quest dummyQuest = new Quest("Tod", "Extermination", "Tod has asked you to kill zombies around the world.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
-        KillObjective objective = new KillObjective("Kill 3 Zombies", dummyQuest, EntityType.ZOMBIE, 3);
+        //Quest dummyQuest = new Quest("Tod", "Extermination", "Tod has asked you to kill zombies around the world.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
+        //KillObjective objective = new KillObjective("Kill 3 Zombies", dummyQuest, EntityType.ZOMBIE, 3);
+        //dummyQuest.SetCurrentObjective(objective);
+
+        Quest dummyQuest = new Quest("Air", "Craft for me", "Air has asked you to craft a stone sword for him.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
+        CraftItemObjective objective = new CraftItemObjective("Craft a Stone Sword", dummyQuest, Material.STONE_SWORD, 1);
         dummyQuest.SetCurrentObjective(objective);
 
         Allimorequest.PLAYER_DATA.GetPlayerData(player).AcceptQuest(dummyQuest);

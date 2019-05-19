@@ -17,7 +17,7 @@ public class CollectMaterialObjective extends Objective {
     }
     public CollectMaterialObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
-        itemMaterial = ConversionUtils.ConvertStringToMaterial(config.getString(path + "Material"));
+        itemMaterial = Material.getMaterial(config.getString(path + "Material"), false);
         amount = config.getInt(path + "Amount");
     }
 

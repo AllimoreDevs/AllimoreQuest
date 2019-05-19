@@ -74,7 +74,7 @@ public class ConfigWrapper {
         QUEST_NOTIFICATION_STAY = config.getInt(titleSections + "Quest Notification Stay");
         QUEST_NOTIFICATION_FADEOUT = config.getInt(titleSections + "Quest Notification Fade Out");
 
-        String playerData = "Player Data";
+        String playerData = "Player Data.";
         PLAYER_DATA_AUTOSAVE_INTERVAL = config.getInt(playerData + "Auto Save Interval");
         PLAYER_UNLOAD_DATA_DELAY_MINUTES = config.getInt(playerData + "Player Data Unload Delay");
     }

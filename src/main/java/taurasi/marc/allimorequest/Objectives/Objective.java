@@ -21,10 +21,14 @@ public abstract class Objective {
                 return new KillPlayerObjective(config, path, name, quest);
             case KILL:
                 return new KillObjective(config, path, name, quest);
+            case KILL_NEAR:
+                return new KillNearObjective(config, path, name, quest);
             case COLLECT:
                 return new CollectMaterialObjective(config, path, name, quest);
             case GO_TO:
                 return new GoToObjective(config, path, name, quest);
+            case CRAFT:
+                return new CraftItemObjective(config, path, name, quest);
         }
         AllimoreLogger.LogError("Could not resolve quest type!");
         return null;

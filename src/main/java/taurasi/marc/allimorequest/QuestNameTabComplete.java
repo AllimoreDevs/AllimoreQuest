@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class TabComplete implements TabCompleter {
+public class QuestNameTabComplete implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if( !(sender instanceof Player) ) return null;

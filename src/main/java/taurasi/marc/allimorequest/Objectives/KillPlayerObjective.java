@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import taurasi.marc.allimorequest.Allimorequest;
-import taurasi.marc.allimorequest.EntityDeathObserver;
+import taurasi.marc.allimorequest.Observers.EntityDeathObserver;
 import taurasi.marc.allimorequest.Quest;
 
 import java.util.UUID;

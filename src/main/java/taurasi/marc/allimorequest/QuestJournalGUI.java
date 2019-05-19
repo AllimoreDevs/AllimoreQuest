@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.Observers.InventoryClickObserver;
 
 import java.util.ArrayList;
 

@@ -17,5 +17,8 @@ commands:
     description: Displays the status of a specified quest.
   CompleteQuest:
     description: Attempts to complete the current Quest Objective.
+  ForceCompleteQuest:
+    description: Forces a quest to be completed.
+    permission: allimore.quest.forcecomplete
   WriteData:
     description: Attempts to write quest data to config.

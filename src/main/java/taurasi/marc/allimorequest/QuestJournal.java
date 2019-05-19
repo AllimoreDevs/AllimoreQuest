@@ -30,8 +30,15 @@ public class QuestJournal {
 
     public void WriteToConfig(FileConfiguration config, String section){
         for (int i = 0; i < quests.length; i++){
-            if(quests[i] == null) continue;
-            quests[i].WriteToConfig(config, String.format("%s.Quests.Slot %o.", section, i));
+            String path = String.format("%s.Quests.Slot %o", section, i);
+
+            if(quests[i] == null && config.contains(path)){
+                config.set(path, null);
+                continue;
+            }else if(quests[i] == null){
+                continue;
+            }
+            quests[i].WriteToConfig(config, path + ".");
         }
     }
 

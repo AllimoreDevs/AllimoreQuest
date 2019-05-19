@@ -54,6 +54,11 @@ public class PlayerQuestData {
         questJorunal.RemoveQuestFromJournal(quest);
         // TODO: Issues out Quest Reward
     }
+    public void CompleteQuest(String name){
+        Quest quest = questJorunal.Find(name);
+        if(quest == null) return;
+        CompleteQuest(quest);
+    }
 
     public boolean TryCompleteQuestObjective(String name){
         Quest quest = questJorunal.Find(name);

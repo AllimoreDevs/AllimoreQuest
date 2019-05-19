@@ -27,6 +27,10 @@ public class ConfigWrapper {
     public static SoundFX QUEST_COMPLETE_SOUNDFX = new SoundFX("Quest Complete", Sound.ENTITY_PLAYER_LEVELUP, 1f, 1.3f);
     public static SoundFX QUEST_ABANDON_SOUNDFX = new SoundFX("Quest Abandon", Sound.ENTITY_ARROW_HIT_PLAYER, 1f, .5f);
 
+    // Player Data Settings;
+    public static int PLAYER_UNLOAD_DATA_DELAY_MINUTES = 5;
+    public static int PLAYER_DATA_AUTOSAVE_INTERVAL = 30;
+
     // GUI Settings
     public static int QUEST_LORE_WRAPPING = 30;
     public static Material QUEST_GUI_ITEM = Material.BOOK;
@@ -43,6 +47,7 @@ public class ConfigWrapper {
 
     public static String INFO_ABANDON_QUEST_USAGE = "/AbandonQuest <QuestName>";
     public static String INFO_COMPLETE_QUEST_USAGE = "/CompleteQuest <QuestName>";
+    public static String INFO_FORCE_COMPLETE_QUEST_USAGE = "/ForceCompleteQuest <QuestName>";
 
     // Info Strings for Quest Journal Usage:
     public static String INFO_EMPTY_QUEST_JOURNAL = "Looks like your Quest Journal is empty right now.";

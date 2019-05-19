@@ -22,6 +22,7 @@ public final class Allimorequest extends JavaPlugin {
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
+        getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
 
         saveDefaultConfig();
         ConfigWrapper.ReadFromConfig(getConfig());
@@ -32,12 +33,14 @@ public final class Allimorequest extends JavaPlugin {
         this.getCommand("GenerateQuest").setExecutor(cmdManager);
         this.getCommand("AbandonQuest").setExecutor(cmdManager);
         this.getCommand("CompleteQuest").setExecutor(cmdManager);
+        this.getCommand("ForceCompleteQuest").setExecutor(cmdManager);
         this.getCommand("WriteData").setExecutor(cmdManager);
 
         tabComplete = new TabComplete();
         this.getCommand("QuestStatus").setTabCompleter(tabComplete);
         this.getCommand("AbandonQuest").setTabCompleter(tabComplete);
         this.getCommand("CompleteQuest").setTabCompleter(tabComplete);
+        this.getCommand("ForceCompleteQuest").setTabCompleter(tabComplete);
 
     }
 

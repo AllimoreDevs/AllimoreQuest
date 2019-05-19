@@ -16,23 +16,26 @@ public class CommandManager implements CommandExecutor {
         if ( sender instanceof Player){
             Player player = (Player) sender;
 
-        if(IsCommand(command, "QuestJournal")){
-            return RunQuestJournalCommand(player);
-        }
-        if(IsCommand(command, "AbandonQuest")){
-            return RunAbandonQuestCommand(player, args);
-        }
-        if(IsCommand(command, "GenerateQuest")){
-            return RunGenerateQuestCommand(player);
-        }
-        if(IsCommand(command, "CompleteQuest")){
-            return RunCompleteQuestCommand(player, args);
-        }
-        if(IsCommand(command, "WriteData")){
-            return RunWriteDataCommand();
-        }
+            if(IsCommand(command, "QuestJournal")){
+                return RunQuestJournalCommand(player);
+            }
+            if(IsCommand(command, "AbandonQuest")){
+                return RunAbandonQuestCommand(player, args);
+            }
+            if(IsCommand(command, "GenerateQuest")){
+                return RunGenerateQuestCommand(player);
+            }
+            if(IsCommand(command, "CompleteQuest")){
+                return RunCompleteQuestCommand(player, args);
+            }
+            if(IsCommand(command, "WriteData")){
+                return RunWriteDataCommand();
+            }
             if(IsCommand(command, "QuestStatus")){
                 return RunQuestStatusCommand(player, args);
+            }
+            if(IsCommand(command, "ForceCompleteQuest")){
+                return RunForceCompleteQuestCommand(player, args);
             }
 
         }else{
@@ -74,6 +77,16 @@ public class CommandManager implements CommandExecutor {
             return false;
         }
         return Allimorequest.PLAYER_DATA.GetPlayerData(player).TryCompleteQuestObjective(args[0]);
+    }
+    private boolean RunForceCompleteQuestCommand(Player player, String[] args){
+        if(args.length != 1){
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
+            AllimoreLogger.LogInfo(ConfigWrapper.INFO_FORCE_COMPLETE_QUEST_USAGE , player);
+            return false;
+        }
+        PlayerQuestData qp = Allimorequest.PLAYER_DATA.GetPlayerData(player);
+        qp.CompleteQuest(args[0]);
+        return true;
     }
     private boolean RunQuestStatusCommand(Player player, String[] args){
         if(args.length != 1){

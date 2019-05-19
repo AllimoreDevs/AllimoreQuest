@@ -13,7 +13,7 @@ import taurasi.marc.allimorequest.Tasks.UnloadPlayerTask;
 import java.util.HashMap;
 
 public class PlayerConnectionListener implements Listener {
-    private static long UNLOADING_DELAY = (20 * 60) * ConfigWrapper.PLAYER_UNLOAD_DATA_DELAY_MINUTES;
+    private long UNLOADING_DELAY = (20 * 60) * ConfigWrapper.PLAYER_UNLOAD_DATA_DELAY_MINUTES;
 
     private HashMap<OfflinePlayer, BukkitTask> unloadingTasks;
 

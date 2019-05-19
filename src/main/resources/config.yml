@@ -32,3 +32,8 @@ Title Notifications:
   Quest Notification Fade In: 10
   Quest Notification Stay: 20
   Quest Notification Fade Out: 10
+
+## Settings for Player Data
+Player Data:
+  Auto Save Interval: 30
+  Player Data Unload Delay: 5

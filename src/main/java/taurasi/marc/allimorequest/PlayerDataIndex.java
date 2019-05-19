@@ -18,14 +18,13 @@ public class PlayerDataIndex {
     private ArrayList<PlayerQuestData> questPlayers;
     private CustomConfig configWrapper;
 
-    private BukkitTask autoSaveTask;
     private long autoSavedelay = (20 * 60) * ConfigWrapper.PLAYER_DATA_AUTOSAVE_INTERVAL;
 
     public PlayerDataIndex(CustomConfig configWrapper){
         questPlayers = new ArrayList<>();
         this.configWrapper = configWrapper;
 
-        autoSaveTask = new AutoSaveDataTask().runTaskTimer(Allimorequest.INSTANCE, autoSavedelay, autoSavedelay);
+        BukkitTask autoSaveTask = new AutoSaveDataTask().runTaskTimer(Allimorequest.INSTANCE, autoSavedelay, autoSavedelay);
     }
 
     private void AddPlayerData(PlayerQuestData questPlayer){

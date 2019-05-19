@@ -17,15 +17,15 @@ public final class Allimorequest extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        saveDefaultConfig();
+        ConfigWrapper.ReadFromConfig(getConfig());
+
         INSTANCE = this;
         EVENT_LISTENER = new EventListener();
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
-
-        saveDefaultConfig();
-        ConfigWrapper.ReadFromConfig(getConfig());
 
         cmdManager = new CommandManager();
         this.getCommand("QuestJournal").setExecutor(cmdManager);

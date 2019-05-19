@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.ArrayList;
@@ -12,11 +13,13 @@ public class EventListener implements Listener {
     private ArrayList<EntityDeathObserver> entityDeathObservers;
     private ArrayList<InventoryClickObserver> inventoryClickObservers;
     private ArrayList<CraftItemObserver> craftItemObservers;
+    private ArrayList<FurnaceExtractObserver> furnaceExtractObservers;
 
     public EventListener(){
         entityDeathObservers  = new ArrayList<>();
         inventoryClickObservers = new ArrayList<>();
         craftItemObservers = new ArrayList<>();
+        furnaceExtractObservers = new ArrayList<>();
     }
 
     @EventHandler
@@ -42,6 +45,13 @@ public class EventListener implements Listener {
             observer.Notify(event);
         }
     }
+    @EventHandler
+    private void OnFurnaceExtractEvent(FurnaceExtractEvent event){
+        for (FurnaceExtractObserver observer : furnaceExtractObservers){
+            if(observer == null) continue;
+            observer.Notify(event);
+        }
+    }
 
     public void Subscribe(EntityDeathObserver observer){
         entityDeathObservers.add(observer);
@@ -62,5 +72,12 @@ public class EventListener implements Listener {
     }
     public void Unsubscribe(CraftItemObserver observer){
         craftItemObservers.remove(observer);
+    }
+
+    public void Subscribe(FurnaceExtractObserver observer){
+        furnaceExtractObservers.add(observer);
+    }
+    public void Unsubscribe(FurnaceExtractObserver observer){
+        furnaceExtractObservers.remove(observer);
     }
 }

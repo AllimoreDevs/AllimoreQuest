@@ -29,6 +29,8 @@ public abstract class Objective {
                 return new GoToObjective(config, path, name, quest);
             case CRAFT:
                 return new CraftItemObjective(config, path, name, quest);
+            case SMELT:
+                return  new SmeltMaterialObjective(config, path, name, quest);
         }
         AllimoreLogger.LogError("Could not resolve quest type!");
         return null;

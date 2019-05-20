@@ -86,7 +86,7 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
                 }else{
                     return;
                 }
-            case "Go back":
+            case "Go Back":
                 OpenQuestMenu();
                 return;
         }

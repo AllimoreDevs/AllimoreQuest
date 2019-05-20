@@ -12,12 +12,15 @@ public class SmeltMaterialObjective extends Objective implements FurnaceExtractO
     private int targetAmount;
     private int completedAmount;
 
+    // Construct New
     public SmeltMaterialObjective(String name, Quest quest, Material targetMaterial, int targetAmount) {
         super(name, quest);
         this.targetMaterial = targetMaterial;
         this.targetAmount  = targetAmount;
         Allimorequest.EVENT_LISTENER.Subscribe(this);
     }
+    // Serialization
+    // Re-Construct from Config
     public SmeltMaterialObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
         targetMaterial = Material.getMaterial(config.getString(path + "Target Material"), false);
@@ -30,7 +33,18 @@ public class SmeltMaterialObjective extends Objective implements FurnaceExtractO
         config.set(path + "Target Material", targetMaterial);
         config.set(path + "Target Amount", targetAmount);
     }
+    // End of Serialization
 
+    @Override
+    public void OnFurnaceExtractEvent(FurnaceExtractEvent event) {
+        if( !(event.getPlayer().equals(quest.GetPlayer()) || !(event.getExpToDrop() <= 0) )) return;
+        if( !(event.getItemType().equals(targetMaterial)) ) return;
+        completedAmount += event.getItemAmount();
+
+        if(IsComplete()){
+            quest.CompleteQuest();
+        }
+    }
     @Override
     public boolean IsComplete() {
         if(completedAmount >= targetAmount){
@@ -41,28 +55,17 @@ public class SmeltMaterialObjective extends Objective implements FurnaceExtractO
     }
 
     @Override
-    public String GetProgress() {
-        return String.format("%o/%o", completedAmount, targetAmount);
-    }
-
-    @Override
-    public ObjectiveType GetType() {
-        return ObjectiveType.SMELT;
-    }
-
-    @Override
     public void Disable() {
         Allimorequest.EVENT_LISTENER.Unsubscribe(this);
     }
 
+    // Getters and Setters
     @Override
-    public void Notify(FurnaceExtractEvent event) {
-        if( !(event.getPlayer().equals(quest.GetPlayer()) || !(event.getExpToDrop() <= 0) )) return;
-        if( !(event.getItemType().equals(targetMaterial)) ) return;
-        completedAmount += event.getItemAmount();
-
-        if(IsComplete()){
-            quest.CompleteQuest();
-        }
+    public String GetProgress() {
+        return String.format("%o/%o", completedAmount, targetAmount);
+    }
+    @Override
+    public ObjectiveType GetType() {
+        return ObjectiveType.SMELT;
     }
 }

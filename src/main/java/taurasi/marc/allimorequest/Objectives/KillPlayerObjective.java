@@ -14,12 +14,15 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
     private OfflinePlayer targetPlayer;
     private boolean killedPlayer;
 
+    // Construct New
     public KillPlayerObjective(String name, Quest quest, Player targetPlayer) {
         super(name, quest);
         this.targetPlayer = targetPlayer;
 
         Allimorequest.EVENT_LISTENER.Subscribe(this);
     }
+    // Serialization
+    // Re-Construct from Config
     public KillPlayerObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
         UUID id = UUID.fromString(config.getString(path + "Target"));
@@ -34,6 +37,17 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
         config.set(section + "Target", targetPlayer.getUniqueId());
         config.set(section + "Killed", killedPlayer);
     }
+    // End of Serialization
+
+    @Override
+    public void OnEntityDeathEvent(EntityDeathEvent event) {
+        if( !(event.getEntity() instanceof Player) ) return;
+        Player player = (Player)event.getEntity();
+        if(player == targetPlayer){
+            killedPlayer = true;
+            quest.CompleteQuest();
+        }
+    }
 
     @Override
     public boolean IsComplete() {
@@ -44,6 +58,12 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
     }
 
     @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+    }
+
+    // Getters and Setters
+    @Override
     public String GetProgress() {
         if(killedPlayer) {
             return String.format("%s has been silenced.", targetPlayer.getName());
@@ -51,24 +71,8 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
             return String.format("%s is still alive.", targetPlayer.getName());
         }
     }
-
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.KILL_PLAYER;
-    }
-
-    @Override
-    public void Disable() {
-        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
-    }
-
-    @Override
-    public void Notify(EntityDeathEvent event) {
-        if( !(event.getEntity() instanceof Player) ) return;
-        Player player = (Player)event.getEntity();
-        if(player == targetPlayer){
-            killedPlayer = true;
-            quest.CompleteQuest();
-        }
     }
 }

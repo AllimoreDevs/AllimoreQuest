@@ -15,6 +15,7 @@ public class Quest {
 
     public QuestNotifications notificationService;
 
+    // Construct New
     public Quest(String questGiverName, String name, String summary, PlayerQuestData playerData){
         this.questGiverName = questGiverName;
         this.name = name;
@@ -23,6 +24,8 @@ public class Quest {
 
         notificationService = new QuestNotifications(this);
     }
+    // Serialization
+    // Re-Construct from Config
     public Quest(FileConfiguration config, String path, PlayerQuestData playerData){
         name = config.getString(path + "Name");
         questGiverName = config.getString(path + "Quest Giver");
@@ -38,6 +41,7 @@ public class Quest {
         config.set(section + "Summary", summary);
         currentObjective.WriteToConfig(config, String.format("%s.Objective.", section) );
     }
+    // End of Serialization
 
     public boolean TryCompleteCurrentObjective(){
         return currentObjective.IsComplete();
@@ -46,6 +50,11 @@ public class Quest {
         playerData.CompleteQuest(this);
     }
 
+    public void SetCurrentObjective(Objective currentObjective){
+        this.currentObjective = currentObjective;
+    }
+
+    // Variable to String Converters
     public String QuestFullName(){
         return String.format("%s[%s]", ConfigWrapper.QUEST_TITLE_COLOR, name);
     }
@@ -54,10 +63,6 @@ public class Quest {
     }
     public String QuestFullDescription(){
         return String.format("%s %s", QuestFullName(), QuestFullSummary());
-    }
-
-    public void SetCurrentObjective(Objective currentObjective){
-        this.currentObjective = currentObjective;
     }
 
     // Getters and Setters

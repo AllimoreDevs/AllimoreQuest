@@ -8,11 +8,13 @@ public abstract class Objective {
     protected String name;
     protected Quest quest;
 
-    // Constructor
+    // Construct New
     public Objective(String name, Quest quest){
         this.name = name;
         this.quest = quest;
     }
+    // Serialization
+    // Re-Construct from Config
     public static Objective ReadObjective(FileConfiguration config, String path, Quest quest){
         String name = config.getString(path + "Name");
         ObjectiveType type = ObjectiveType.valueOf(config.getString(path + "Type"));
@@ -39,13 +41,14 @@ public abstract class Objective {
         config.set(section + "Name", name);
         config.set(section + "Type", GetType().name());
     }
+    // End of Serialization
 
     public abstract boolean IsComplete();
-    public abstract String GetProgress();
-    public abstract ObjectiveType GetType();
     public abstract void Disable();
 
     // Getters and Setters
+    public abstract String GetProgress();
+    public abstract ObjectiveType GetType();
     public String GetName(){
         return name;
     }

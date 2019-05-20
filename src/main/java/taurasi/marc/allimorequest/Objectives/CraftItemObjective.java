@@ -15,12 +15,16 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
     private int craftedAmount;
     private Material targetMaterial;
 
+    // Construct New
     public CraftItemObjective(String name, Quest quest, Material targetMaterial, int targetAmount) {
         super(name, quest);
         this.targetMaterial = targetMaterial;
         this.targetAmount = targetAmount;
         Allimorequest.EVENT_LISTENER.Subscribe(this);
     }
+
+    // Serialization
+    // Re-construct From File
     public CraftItemObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
         targetMaterial =  Material.getMaterial(config.getString(path + "Material"), false);
@@ -35,6 +39,7 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
         config.set(path + "Target Amount", targetAmount);
         config.set(path + "Crafted Amount", craftedAmount);
     }
+    // End of Serialization
 
     @Override
     public boolean IsComplete() {
@@ -46,22 +51,7 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
     }
 
     @Override
-    public String GetProgress() {
-        return String.format("%o/%o", Math.min(craftedAmount, targetAmount), targetAmount);
-    }
-
-    @Override
-    public ObjectiveType GetType() {
-        return ObjectiveType.CRAFT;
-    }
-
-    @Override
-    public void Disable() {
-        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
-    }
-
-    @Override
-    public void Notify(CraftItemEvent event) {
+    public void OnCraftItemEvent(CraftItemEvent event) {
         ItemStack result = event.getInventory().getResult();
 
         if( !(result.getType().equals(targetMaterial)) ) return;
@@ -69,5 +59,30 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
         if( IsComplete()){
             quest.CompleteQuest();
         }
+    }
+
+    @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+    }
+
+    // Getters and Setters
+    public int GetTargetAmount(){
+        return targetAmount;
+    }
+    public int GetCraftedAmount(){
+        return craftedAmount;
+    }
+    public Material GetTargetMaterial(){
+        return targetMaterial;
+    }
+
+    @Override
+    public String GetProgress() {
+        return String.format("%o/%o", Math.min(craftedAmount, targetAmount), targetAmount);
+    }
+    @Override
+    public ObjectiveType GetType() {
+        return ObjectiveType.CRAFT;
     }
 }

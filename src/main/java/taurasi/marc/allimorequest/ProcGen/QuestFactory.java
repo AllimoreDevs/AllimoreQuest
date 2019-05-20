@@ -25,7 +25,6 @@ public class QuestFactory {
 
         return quest;
     }
-
     public Quest GenerateKillQuest(PlayerQuestData playerData){
         return GenerateKillQuest(playerData, GetRandomDifficulty());
     }
@@ -69,9 +68,11 @@ public class QuestFactory {
         }
     }
     private String GenerateSummary(String questGiver) {
+        // TODO: Complete implementation
         return String.format("%s has asked you to kill monsters around the world.", questGiver);
     }
     private String GenerateGiverName() {
+        // TODO: Complete implementation
         return "The Guild";
     }
 }

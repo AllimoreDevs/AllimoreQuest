@@ -26,7 +26,7 @@ public class EventListener implements Listener {
     private void OnEntityKilled(EntityDeathEvent event){
         for (int i = 0; i < entityDeathObservers.size(); i++){
             if(entityDeathObservers.get(i) == null) continue;
-            entityDeathObservers.get(i).Notify(event);
+            entityDeathObservers.get(i).OnEntityDeathEvent(event);
         }
     }
 
@@ -42,14 +42,14 @@ public class EventListener implements Listener {
     private void OnCraftItemEvent(CraftItemEvent event){
         for (int i = 0; i < craftItemObservers.size(); i++){
             if(craftItemObservers.get(i) == null) continue;
-            craftItemObservers.get(i).Notify(event);
+            craftItemObservers.get(i).OnCraftItemEvent(event);
         }
     }
     @EventHandler
     private void OnFurnaceExtractEvent(FurnaceExtractEvent event){
         for (int i = 0; i < furnaceExtractObservers.size(); i++){
             if(furnaceExtractObservers.get(i) == null) continue;
-            furnaceExtractObservers.get(i).Notify(event);
+            furnaceExtractObservers.get(i).OnFurnaceExtractEvent(event);
         }
     }
 

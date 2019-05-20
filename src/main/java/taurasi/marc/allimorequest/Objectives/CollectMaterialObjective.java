@@ -9,11 +9,15 @@ public class CollectMaterialObjective extends Objective {
     private Material material;
     private int targetAmount;
 
+    // Construct New
     public CollectMaterialObjective(String name, Quest quest, Material material, int targetAmount){
         super(name, quest);
         this.material = material;
         this.targetAmount = targetAmount;
     }
+
+    // Serialization
+    // Re-Construct From Config
     public CollectMaterialObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
         material = Material.getMaterial(config.getString(path + "Material"), false);
@@ -26,19 +30,30 @@ public class CollectMaterialObjective extends Objective {
         config.set(section + "Material", material.name());
         config.set(section + "Amount", targetAmount);
     }
-
-    private void Complete(){
-        InventoryUtils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), material, targetAmount);
-    }
+    // End of Serialization
 
     @Override
     public boolean IsComplete() {
         if(quest.GetOnlinePlayer().getInventory().contains(material, targetAmount)){
-            Complete();
+            SubmitQuestItems();
             return true;
         }else{
             return false;
         }
+    }
+    private void SubmitQuestItems(){
+        InventoryUtils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), material, targetAmount);
+    }
+
+    @Override
+    public void Disable() {}
+
+    // Getters and Setters
+    public int GetTargetAmount(){
+        return targetAmount;
+    }
+    public Material GetMaterial(){
+        return material;
     }
 
     @Override
@@ -49,15 +64,5 @@ public class CollectMaterialObjective extends Objective {
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.COLLECT;
-    }
-
-    @Override
-    public void Disable() {}
-
-    public int GetTargetAmount(){
-        return targetAmount;
-    }
-    public Material GetMaterial(){
-        return material;
     }
 }

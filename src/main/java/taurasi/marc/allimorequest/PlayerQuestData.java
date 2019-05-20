@@ -2,12 +2,10 @@ package taurasi.marc.allimorequest;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.GUI.QuestJournalGUI;
-import taurasi.marc.allimorequest.Objectives.KillNearObjective;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 
 import java.util.ArrayList;
@@ -17,62 +15,31 @@ public class PlayerQuestData {
     private OfflinePlayer offlinePlayer;
     private QuestJournal questJorunal;
     private QuestJournalGUI questJournalGUI;
+    private EntityLock entityLocker;
 
-    private ArrayList<EntityType> lockedTypes;
-
+    // Construct New
     public PlayerQuestData(Player offlinePlayer){
         this.offlinePlayer = offlinePlayer;
         questJorunal = new QuestJournal(this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
-        lockedTypes = new ArrayList<>();
+        entityLocker = new EntityLock();
     }
+    // Serialization
+    // Re-Construct from Config
     public PlayerQuestData(FileConfiguration config, String uuid){
         UUID id = UUID.fromString(uuid);
         offlinePlayer = Allimorequest.INSTANCE.getServer().getOfflinePlayer(id);
         questJorunal =  new QuestJournal(config, uuid + ".", this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
-        LockTypesFromQuests();
+        entityLocker = new EntityLock();
+        entityLocker.LockTypesFromQuests(questJorunal);
     }
     public void WriteToConfig(FileConfiguration config){
         UUID uniqueId = offlinePlayer.getUniqueId();
         config.set(uniqueId + ".Name", offlinePlayer.getName());
         questJorunal.WriteToConfig(config, uniqueId.toString());
     }
-
-    public boolean ContainsQuestName(String name){
-        return questJorunal.ContainsQuestName(name);
-
-    }
-
-    private void LockTypesFromQuests(){
-        lockedTypes = new ArrayList<>();
-
-        Quest[] quests = questJorunal.GetQuests();
-        for (Quest quest : quests) {
-            if (quest == null) continue;
-            if (quest.GetCurrentObjective() instanceof KillObjective) {
-                KillObjective objective = (KillObjective) quest.GetCurrentObjective();
-                LockType(objective.GetEntityType());
-            }
-        }
-    }
-    private boolean IsTypeLocked(EntityType type){
-        return lockedTypes.contains(type);
-    }
-    private void LockType(EntityType type){
-        if(lockedTypes.contains(type)){
-            AllimoreLogger.LogError("Cannot lock type that is already locked!");
-            return;
-        }
-        lockedTypes.add(type);
-    }
-    private void UnlockType(EntityType type){
-        if(!lockedTypes.contains(type)){
-            AllimoreLogger.LogError("Cannot Unlock type, type not found in locked types!");
-            return;
-        }
-        lockedTypes.remove(type);
-    }
+    // End of Serialization
 
     public void AcceptQuest(Quest quest){
        if(questJorunal.ContainsQuestName(quest.GetQuestName())){
@@ -81,7 +48,7 @@ public class PlayerQuestData {
        }
        if(quest.GetCurrentObjective() instanceof KillObjective){
            KillObjective objective = (KillObjective) quest.GetCurrentObjective();
-           if(IsTypeLocked(objective.GetEntityType())){
+           if(entityLocker.IsTypeLocked(objective.GetEntityType())){
                AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_SAME_ENTITY, GetOnlinePlayer());
                return;
            }
@@ -98,12 +65,6 @@ public class PlayerQuestData {
     public void AbandonQuest(Quest quest){
         questJorunal.RemoveQuestFromJournal(quest);
         quest.GetCurrentObjective().Disable();
-
-        if(quest.GetCurrentObjective() instanceof KillObjective){
-            KillObjective objective = (KillObjective)quest.GetCurrentObjective();
-            UnlockType(objective.GetEntityType());
-        }
-
         quest.notificationService.PlayAbandonNotification();
     }
     public void AbandonQuest(String name){
@@ -112,13 +73,25 @@ public class PlayerQuestData {
         AbandonQuest(quest);
     }
 
+    public boolean TryCompleteQuestObjective(String name){
+        Quest quest = questJorunal.Find(name);
+        if(quest == null) return false;
+        return TryCompleteQuestObjective(quest);
+    }
+    public boolean TryCompleteQuestObjective(Quest quest){
+        boolean successful = quest.TryCompleteCurrentObjective();
+        if(successful) {
+            CompleteQuest(quest);
+        }else{
+            AllimoreLogger.LogInfo( ConfigWrapper.INFO_CANNOT_COMPLETE_QUEST, GetOnlinePlayer());
+        }
+        return successful;
+    }
+
     public void CompleteQuest(Quest quest){
         quest.notificationService.PlayCompleteNotification();
         questJorunal.RemoveQuestFromJournal(quest);
-        if(quest.GetCurrentObjective() instanceof KillObjective){
-            KillObjective objective = (KillObjective)quest.GetCurrentObjective();
-            UnlockType(objective.GetEntityType());
-        }
+        quest.GetCurrentObjective().Disable();
         // TODO: Issues out Quest Reward
     }
     public void CompleteQuest(String name){
@@ -127,22 +100,7 @@ public class PlayerQuestData {
         CompleteQuest(quest);
     }
 
-    public boolean TryCompleteQuestObjective(String name){
-        Quest quest = questJorunal.Find(name);
-        if(quest == null) return false;
-        return TryCompleteQuestObjective(quest);
-    }
-    public boolean TryCompleteQuestObjective(Quest quest){
-        boolean succesful = quest.TryCompleteCurrentObjective();
-        if(succesful) {
-            CompleteQuest(quest);
-        }else{
-            quest.notificationService.DisplayQuestBriefInChat(GetOnlinePlayer());
-            AllimoreLogger.LogInfo( ConfigWrapper.INFO_CANNOT_COMPLETE_QUEST, GetOnlinePlayer());
-        }
-        return succesful;
-    }
-
+    // Pure Journal Wrappers
     public void SendQuestsToChat(){
         if(questJorunal.TrySendQuestsToChat()){
            AllimoreLogger.LogInfo(ConfigWrapper.INFO_EMPTY_QUEST_JOURNAL, GetOnlinePlayer());
@@ -153,7 +111,11 @@ public class PlayerQuestData {
         if(quest == null) return;
         quest.notificationService.DisplayQuestBriefInChat(GetOnlinePlayer());
     }
+    public boolean ContainsQuestName(String name){
+        return questJorunal.ContainsQuestName(name);
+    }
 
+    // GUI Wrapper
     public void OpenJournalGUI(){
         questJournalGUI.OpenGUI(GetOnlinePlayer());
     }
@@ -161,6 +123,9 @@ public class PlayerQuestData {
     // Getters and Setters
     public ArrayList<String> GetQuestNames(){
         return questJorunal.GetQuestNames();
+    }
+    public EntityLock GetEntityLocker(){
+        return entityLocker;
     }
     public Quest[] GetQuests(){
         return questJorunal.GetQuests();

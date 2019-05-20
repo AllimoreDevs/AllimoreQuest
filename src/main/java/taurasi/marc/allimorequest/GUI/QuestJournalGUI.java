@@ -12,7 +12,6 @@ import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Quest;
 
 public class QuestJournalGUI extends InventoryGUI implements StandardButtonListener {
-    private boolean displayQuestMenu = false;
     private PlayerQuestData playerData;
     private Quest displayedQuest = null;
 
@@ -30,13 +29,11 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
         OpenQuestMenu();
     }
 
-    public void OpenQuestMenu(){
+    private void OpenQuestMenu(){
         displayedQuest = null;
-        displayQuestMenu = true;
         PopulateInventoryWithQuestButtons();
     }
-    public void OpenQuestDataPanel(Quest quest){
-        displayQuestMenu = false;
+    void OpenQuestDataPanel(Quest quest){
         PopulateInventoryWithQuestData(quest);
     }
 
@@ -88,7 +85,6 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
                 }
             case "Go Back":
                 OpenQuestMenu();
-                return;
         }
     }
 }

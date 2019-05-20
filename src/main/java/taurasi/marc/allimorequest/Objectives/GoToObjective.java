@@ -6,41 +6,45 @@ import taurasi.marc.allimorequest.Quest;
 
 public class GoToObjective extends Objective {
     private static float COMPLETION_RANGE = 10f;
+    private Location targetLocation;
 
-    private Location targetLocaiton;
-
-    public GoToObjective(String name, Quest quest, Location targetLocaiton) {
+    // Construct New
+    public GoToObjective(String name, Quest quest, Location targetLocation) {
         super(name, quest);
-        this.targetLocaiton = targetLocaiton;
+        this.targetLocation = targetLocation;
     }
+    // Serialization
+    // Re-construct from Config
     public GoToObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
-        targetLocaiton = (Location)config.get(path + "Location");
+        targetLocation = (Location)config.get(path + "Location");
     }
     @Override
     public void WriteToConfig(FileConfiguration config, String section){
         super.WriteToConfig(config, section);
-        config.set(section + "Location", targetLocaiton);
+        config.set(section + "Location", targetLocation);
     }
-
+    // End of Serialization
 
     @Override
     public boolean IsComplete() {
-        return quest.GetOnlinePlayer().getLocation().distance(targetLocaiton) <= COMPLETION_RANGE;
-    }
-
-    @Override
-    public String GetProgress() {
-        return "Distance: " + quest.GetOnlinePlayer().getLocation().distance(targetLocaiton);
-    }
-
-    @Override
-    public ObjectiveType GetType() {
-        return ObjectiveType.GO_TO;
+        return quest.GetOnlinePlayer().getLocation().distance(targetLocation) <= COMPLETION_RANGE;
     }
 
     @Override
     public void Disable() {}
 
+    // Getters and Setters
+    public Location GetLocation(){
+        return targetLocation;
+    }
 
+    @Override
+    public String GetProgress() {
+        return "Distance: " + quest.GetOnlinePlayer().getLocation().distance(targetLocation);
+    }
+    @Override
+    public ObjectiveType GetType() {
+        return ObjectiveType.GO_TO;
+    }
 }

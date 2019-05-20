@@ -1,4 +1,4 @@
-package taurasi.marc.allimorequest;
+package taurasi.marc.allimorequest.Commands;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 
@@ -7,9 +7,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
+import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Objectives.CraftItemObjective;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
+import taurasi.marc.allimorequest.PlayerQuestData;
+import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
+import taurasi.marc.allimorequest.Quest;
 
 public class CommandManager implements CommandExecutor {
 
@@ -25,7 +29,7 @@ public class CommandManager implements CommandExecutor {
                 return RunAbandonQuestCommand(player, args);
             }
             if(IsCommand(command, "GenerateQuest")){
-                return RunGenerateQuestCommand(player);
+                return RunGenerateQuestCommand(player, args);
             }
             if(IsCommand(command, "CompleteQuest")){
                 return RunCompleteQuestCommand(player, args);
@@ -60,20 +64,23 @@ public class CommandManager implements CommandExecutor {
         Allimorequest.PLAYER_DATA.GetPlayerData(player).AbandonQuest(args[0]);
         return true;
     }
-    private boolean RunGenerateQuestCommand(Player player){
+    private boolean RunGenerateQuestCommand(Player player, String[] args){
         //Quest dummyQuest = new Quest("Red", "Collection", "Red has asked you to collect 10 leads for his stable in Volair.", player);
         //CollectMaterialObjective objective = new CollectMaterialObjective("Collect 10 leads", dummyQuest, Material.LEAD, 10);
-        //dummyQuest.SetCurrentObjective(objective);
-
-        //Quest dummyQuest = new Quest("Tod", "Extermination", "Tod has asked you to kill zombies around the world.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
-        //KillObjective objective = new KillObjective("Kill 3 Zombies", dummyQuest, EntityType.ZOMBIE, 3);
         //dummyQuest.SetCurrentObjective(objective);
 
         //Quest dummyQuest = new Quest("Air", "Craft for me", "Air has asked you to craft a stone sword for him.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
         //CraftItemObjective objective = new CraftItemObjective("Craft a Stone Sword", dummyQuest, Material.STONE_SWORD, 1);
         //dummyQuest.SetCurrentObjective(objective);
-
         PlayerQuestData playerData = Allimorequest.PLAYER_DATA.GetPlayerData(player);
+
+        if(args.length == 1){
+            DifficultyTier difficulty = DifficultyTier.valueOf(args[0].toUpperCase());
+            Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData, difficulty);
+            playerData.AcceptQuest(quest);
+            return true;
+        }
+
         Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
 
         playerData.AcceptQuest(quest);

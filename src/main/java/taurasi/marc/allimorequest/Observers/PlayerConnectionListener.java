@@ -1,4 +1,4 @@
-package taurasi.marc.allimorequest;
+package taurasi.marc.allimorequest.Observers;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitTask;
+import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Tasks.UnloadPlayerTask;
 

@@ -48,25 +48,25 @@ public class PlayerQuestData {
         lockedTypes = new ArrayList<>();
 
         Quest[] quests = questJorunal.GetQuests();
-        for(int i = 0; i < quests.length; i++){
-            if(quests[i] == null) continue;
-            if(quests[i].GetCurrentObjective() instanceof KillObjective){
-                KillObjective objective = (KillObjective) quests[i].GetCurrentObjective();
+        for (Quest quest : quests) {
+            if (quest == null) continue;
+            if (quest.GetCurrentObjective() instanceof KillObjective) {
+                KillObjective objective = (KillObjective) quest.GetCurrentObjective();
                 LockType(objective.GetEntityType());
             }
         }
     }
-    public boolean IsTypeLocked(EntityType type){
+    private boolean IsTypeLocked(EntityType type){
         return lockedTypes.contains(type);
     }
-    public void LockType(EntityType type){
+    private void LockType(EntityType type){
         if(lockedTypes.contains(type)){
             AllimoreLogger.LogError("Cannot lock type that is already locked!");
             return;
         }
         lockedTypes.add(type);
     }
-    public void UnlockType(EntityType type){
+    private void UnlockType(EntityType type){
         if(!lockedTypes.contains(type)){
             AllimoreLogger.LogError("Cannot Unlock type, type not found in locked types!");
             return;
@@ -98,6 +98,12 @@ public class PlayerQuestData {
     public void AbandonQuest(Quest quest){
         questJorunal.RemoveQuestFromJournal(quest);
         quest.GetCurrentObjective().Disable();
+
+        if(quest.GetCurrentObjective() instanceof KillObjective){
+            KillObjective objective = (KillObjective)quest.GetCurrentObjective();
+            UnlockType(objective.GetEntityType());
+        }
+
         quest.notificationService.PlayAbandonNotification();
     }
     public void AbandonQuest(String name){

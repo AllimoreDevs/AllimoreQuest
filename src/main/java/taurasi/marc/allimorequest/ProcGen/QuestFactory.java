@@ -13,17 +13,21 @@ public class QuestFactory {
      EntityType.ZOMBIE, EntityType.CREEPER, EntityType.SKELETON, EntityType.SPIDER
     };
     private String[] killQuestNames = new String[]{
-            "Extermination", "The Common Good", "Vanguard", "Taming the Wilderness", "Threat and Response", "Monster Hunter", "Monster Bounty"
+            "Extermination", "The Common Good", "Vanguard", "Taming the Wilderness", "Threat and Response", "Monster Hunter", "Monster Bounty", "Sentinel"
     };
 
-    public Quest GenerateKillQuest(PlayerQuestData playerData){
+    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty){
         String questGiver = GenerateGiverName();
         Quest quest = new Quest(questGiver, GenerateKillQuestName(playerData), GenerateSummary(questGiver), playerData);
-        DifficultyTier difficulty = GetRandomDifficulty();
+
 
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
 
         return quest;
+    }
+
+    public Quest GenerateKillQuest(PlayerQuestData playerData){
+        return GenerateKillQuest(playerData, GetRandomDifficulty());
     }
 
     private DifficultyTier GetRandomDifficulty() {

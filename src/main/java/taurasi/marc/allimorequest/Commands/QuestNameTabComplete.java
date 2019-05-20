@@ -1,9 +1,11 @@
-package taurasi.marc.allimorequest;
+package taurasi.marc.allimorequest.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import taurasi.marc.allimorequest.Allimorequest;
+import taurasi.marc.allimorequest.PlayerQuestData;
 
 import java.util.List;
 

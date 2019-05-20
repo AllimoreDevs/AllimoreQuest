@@ -42,7 +42,8 @@ public class PlayerQuestData {
     // End of Serialization
 
     public void AcceptQuest(Quest quest){
-       if(questJorunal.ContainsQuestName(quest.GetQuestName())){
+       // TODO: Refactor Method and cleanup code
+        if(questJorunal.ContainsQuestName(quest.GetQuestName())){
            AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_SAME_NAME, GetOnlinePlayer());
            return;
        }
@@ -60,6 +61,10 @@ public class PlayerQuestData {
        }
 
        quest.notificationService.PlayStartNotification();
+        if(quest.GetCurrentObjective() instanceof KillObjective){
+            KillObjective objective = (KillObjective) quest.GetCurrentObjective();
+            entityLocker.LockType(objective.GetEntityType());
+        }
     }
 
     public void AbandonQuest(Quest quest){
@@ -109,7 +114,7 @@ public class PlayerQuestData {
     public void SendQuestStatusToChat(String name){
         Quest quest = questJorunal.Find(name);
         if(quest == null) return;
-        quest.notificationService.DisplayQuestBriefInChat(GetOnlinePlayer());
+        quest.notificationService.DisplayQuestStatusInChat(GetOnlinePlayer());
     }
     public boolean ContainsQuestName(String name){
         return questJorunal.ContainsQuestName(name);

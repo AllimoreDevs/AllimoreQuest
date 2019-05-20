@@ -6,4 +6,6 @@ public interface NotificationService {
     void PlayStartNotification();
     void PlayCompleteNotification();
     void PlayAbandonNotification();
+    void DisplayQuestBriefInChat(Player inquirer);
+    void DisplayQuestStatusInChat(Player inquirer);
 }

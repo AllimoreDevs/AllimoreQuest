@@ -13,16 +13,19 @@ public class Quest {
     private Objective currentObjective;
     private PlayerQuestData playerData;
 
-    public QuestNotifications notificationService;
+    public NotificationService notificationService;
 
     // Construct New
-    public Quest(String questGiverName, String name, String summary, PlayerQuestData playerData){
+    public Quest(String questGiverName, PlayerQuestData playerData){
         this.questGiverName = questGiverName;
+        this.playerData = playerData;
+        notificationService = new QuestNotifications(this);
+    }
+
+    public Quest(String questGiverName, String name, String summary, PlayerQuestData playerData){
+        this(questGiverName, playerData);
         this.name = name;
         this.summary = summary;
-        this.playerData = playerData;
-
-        notificationService = new QuestNotifications(this);
     }
     // Serialization
     // Re-Construct from Config
@@ -72,6 +75,13 @@ public class Quest {
     public String GetQuestName(){
         return name;
     }
+    public void SetQuestName(String name){
+        this.name = name;
+    }
+    public void SetQuestSummary(String summary){
+        this.summary = summary;
+    }
+
     public String GetSummary(){
         return summary;
     }

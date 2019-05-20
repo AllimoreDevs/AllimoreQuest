@@ -110,7 +110,7 @@ public class QuestJournal {
 
         for(int i = 0; i < quests.length ; i++){
             if(quests[i] == null) continue;
-            quests[i].notificationService.DisplayQuestBriefInChat(playerData.GetOnlinePlayer());
+            quests[i].notificationService.DisplayQuestStatusInChat(playerData.GetOnlinePlayer());
             empty = false;
         }
 

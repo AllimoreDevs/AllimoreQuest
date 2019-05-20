@@ -15,13 +15,20 @@ public class QuestFactory {
     private String[] killQuestNames = new String[]{
             "Extermination", "The Common Good", "Vanguard", "Taming the Wilderness", "Threat and Response", "Monster Hunter", "Monster Bounty", "Sentinel"
     };
+    private QuestFlairGenerator flairGenerator;
+
+    public QuestFactory(){
+        flairGenerator = new QuestFlairGenerator();
+    }
 
     public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty){
         String questGiver = GenerateGiverName();
-        Quest quest = new Quest(questGiver, GenerateKillQuestName(playerData), GenerateSummary(questGiver), playerData);
-
-
+        Quest quest = new Quest(questGiver, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
+
+        String[] questFlair = flairGenerator.ReadRandomKillSummary(quest, playerData);
+        quest.SetQuestName(questFlair[0]);
+        quest.SetQuestSummary(questFlair[1]);
 
         return quest;
     }
@@ -54,23 +61,6 @@ public class QuestFactory {
         return hostileTypes[RandomUtils.getRandomNumberInRange(0, hostileTypes.length-1)];
     }
 
-    private String GenerateKillQuestName(PlayerQuestData playerData) {
-        String questName;
-        int runningTotal = 0;
-        while(true){
-            questName = killQuestNames[RandomUtils.getRandomNumberInRange(0, killQuestNames.length-1)];
-            if(playerData.ContainsQuestName(questName)){
-                if(runningTotal > 10) return null;
-                runningTotal ++;
-            }else{
-                return questName;
-            }
-        }
-    }
-    private String GenerateSummary(String questGiver) {
-        // TODO: Complete implementation
-        return String.format("%s has asked you to kill monsters around the world.", questGiver);
-    }
     private String GenerateGiverName() {
         // TODO: Complete implementation
         return "The Guild";

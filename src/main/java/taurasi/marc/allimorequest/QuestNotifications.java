@@ -39,7 +39,10 @@ public class QuestNotifications implements NotificationService {
         SendQuestBriefToChat(inquirer);
         SendObjectiveProgressToChat(inquirer);
     }
-
+    public void DisplayQuestStatusInChat (Player inquirer){
+        if( !inquirer.isOnline() ) return;
+        inquirer.sendMessage( String.format("%s %s%s %s", quest.QuestFullName(), ConfigWrapper.QUEST_OBJECTIVE_COLOR, quest.GetCurrentObjective().GetName(), quest.GetCurrentObjective().GetProgress()) );
+    }
 
     private void SendQuestBriefToChat(Player inquirer){
         inquirer.sendMessage( String.format("%s %s", quest.QuestFullName(), quest.QuestFullSummary()) );

@@ -43,6 +43,7 @@ public abstract class Objective {
     public abstract boolean IsComplete();
     public abstract String GetProgress();
     public abstract ObjectiveType GetType();
+    public abstract void Disable();
 
     // Getters and Setters
     public String GetName(){

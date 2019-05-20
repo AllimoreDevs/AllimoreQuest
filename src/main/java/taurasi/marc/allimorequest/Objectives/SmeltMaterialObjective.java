@@ -34,7 +34,7 @@ public class SmeltMaterialObjective extends Objective implements FurnaceExtractO
     @Override
     public boolean IsComplete() {
         if(completedAmount >= targetAmount){
-            Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+            Disable();
             return true;
         }
         return false;
@@ -48,6 +48,11 @@ public class SmeltMaterialObjective extends Objective implements FurnaceExtractO
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.SMELT;
+    }
+
+    @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
     }
 
     @Override

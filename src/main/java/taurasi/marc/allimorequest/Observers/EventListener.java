@@ -24,32 +24,32 @@ public class EventListener implements Listener {
 
     @EventHandler
     private void OnEntityKilled(EntityDeathEvent event){
-        for (EntityDeathObserver observer : entityDeathObservers){
-            if(observer == null) continue;
-            observer.Notify(event);
+        for (int i = 0; i < entityDeathObservers.size(); i++){
+            if(entityDeathObservers.get(i) == null) continue;
+            entityDeathObservers.get(i).Notify(event);
         }
     }
 
     @EventHandler
     private void OnInventoryClickEvent(InventoryClickEvent event){
-        for (InventoryClickObserver observer : inventoryClickObservers){
-            if(observer == null) continue;
-            observer.Notify(event);
+        for (int i = 0; i < inventoryClickObservers.size(); i++){
+            if(inventoryClickObservers.get(i) == null) continue;
+            inventoryClickObservers.get(i).Notify(event);
         }
     }
 
     @EventHandler
     private void OnCraftItemEvent(CraftItemEvent event){
-        for (CraftItemObserver observer : craftItemObservers){
-            if(observer == null) continue;
-            observer.Notify(event);
+        for (int i = 0; i < craftItemObservers.size(); i++){
+            if(craftItemObservers.get(i) == null) continue;
+            craftItemObservers.get(i).Notify(event);
         }
     }
     @EventHandler
     private void OnFurnaceExtractEvent(FurnaceExtractEvent event){
-        for (FurnaceExtractObserver observer : furnaceExtractObservers){
-            if(observer == null) continue;
-            observer.Notify(event);
+        for (int i = 0; i < furnaceExtractObservers.size(); i++){
+            if(furnaceExtractObservers.get(i) == null) continue;
+            furnaceExtractObservers.get(i).Notify(event);
         }
     }
 

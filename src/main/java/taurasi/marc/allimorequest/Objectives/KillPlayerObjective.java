@@ -38,7 +38,7 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
     @Override
     public boolean IsComplete() {
         if(killedPlayer){
-            Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+            Disable();
         }
         return killedPlayer;
     }
@@ -55,6 +55,11 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.KILL_PLAYER;
+    }
+
+    @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
     }
 
     @Override

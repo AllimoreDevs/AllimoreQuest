@@ -76,11 +76,20 @@ public class QuestJournal {
         AllimoreLogger.LogError(ConfigWrapper.INFO_CANNOT_FIND_QUEST, playerData.GetOnlinePlayer());
         return null;
     }
-    private NullableInt FirstEmpty(){
+    private NullableInt FirstEmpty() {
         for(int i = 0; i < quests.length; i++){
             if(quests[i] == null) return new NullableInt(i);
         }
         return null;
+    }
+    public boolean ContainsQuestName(String name){
+        for(int i = 0; i < quests.length; i++){
+            if(quests[i] == null) continue;
+            if(quests[i].GetQuestName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Quest[] GetQuests(){

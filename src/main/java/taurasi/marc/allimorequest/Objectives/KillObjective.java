@@ -37,7 +37,7 @@ public class KillObjective extends Objective implements EntityDeathObserver {
     @Override
     public boolean IsComplete() {
         boolean complete = killedAmount >= targetAmount;
-        if(complete) Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+        if(complete) Disable();
         return complete;
     }
 
@@ -49,6 +49,11 @@ public class KillObjective extends Objective implements EntityDeathObserver {
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.KILL;
+    }
+
+    @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
     }
 
     @Override
@@ -64,5 +69,10 @@ public class KillObjective extends Objective implements EntityDeathObserver {
         }
     }
 
-
+    public int GetTargetAmount(){
+        return targetAmount;
+    }
+    public EntityType GetEntityType(){
+        return targetType;
+    }
 }

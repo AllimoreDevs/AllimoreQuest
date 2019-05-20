@@ -52,6 +52,8 @@ public class ConfigWrapper {
     // Info Strings for Quest Journal Usage:
     public static String INFO_EMPTY_QUEST_JOURNAL = "Looks like your Quest Journal is empty right now.";
     public static String INFO_CANNOT_ACCEPT_QUEST_NO_FREE_SLOTS = "You can't accept any more quests right now. Complete or abandon some to make room.";
+    public static String INFO_CANNOT_ACCEPT_QUEST_SAME_NAME = "You can't accept that quest right now!";
+    public static String INFO_CANNOT_ACCEPT_QUEST_SAME_ENTITY = "Cannot accept the quest at this time. You already have a quest to kill that type of enemy!";
     public static String INFO_CANNOT_COMPLETE_QUEST = "You can't complete that quest at this time.";
 
     public static void ReadFromConfig(FileConfiguration config){

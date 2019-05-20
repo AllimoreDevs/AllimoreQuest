@@ -6,6 +6,7 @@ import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Observers.EventListener;
+import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 
 public final class Allimorequest extends JavaPlugin {
 
@@ -13,6 +14,7 @@ public final class Allimorequest extends JavaPlugin {
     public static PlayerDataIndex PLAYER_DATA;
     public static EventListener EVENT_LISTENER;
     public static GUIEventRouter GUI_ROUTER;
+    public static QuestFactory QUEST_FACTORY;
 
     private static CommandManager cmdManager;
     private static QuestNameTabComplete tabComplete;
@@ -27,6 +29,7 @@ public final class Allimorequest extends JavaPlugin {
         EVENT_LISTENER = new EventListener();
         GUI_ROUTER = new GUIEventRouter(this);
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
+        QUEST_FACTORY = new QuestFactory();
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);

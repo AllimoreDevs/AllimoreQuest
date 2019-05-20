@@ -39,5 +39,8 @@ public class GoToObjective extends Objective {
         return ObjectiveType.GO_TO;
     }
 
+    @Override
+    public void Disable() {}
+
 
 }

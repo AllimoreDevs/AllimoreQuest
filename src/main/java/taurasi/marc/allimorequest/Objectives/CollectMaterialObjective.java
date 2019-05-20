@@ -2,39 +2,38 @@ package taurasi.marc.allimorequest.Objectives;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import taurasi.marc.allimorecore.ConversionUtils;
 import taurasi.marc.allimorecore.InventoryUtils;
 import taurasi.marc.allimorequest.Quest;
 
 public class CollectMaterialObjective extends Objective {
-    private Material itemMaterial;
-    private int amount;
+    private Material material;
+    private int targetAmount;
 
-    public CollectMaterialObjective(String name, Quest quest, Material itemMaterial, int amount){
+    public CollectMaterialObjective(String name, Quest quest, Material material, int targetAmount){
         super(name, quest);
-        this.itemMaterial = itemMaterial;
-        this.amount = amount;
+        this.material = material;
+        this.targetAmount = targetAmount;
     }
     public CollectMaterialObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
-        itemMaterial = Material.getMaterial(config.getString(path + "Material"), false);
-        amount = config.getInt(path + "Amount");
+        material = Material.getMaterial(config.getString(path + "Material"), false);
+        targetAmount = config.getInt(path + "Amount");
     }
 
     @Override
     public void WriteToConfig(FileConfiguration config, String section){
         super.WriteToConfig(config, section);
-        config.set(section + "Material", itemMaterial.name());
-        config.set(section + "Amount", amount);
+        config.set(section + "Material", material.name());
+        config.set(section + "Amount", targetAmount);
     }
 
     private void Complete(){
-        InventoryUtils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), itemMaterial, amount);
+        InventoryUtils.RemoveQuantityOfMaterial(quest.GetOnlinePlayer().getInventory(), material, targetAmount);
     }
 
     @Override
     public boolean IsComplete() {
-        if(quest.GetOnlinePlayer().getInventory().contains(itemMaterial, amount)){
+        if(quest.GetOnlinePlayer().getInventory().contains(material, targetAmount)){
             Complete();
             return true;
         }else{
@@ -44,12 +43,21 @@ public class CollectMaterialObjective extends Objective {
 
     @Override
     public String GetProgress() {
-        int amountGathered = InventoryUtils.GetAmountOfMaterialFromInventory(itemMaterial, quest.GetOnlinePlayer().getInventory());
-        return String.format("%s/%s", Math.min(amountGathered, amount), amount);
+        int amountGathered = InventoryUtils.GetAmountOfMaterialFromInventory(material, quest.GetOnlinePlayer().getInventory());
+        return String.format("%s/%s", Math.min(amountGathered, targetAmount), targetAmount);
     }
-
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.COLLECT;
+    }
+
+    @Override
+    public void Disable() {}
+
+    public int GetTargetAmount(){
+        return targetAmount;
+    }
+    public Material GetMaterial(){
+        return material;
     }
 }

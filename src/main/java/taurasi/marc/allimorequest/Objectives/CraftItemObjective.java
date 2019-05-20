@@ -39,7 +39,7 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
     @Override
     public boolean IsComplete() {
         if(craftedAmount >= targetAmount){
-            Allimorequest.EVENT_LISTENER.Unsubscribe(this);
+            Disable();
             return true;
         }
         return false;
@@ -53,6 +53,11 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
     @Override
     public ObjectiveType GetType() {
         return ObjectiveType.CRAFT;
+    }
+
+    @Override
+    public void Disable() {
+        Allimorequest.EVENT_LISTENER.Unsubscribe(this);
     }
 
     @Override

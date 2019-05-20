@@ -69,11 +69,14 @@ public class CommandManager implements CommandExecutor {
         //KillObjective objective = new KillObjective("Kill 3 Zombies", dummyQuest, EntityType.ZOMBIE, 3);
         //dummyQuest.SetCurrentObjective(objective);
 
-        Quest dummyQuest = new Quest("Air", "Craft for me", "Air has asked you to craft a stone sword for him.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
-        CraftItemObjective objective = new CraftItemObjective("Craft a Stone Sword", dummyQuest, Material.STONE_SWORD, 1);
-        dummyQuest.SetCurrentObjective(objective);
+        //Quest dummyQuest = new Quest("Air", "Craft for me", "Air has asked you to craft a stone sword for him.", Allimorequest.PLAYER_DATA.GetPlayerData(player));
+        //CraftItemObjective objective = new CraftItemObjective("Craft a Stone Sword", dummyQuest, Material.STONE_SWORD, 1);
+        //dummyQuest.SetCurrentObjective(objective);
 
-        Allimorequest.PLAYER_DATA.GetPlayerData(player).AcceptQuest(dummyQuest);
+        PlayerQuestData playerData = Allimorequest.PLAYER_DATA.GetPlayerData(player);
+        Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
+
+        playerData.AcceptQuest(quest);
         return true;
     }
     private boolean RunCompleteQuestCommand(Player player, String[] args){

@@ -46,13 +46,13 @@ Collect:
         Imperial Demmands: "QUEST_GIVER has been commisioned to craft a royal crown and needs gems to encrust on it."
         Rock Collection: "QUEST_GIVER is paying anyone who brings them MATERIAL for their rock collection."
     Excavator:
-      Sand:
+      sand:
         Stained Glass: "QUEST_GIVER is working on stained glass for the cathedral and would like a shipment of TARGET_AMOUNT Sand."
         Windows for Home: "QUEST_GIVER is adding windows to their home and is paying for TARGET_AMOUNT Sand."
-      Gravel:
+      gravel:
         Arrows in Demmand: "QUEST_GIVER needs more flint to keep up with all the orders of arrows. They are offering a reward to anyone who can bring them TARGET_AMOUNT Gravel."
         A Cool Trap Idea: "QUEST_GIVER is trying out new trap designs would like TARGET_AMOUNT gravel for their newest concept."
-      Dirt:
+      dirt:
         Farming Needs: "QUEST_GIVER would like to expand their farm and needs TARGET_AMOUNT dirt."
         Strong Foundations: "QUEST_GIVER is building a home would like TARGET_AMOUNT dirt in order to build a strong foundation."
         Garden Project: "QUEST_GIVER is working on a garden would like more dirt for their landscaping."

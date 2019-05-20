@@ -6,6 +6,7 @@ import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.RandomUtils;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Allimorequest;
+import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Quest;
@@ -26,6 +27,13 @@ public class QuestFlairGenerator {
     public String[] ReadRandomKillSummary(Quest quest, PlayerQuestData playerData){
         ConfigurationSection generalKillSection = (ConfigurationSection) questFlairFile.GetConfig().get("Kill.General");
         return GetQuestStrings(quest, generalKillSection, playerData);
+    }
+    public String[] ReadRandomExcavatorSummary(Quest quest, PlayerQuestData playerData){
+        CollectMaterialObjective objective = (CollectMaterialObjective)quest.GetCurrentObjective();
+        String path = String.format("Collect.Profession.Excavator.%s", objective.GetMaterial().name().toLowerCase());
+        ConfigurationSection section = (ConfigurationSection) questFlairFile.GetConfig().get(path);
+
+        return GetQuestStrings(quest, section, playerData);
     }
 
     private String[] GetQuestStrings(Quest quest, ConfigurationSection configurationSection, PlayerQuestData playerData) {
@@ -51,13 +59,35 @@ public class QuestFlairGenerator {
     private String[] ReadRandomEntry(Quest quest, ConfigurationSection configurationSection, String[] keysArray) {
         int rand = RandomUtils.getRandomNumberInRange(0, keysArray.length-1);
         String rawQuestSummary = configurationSection.getString(keysArray[rand]);
-        return new String[]{ keysArray[rand], ParseKillQuestSummary(rawQuestSummary, keysArray[rand], quest) };
+        String parsedString;
+
+        switch(quest.GetCurrentObjective().GetType()){
+            case KILL:
+                parsedString = ParseKillQuestSummary(rawQuestSummary, keysArray[rand], quest);
+                break;
+            case COLLECT:
+                parsedString = ParseCollectQuestSummary(rawQuestSummary, keysArray[rand], quest);
+                break;
+                default:
+                    parsedString = "PARSING ERROR";
+
+        }
+        return new String[]{ keysArray[rand], parsedString };
     }
 
     private void ReadBaseValues (Quest quest, String questName){
         values[0] = questName;
         values[1] = quest.GetQuestGiverName();
 
+    }
+    private String ParseCollectQuestSummary(String string, String questName, Quest quest){
+        ReadBaseValues(quest, questName);
+
+        CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
+        values[2] = StringUtils.formatEnumString(objective.GetMaterial().name());
+        values[3] = Integer.toString(objective.GetTargetAmount());
+
+        return org.apache.commons.lang.StringUtils.replaceEach(string, keys, values);
     }
     private String ParseKillQuestSummary(String string, String questName, Quest quest){
         ReadBaseValues(quest, questName);

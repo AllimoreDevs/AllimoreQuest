@@ -2,6 +2,7 @@ package taurasi.marc.allimorequest.Objectives;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.InventoryUtils;
 import taurasi.marc.allimorequest.Quest;
 
@@ -34,6 +35,7 @@ public class CollectMaterialObjective extends Objective {
 
     @Override
     public boolean IsComplete() {
+        AllimoreLogger.LogInfo("Target Amount " + targetAmount + ", Target Material " + material.name());
         if(quest.GetOnlinePlayer().getInventory().contains(material, targetAmount)){
             SubmitQuestItems();
             return true;
@@ -58,6 +60,9 @@ public class CollectMaterialObjective extends Objective {
 
     @Override
     public String GetProgress() {
+        AllimoreLogger.LogInfo(quest.GetOnlinePlayer().getDisplayName());
+        AllimoreLogger.LogInfo(quest.GetOnlinePlayer().getInventory().getItem(0).getType().name());
+
         int amountGathered = InventoryUtils.GetAmountOfMaterialFromInventory(material, quest.GetOnlinePlayer().getInventory());
         return String.format("%s/%s", Math.min(amountGathered, targetAmount), targetAmount);
     }

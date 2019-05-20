@@ -8,6 +8,7 @@ import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
+import taurasi.marc.allimorequest.Professions.PlayerProfession;
 import taurasi.marc.allimorequest.Quest;
 
 public class CommandManager implements CommandExecutor {
@@ -69,7 +70,8 @@ public class CommandManager implements CommandExecutor {
             return true;
         }
 
-        Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
+        //Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
+        Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.EXCAVATOR, playerData);
 
         playerData.AcceptQuest(quest);
         return true;

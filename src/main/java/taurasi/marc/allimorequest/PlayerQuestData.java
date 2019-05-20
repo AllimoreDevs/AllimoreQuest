@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.GUI.QuestJournalGUI;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -17,13 +18,13 @@ public class PlayerQuestData {
     public PlayerQuestData(Player offlinePlayer){
         this.offlinePlayer = offlinePlayer;
         questJorunal = new QuestJournal(this);
-        questJournalGUI = new QuestJournalGUI(this);
+        questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
     }
     public PlayerQuestData(FileConfiguration config, String uuid){
         UUID id = UUID.fromString(uuid);
         offlinePlayer = Allimorequest.INSTANCE.getServer().getOfflinePlayer(id);
         questJorunal =  new QuestJournal(config, uuid + ".", this);
-        questJournalGUI = new QuestJournalGUI(this);
+        questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
     }
     public void WriteToConfig(FileConfiguration config){
         UUID uniqueId = offlinePlayer.getUniqueId();

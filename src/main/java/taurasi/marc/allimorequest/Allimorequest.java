@@ -3,6 +3,7 @@ package taurasi.marc.allimorequest;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
+import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Observers.EventListener;
 
@@ -11,6 +12,7 @@ public final class Allimorequest extends JavaPlugin {
     public static Allimorequest INSTANCE;
     public static PlayerDataIndex PLAYER_DATA;
     public static EventListener EVENT_LISTENER;
+    public static GUIEventRouter GUI_ROUTER;
 
     private static CommandManager cmdManager;
     private static QuestNameTabComplete tabComplete;
@@ -23,6 +25,7 @@ public final class Allimorequest extends JavaPlugin {
 
         INSTANCE = this;
         EVENT_LISTENER = new EventListener();
+        GUI_ROUTER = new GUIEventRouter(this);
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);

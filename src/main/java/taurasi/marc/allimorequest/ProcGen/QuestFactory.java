@@ -20,8 +20,7 @@ public class QuestFactory {
     public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
         switch(profession){
             case MINER:
-//                return GenerateMinerQuest(playerData);
-                break;
+                return collectQuestFactory.GenerateMinerQuest(playerData, difficultyTier);
             case EXCAVATOR:
                 return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
             case WOODCUTTER:

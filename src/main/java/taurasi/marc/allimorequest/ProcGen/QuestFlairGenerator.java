@@ -1,5 +1,6 @@
 package taurasi.marc.allimorequest.ProcGen;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.junit.Assert;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -34,7 +35,14 @@ public class QuestFlairGenerator {
         SetRandomSummary(quest, playerData, "Collect.Profession.Woodcutter.General");
     }
     public void SetMinerQuestFlair(Quest quest, PlayerQuestData playerData){
-        throw new NotImplementedException();
+        CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
+        String path = "Collect.Profession.Miner.";
+        if(objective.GetMaterial().equals(Material.COAL)){
+            path = path + "Coal";
+        }else{
+            path = path + "Bulk Stone";
+        }
+        SetRandomSummary(quest, playerData, path);
     }
 
     public void SetRandomSummary(Quest quest, PlayerQuestData playerQuestData, String sectionPath){

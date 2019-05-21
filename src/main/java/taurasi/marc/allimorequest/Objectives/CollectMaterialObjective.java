@@ -60,9 +60,6 @@ public class CollectMaterialObjective extends Objective {
 
     @Override
     public String GetProgress() {
-        AllimoreLogger.LogInfo(quest.GetOnlinePlayer().getDisplayName());
-        AllimoreLogger.LogInfo(quest.GetOnlinePlayer().getInventory().getItem(0).getType().name());
-
         int amountGathered = InventoryUtils.GetAmountOfMaterialFromInventory(material, quest.GetOnlinePlayer().getInventory());
         return String.format("%s/%s", Math.min(amountGathered, targetAmount), targetAmount);
     }

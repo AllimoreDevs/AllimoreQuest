@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Commands.CommandManager;
-import taurasi.marc.allimorequest.Commands.QuestDifficultyTabComplete;
+import taurasi.marc.allimorequest.Commands.GenerateQuestTabComplete;
 import taurasi.marc.allimorequest.Commands.QuestNameTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Observers.EventListener;
@@ -22,7 +22,7 @@ public final class Allimorequest extends JavaPlugin {
 
     private CommandManager cmdManager;
     private QuestNameTabComplete tabComplete;
-    private QuestDifficultyTabComplete difficultyTabComplete;
+    private GenerateQuestTabComplete generateQuestTabComplete;
 
     @Override
     public void onEnable() {
@@ -54,8 +54,8 @@ public final class Allimorequest extends JavaPlugin {
         this.getCommand("CompleteQuest").setTabCompleter(tabComplete);
         this.getCommand("ForceCompleteQuest").setTabCompleter(tabComplete);
 
-        difficultyTabComplete = new QuestDifficultyTabComplete();
-        this.getCommand("GenerateQuest").setTabCompleter(difficultyTabComplete);
+        generateQuestTabComplete = new GenerateQuestTabComplete();
+        this.getCommand("GenerateQuest").setTabCompleter(generateQuestTabComplete);
 
     }
 

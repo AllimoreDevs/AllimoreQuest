@@ -8,7 +8,6 @@ import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
 import taurasi.marc.allimorequest.Professions.ExcavatorQuestMaterials;
-import taurasi.marc.allimorequest.Professions.PlayerProfession;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Professions.WoodcutterQuestMaterials;
 import taurasi.marc.allimorequest.Quest;
@@ -20,33 +19,14 @@ public class CollectQuestFactory {
         this.questFactory = questFactory;
     }
 
-    public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
-        switch(profession){
-            case MINER:
-//                return GenerateMinerQuest(playerData);
-                break;
-            case EXCAVATOR:
-                return GenerateExcavtorQuest(playerData, difficultyTier);
-            case WOODCUTTER:
-                return GenerateWoodcutterQuest(playerData, difficultyTier);
-        }
-        return null;
-    }
-    public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData){
-        DifficultyTier difficulty = questFactory.GetRandomDifficulty();
-        return GenerateCollectQuest(profession, playerData, difficulty);
-    }
-
     public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
         String questGiverName = questFactory.GenerateGiverName();
 
         Quest quest = new Quest(questGiverName, playerData);
         CollectMaterialObjective objective = GenExcavatorObjective(quest, difficultyTier);
-
         quest.SetCurrentObjective(objective);
-        String[] questFlair = questFactory.flairGenerator.ReadRandomExcavatorSummary(quest, playerData);
-        quest.SetQuestName(questFlair[0]);
-        quest.SetQuestSummary(questFlair[1]);
+
+        questFactory.flairGenerator.SetExcavatorQuestFlair(quest, playerData);
 
         return quest;
     }
@@ -65,10 +45,7 @@ public class CollectQuestFactory {
         FuzzyCollectMaterialObjective objective = GenWoodcutterObjective(quest ,difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        String[] questFlair = questFactory.flairGenerator.ReadRandomWoodcutterSummary(quest, playerData);
-        quest.SetQuestName(questFlair[0]);
-        quest.SetQuestSummary(questFlair[1]);
-
+        questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, playerData);
         return quest;
     }
     public FuzzyCollectMaterialObjective GenWoodcutterObjective(Quest quest, DifficultyTier difficultyTier){

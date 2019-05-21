@@ -1,118 +1,76 @@
 package taurasi.marc.allimorequest.ProcGen;
 
 import org.bukkit.configuration.ConfigurationSection;
+import org.junit.Assert;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.RandomUtils;
-import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
-import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
-import taurasi.marc.allimorequest.Objectives.KillObjective;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Quest;
-
 import java.util.Set;
 
 public class QuestFlairGenerator {
-    private String[] keys = new String[]{
-            "QUEST_NAME", "QUEST_GIVER", "MATERIAL", "TARGET_AMOUNT", "TARGET_TYPE"
-    };
-    private String[] values = new String[5];
     private CustomConfig questFlairFile;
+    private QuestParser questParser;
 
     public QuestFlairGenerator(){
         questFlairFile = new CustomConfig("Quests.yml", Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
+        questParser = new QuestParser();
     }
 
-    public String[] ReadRandomKillSummary(Quest quest, PlayerQuestData playerData){
-        ConfigurationSection generalKillSection = questFlairFile.GetConfig().getConfigurationSection("Kill.General");
-        return GetQuestStrings(quest, generalKillSection, playerData);
+    public void SetKillQuestFlair(Quest quest, PlayerQuestData playerData){
+        SetRandomSummary(quest, playerData, "Kill.General");
     }
-    public String[] ReadRandomExcavatorSummary(Quest quest, PlayerQuestData playerData){
+    public void SetExcavatorQuestFlair(Quest quest, PlayerQuestData playerData){
         CollectMaterialObjective objective = (CollectMaterialObjective)quest.GetCurrentObjective();
         String path = String.format("Collect.Profession.Excavator.%s", objective.GetMaterial().name().toLowerCase());
-        ConfigurationSection section = questFlairFile.GetConfig().getConfigurationSection(path);
 
-        return GetQuestStrings(quest, section, playerData);
+        SetRandomSummary(quest, playerData, path);
     }
-    public String[] ReadRandomWoodcutterSummary(Quest quest, PlayerQuestData playerData){
-        FuzzyCollectMaterialObjective objective = (FuzzyCollectMaterialObjective)quest.GetCurrentObjective();
-        String path = "Collect.Profession.Woodcutter.General";
-        ConfigurationSection section = questFlairFile.GetConfig().getConfigurationSection(path);
-
-        return GetQuestStrings(quest, section, playerData);
+    public void SetWoodcutterQuestFlair(Quest quest, PlayerQuestData playerData){
+        SetRandomSummary(quest, playerData, "Collect.Profession.Woodcutter.General");
+    }
+    public void SetMinerQuestFlair(Quest quest, PlayerQuestData playerData){
+        throw new NotImplementedException();
     }
 
-    private String[] GetQuestStrings(Quest quest, ConfigurationSection configurationSection, PlayerQuestData playerData) {
+    public void SetRandomSummary(Quest quest, PlayerQuestData playerQuestData, String sectionPath){
+        ConfigurationSection section = questFlairFile.GetConfig().getConfigurationSection(sectionPath);
+
+        String[] keys = GetKeysArray(section);
+        // Asset was here
+        String questName = TryGetUnusedQuestName(playerQuestData, keys);
+        // Assert was here
+        String questSummary = section.getString(questName);
+        questSummary = questParser.ParseQuestSummary(questSummary, questName, quest);
+
+        quest.SetQuestName(questName);
+        quest.SetQuestSummary(questSummary);
+    }
+    private String[] GetKeysArray(ConfigurationSection configurationSection) {
         Set<String> keys = configurationSection.getKeys(false);
         String[] keysArray = new String[keys.size()];
         keys.toArray(keysArray);
-
-        String[] questFlair;
+        return keysArray;
+    }
+    private String TryGetUnusedQuestName(PlayerQuestData playerQuestData, String[] keys){
         String questName;
-        int runningTotal = 0;
-        while(true){
-            questFlair = ReadRandomEntry(quest, configurationSection, keysArray);
-            questName = questFlair[0];
-            if(playerData.ContainsQuestName(questName)){
-                if(runningTotal > 10) return null;
-                runningTotal ++;
+
+        for(int iterations = 0; iterations < keys.length; iterations++){
+            int rand = RandomUtils.getRandomNumberInRange(0, keys.length - 1);
+            if(keys[rand] == null) continue;
+
+            questName = keys[rand];
+            if(playerQuestData.ContainsQuestName(questName)){
+                keys[rand] = null;
             }else{
-                return questFlair;
+                return questName;
             }
         }
-    }
-    private String[] ReadRandomEntry(Quest quest, ConfigurationSection configurationSection, String[] keysArray) {
-        int rand = RandomUtils.getRandomNumberInRange(0, keysArray.length-1);
-        String rawQuestSummary = configurationSection.getString(keysArray[rand]);
-        String parsedString;
-
-        switch(quest.GetCurrentObjective().GetType()){
-            case KILL:
-                parsedString = ParseKillQuestSummary(rawQuestSummary, keysArray[rand], quest);
-                break;
-            case COLLECT:
-                parsedString = ParseCollectQuestSummary(rawQuestSummary, keysArray[rand], quest);
-                break;
-            case COLLECT_FUZZY:
-                parsedString = ParseFuzzyQuestSummary(rawQuestSummary, keysArray[rand], quest);
-                break;
-                default:
-                    parsedString = "PARSING ERROR";
-
-        }
-        return new String[]{ keysArray[rand], parsedString };
-    }
-
-    private void ReadBaseValues (Quest quest, String questName){
-        values[0] = questName;
-        values[1] = quest.GetQuestGiverName();
-
-    }
-    private String ParseCollectQuestSummary(String string, String questName, Quest quest){
-        ReadBaseValues(quest, questName);
-
-        CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
-        values[2] = StringUtils.formatEnumString(objective.GetMaterial().name());
-        values[3] = Integer.toString(objective.GetTargetAmount());
-
-        return org.apache.commons.lang.StringUtils.replaceEach(string, keys, values);
-    }
-    private String ParseFuzzyQuestSummary(String string, String questName, Quest quest){
-        ReadBaseValues(quest, questName);
-
-        FuzzyCollectMaterialObjective objective = (FuzzyCollectMaterialObjective) quest.GetCurrentObjective();
-        values[3] = Integer.toString(objective.GetTargetAmount());
-
-        return org.apache.commons.lang.StringUtils.replaceEach(string, keys, values);
-    }
-    private String ParseKillQuestSummary(String string, String questName, Quest quest){
-        ReadBaseValues(quest, questName);
-
-        KillObjective objective = (KillObjective) quest.GetCurrentObjective();
-        values[3] = Integer.toString(objective.GetTargetAmount());
-        values[4] = StringUtils.formatEnumString(objective.GetEntityType().name() + "s");
-
-        return org.apache.commons.lang.StringUtils.replaceEach(string, keys, values);
+        AllimoreLogger.LogError("Could not find unused quest name!");
+        return null;
     }
 }

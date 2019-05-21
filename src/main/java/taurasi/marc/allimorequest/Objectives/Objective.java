@@ -27,6 +27,8 @@ public abstract class Objective {
                 return new KillNearObjective(config, path, name, quest);
             case COLLECT:
                 return new CollectMaterialObjective(config, path, name, quest);
+            case COLLECT_FUZZY:
+                return new FuzzyCollectMaterialObjective(config, path, name, quest);
             case GO_TO:
                 return new GoToObjective(config, path, name, quest);
             case CRAFT:

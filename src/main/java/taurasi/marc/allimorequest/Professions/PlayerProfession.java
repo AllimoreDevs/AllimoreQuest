@@ -1,5 +1,5 @@
 package taurasi.marc.allimorequest.Professions;
 
 public enum PlayerProfession {
-    WOODCUTTER, MINER, EXCAVATOR
+    WOODCUTTER, MINER, EXCAVATOR, SENTINEL
 }

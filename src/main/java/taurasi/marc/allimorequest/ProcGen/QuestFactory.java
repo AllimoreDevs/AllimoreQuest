@@ -17,18 +17,22 @@ public class QuestFactory {
         collectQuestFactory = new CollectQuestFactory(this);
     }
 
-    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty){
-        return killQuestFactory.GenerateKillQuest(playerData, difficulty);
+    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
+        switch(profession){
+            case MINER:
+//                return GenerateMinerQuest(playerData);
+                break;
+            case EXCAVATOR:
+                return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
+            case WOODCUTTER:
+                return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier);
+            case SENTINEL:
+                return killQuestFactory.GenerateKillQuest(playerData, difficultyTier);
+        }
+        return null;
     }
-    public Quest GenerateKillQuest(PlayerQuestData playerData){
-        return killQuestFactory.GenerateKillQuest(playerData);
-    }
-
-    public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficulty){
-        return collectQuestFactory.GenerateCollectQuest(profession, playerData, difficulty);
-    }
-    public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData){
-        return collectQuestFactory.GenerateCollectQuest(profession, playerData);
+    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData){
+        return GenerateQuest(profession, playerData, GetRandomDifficulty());
     }
 
     public DifficultyTier GetRandomDifficulty() {

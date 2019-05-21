@@ -22,14 +22,8 @@ public class KillQuestFactory {
         Quest quest = new Quest(questGiver, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
 
-        String[] questFlair = questFactory.flairGenerator.ReadRandomKillSummary(quest, playerData);
-        quest.SetQuestName(questFlair[0]);
-        quest.SetQuestSummary(questFlair[1]);
-
+        questFactory.flairGenerator.SetKillQuestFlair(quest, playerData);
         return quest;
-    }
-    public Quest GenerateKillQuest(PlayerQuestData playerData){
-        return GenerateKillQuest(playerData, questFactory.GetRandomDifficulty());
     }
 
     private KillObjective GenerateKillObjective(Quest quest, DifficultyTier difficulty){

@@ -63,15 +63,23 @@ public class CommandManager implements CommandExecutor {
     private boolean RunGenerateQuestCommand(Player player, String[] args){
         PlayerQuestData playerData = Allimorequest.PLAYER_DATA.GetPlayerData(player);
 
-        if(args.length == 1){
-            DifficultyTier difficulty = DifficultyTier.valueOf(args[0].toUpperCase());
-            Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.WOODCUTTER, playerData, difficulty);
-            playerData.AcceptQuest(quest);
-            return true;
+        DifficultyTier difficultyTier = null;
+        PlayerProfession profession = null;
+
+        if(args.length > 0){
+            profession = PlayerProfession.valueOf(args[0].toUpperCase());
+        }
+        else{
+            AllimoreLogger.LogInfo("You must provide a valid player profession!", player);
+            return false;
+        }
+        if(args.length > 1){
+            difficultyTier = DifficultyTier.valueOf(args[1].toUpperCase());
         }
 
-        //Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
-        Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.WOODCUTTER, playerData);
+        Quest quest = (difficultyTier == null) ?
+                Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData) :
+                Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData, difficultyTier);
 
         playerData.AcceptQuest(quest);
         return true;

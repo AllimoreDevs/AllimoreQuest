@@ -65,13 +65,13 @@ public class CommandManager implements CommandExecutor {
 
         if(args.length == 1){
             DifficultyTier difficulty = DifficultyTier.valueOf(args[0].toUpperCase());
-            Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData, difficulty);
+            Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.WOODCUTTER, playerData, difficulty);
             playerData.AcceptQuest(quest);
             return true;
         }
 
         //Quest quest = Allimorequest.QUEST_FACTORY.GenerateKillQuest(playerData);
-        Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.EXCAVATOR, playerData);
+        Quest quest = Allimorequest.QUEST_FACTORY.GenerateCollectQuest(PlayerProfession.WOODCUTTER, playerData);
 
         playerData.AcceptQuest(quest);
         return true;

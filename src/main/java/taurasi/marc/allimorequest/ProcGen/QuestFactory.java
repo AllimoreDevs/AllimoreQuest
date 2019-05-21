@@ -24,8 +24,8 @@ public class QuestFactory {
         return killQuestFactory.GenerateKillQuest(playerData);
     }
 
-    public Quest GenerateCollectQuest(PlayerProfession profession, DifficultyTier difficulty, PlayerQuestData playerData){
-        return collectQuestFactory.GenerateCollectQuest(profession, difficulty, playerData);
+    public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficulty){
+        return collectQuestFactory.GenerateCollectQuest(profession, playerData, difficulty);
     }
     public Quest GenerateCollectQuest(PlayerProfession profession, PlayerQuestData playerData){
         return collectQuestFactory.GenerateCollectQuest(profession, playerData);

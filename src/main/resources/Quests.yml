@@ -36,15 +36,9 @@ Collect:
         Wall Repairs: "QUEST_GIVER needs stone to repair the town wall before the next attack."
         New Guard Tower: "QUEST_GIVER would stone to speed up the construction of a new Guard Tower to get management off their back."
         Real Road Problem: "QUEST_GIVER needs more stone for roads and highways before management checks in."
-      Ore:
-        Ore Shortage: "QUEST_GIVER is almost out of ore but the orders for new tools are still piling up. QUEST_GIVER would like TARGET_AMOUNT MATERIAL."
-        Never Enough: "Enough is never enough and QUEST_GIVER understands this. They are asking for TARGET_AMOUNT MATERIAL to prepare for future orders."
       Coal:
         Sleeping Furnace: "QUEST_GIVER has run out of coal for their furnace and is falling behind on their orders. They are paying for a new shipment."
         Cold Home: "QUEST_GIVER wants more coal to warm their home at night."
-      Gems:
-        Imperial Demmands: "QUEST_GIVER has been commisioned to craft a royal crown and needs gems to encrust on it."
-        Rock Collection: "QUEST_GIVER is paying anyone who brings them MATERIAL for their rock collection."
     Excavator:
       sand:
         Stained Glass: "QUEST_GIVER is working on stained glass for the cathedral and would like a shipment of TARGET_AMOUNT Sand."

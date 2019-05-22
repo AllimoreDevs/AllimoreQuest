@@ -7,6 +7,7 @@ import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
 import taurasi.marc.allimorequest.Professions.ExcavatorQuestMaterials;
 import taurasi.marc.allimorequest.PlayerQuestData;
+import taurasi.marc.allimorequest.Professions.FarmerQuestMaterials;
 import taurasi.marc.allimorequest.Professions.MinerQuestMaterials;
 import taurasi.marc.allimorequest.Professions.WoodcutterQuestMaterials;
 import taurasi.marc.allimorequest.Quest;
@@ -74,6 +75,28 @@ public class CollectQuestFactory {
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
 
+    public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
+        String questGiverName = questFactory.GenerateGiverName();
+
+
+        Quest quest = new Quest(questGiverName, playerData);
+        CollectMaterialObjective objective = GenFarmerObjective(quest, difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetFarmerQuestFlair(quest, playerData);
+        return quest;
+    }
+    public CollectMaterialObjective GenFarmerObjective(Quest quest, DifficultyTier difficultyTier){
+        Material targetMaterial = GetRandomFarmerMaterial();
+        String name = String.format("Collect " + QuestParser.BruteForcePlural(targetMaterial));
+        int targetAmount = GetRandomAmountOfCrops(difficultyTier);
+
+        return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
+    }
+
+    private int GetRandomAmountOfCrops(DifficultyTier difficultyTier) {
+        return difficultyTier.GetRange("CollectFarmable").GetRandomInRange();
+    }
     public int GetRandomAmountOfBulkBlocks(DifficultyTier difficultyTier){
         return difficultyTier.GetRange("CollectBulkBlocksRange").GetRandomInRange();
     }
@@ -82,6 +105,10 @@ public class CollectQuestFactory {
     }
     public int GetRandomAmountOfCoal(DifficultyTier difficultyTier){
         return difficultyTier.GetRange("CollectOre").GetRandomInRange();
+    }
+    public Material GetRandomFarmerMaterial(){
+        Material[] materials = FarmerQuestMaterials.materials;
+        return materials[RandomUtils.getRandomNumberInRange(0, materials.length - 1)];
     }
     public Material GetRandomExcavatorMaterial(){
         Material[] excavatorMaterials = ExcavatorQuestMaterials.materials;

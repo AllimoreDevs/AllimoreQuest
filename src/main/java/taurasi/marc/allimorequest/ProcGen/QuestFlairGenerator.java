@@ -42,6 +42,24 @@ public class QuestFlairGenerator {
         }
         SetRandomSummary(quest, playerData, path);
     }
+    public void SetFarmerQuestFlair(Quest quest, PlayerQuestData playerData){
+        CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
+        Material targetMaterial = objective.GetMaterial();
+
+        String path = "Collect.Profession.Farmer.";
+
+        if(targetMaterial == Material.WHEAT){
+            if(Math.random() < .66)
+                path = path + "Wheat";
+        }else if(targetMaterial == Material.MELON_SLICE){
+            if(Math.random() < .66)
+                path = path + "Melon";
+        }else{
+            path = path + "General";
+        }
+
+        SetRandomSummary(quest, playerData, path);
+    }
 
     public void SetRandomSummary(Quest quest, PlayerQuestData playerQuestData, String sectionPath){
         ConfigurationSection section = questFlairFile.GetConfig().getConfigurationSection(sectionPath);

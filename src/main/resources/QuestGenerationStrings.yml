@@ -50,3 +50,15 @@ Collect:
         Farming Needs: "QUEST_GIVER would like to expand their farm and needs TARGET_AMOUNT dirt."
         Strong Foundations: "QUEST_GIVER is building a home would like TARGET_AMOUNT dirt in order to build a strong foundation."
         Garden Project: "QUEST_GIVER is working on a garden would like more dirt for their landscaping."
+    Farmer:
+      General:
+        Feast Preperations: "QUEST_GIVER is preparing to host a feast has placed an order for TARGET_AMOUNT fresh TARGET_MATERIAL."
+        Rations: "QUEST_GIVER would like to prepare rations to give to the Sentinels in their town. They are paying anyone who can bring them TARGET_AMOUNT TARGET_MATERIAL."
+        Alchemical Experimention: "QUEST_GIVER is testing the alchemical applications of TARGET_MATERIAL and is paying for TARGET_AMOUNT to use in their experiments."
+      Wheat:
+        Thank You Cake: "QUEST_GIVER is baking a cake for the Sentinels in their town and is paying for TARGET_AMOUNT fresh wheat to use."
+        Animal Feed: "QUEST_GIVER would like to restock their barn with hay and is paying for TARGET_AMOUNT Wheat."
+        Pastries: "QUEST_GIVER has received a huge order for pastries and would like help collecting TARGET_AMOUNT Wheat."
+      Melon:
+        Healing Potions: "QUEST_GIVER desperately needs TARGET_AMOUNT Melon Slices in order to brew Healing potions for several injured Sentinels."
+        A Sweet Treat: "QUEST_GIVER would like something sweet to eat. They are paying for TARGET_AMOUNT Melon Slices."

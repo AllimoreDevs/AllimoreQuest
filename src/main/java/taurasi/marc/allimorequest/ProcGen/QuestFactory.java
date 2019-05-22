@@ -26,6 +26,8 @@ public class QuestFactory {
                 return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
             case WOODCUTTER:
                 return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier);
+            case FARMER:
+                return collectQuestFactory.GenerateFarmerQuest(playerData, difficultyTier);
             case SENTINEL:
                 return killQuestFactory.GenerateKillQuest(playerData, difficultyTier);
         }

@@ -1,5 +1,6 @@
 package taurasi.marc.allimorequest.ProcGen;
 
+import org.bukkit.Material;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
@@ -8,7 +9,7 @@ import taurasi.marc.allimorequest.Quest;
 
 public class QuestParser {
     private String[] keys = new String[]{
-            "QUEST_NAME", "QUEST_GIVER", "MATERIAL", "TARGET_AMOUNT", "TARGET_TYPE"
+            "QUEST_NAME", "QUEST_GIVER", "TARGET_MATERIAL", "TARGET_AMOUNT", "TARGET_TYPE"
     };
     private String[] values = new String[5];
 
@@ -32,6 +33,18 @@ public class QuestParser {
         return parsedString;
     }
 
+    public static String BruteForcePlural(Material material){
+        switch(material){
+            case POTATO:
+                return "Potatoes";
+            case WHEAT:
+                return "Wheat";
+            case CHICKEN:
+                return "Chicken";
+        }
+        return StringUtils.formatEnumString(material.name()) + "s";
+    }
+
     private void ReadBaseValues (Quest quest, String questName){
         values[0] = questName;
         values[1] = quest.GetQuestGiverName();
@@ -41,7 +54,7 @@ public class QuestParser {
         ReadBaseValues(quest, questName);
 
         CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
-        values[2] = StringUtils.formatEnumString(objective.GetMaterial().name());
+        values[2] = StringUtils.formatEnumString( BruteForcePlural(objective.GetMaterial()) );
         values[3] = Integer.toString(objective.GetTargetAmount());
 
         return org.apache.commons.lang.StringUtils.replaceEach(string, keys, values);

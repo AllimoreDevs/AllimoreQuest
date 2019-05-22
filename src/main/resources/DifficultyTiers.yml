@@ -42,6 +42,14 @@ Tiers:
         unit: SINGLE
         min: 5
         max: 10
+      CraftTool:
+        unit: SINGLE
+        min: 3
+        max: 10
+      CraftArmor:
+        unit: SINGLE
+        min: 3
+        max: 7
   Adventurer:
     Appearance Chance: 30
     Ranges:
@@ -69,6 +77,14 @@ Tiers:
         unit: SINGLE
         min: 15
         max: 32
+      CraftTool:
+        unit: SINGLE
+        min: 10
+        max: 16
+      CraftArmor:
+        unit: SINGLE
+        min: 7
+        max: 14
   Champion:
     Appearance Chance: 25
     Ranges:
@@ -96,6 +112,14 @@ Tiers:
         unit: SINGLE
         min: 32
         max: 64
+      CraftTool:
+        unit: SINGLE
+        min: 16
+        max: 32
+      CraftArmor:
+        unit: SINGLE
+        min: 15
+        max: 25
   Legend:
     Appearance Chance: 15
     Ranges:
@@ -123,3 +147,11 @@ Tiers:
         unit: STACK
         min: 1
         max: 2
+      CraftTool:
+        unit: SINGLE
+        min: 32
+        max: 64
+      CraftArmor:
+        unit: SINGLE
+        min: 30
+        max: 45

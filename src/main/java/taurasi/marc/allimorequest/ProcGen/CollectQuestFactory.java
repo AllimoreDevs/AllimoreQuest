@@ -3,6 +3,7 @@ package taurasi.marc.allimorequest.ProcGen;
 import org.bukkit.Material;
 import taurasi.marc.allimorecore.RandomUtils;
 import taurasi.marc.allimorecore.StringUtils;
+import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
 import taurasi.marc.allimorequest.Professions.*;
@@ -28,7 +29,7 @@ public class CollectQuestFactory {
         return quest;
     }
     private CollectMaterialObjective GenExcavatorObjective(Quest quest, DifficultyTier difficultyTier){
-        Material targetMaterial = GetRandomExcavatorMaterial();
+        Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.EXCAVATOR);;
         int targetAmount = GetRandomAmountOfBulkBlocks(difficultyTier);
 
         String name = String.format("Collect %s", StringUtils.formatEnumString(targetMaterial.name())) ;
@@ -48,7 +49,7 @@ public class CollectQuestFactory {
     public FuzzyCollectMaterialObjective GenWoodcutterObjective(Quest quest, DifficultyTier difficultyTier){
         String name = "Collects Logs";
         int targetAmount = GetRandomAmountOfLogs(difficultyTier);
-        return new FuzzyCollectMaterialObjective(name, quest, WoodcutterQuestMaterials.logs, targetAmount);
+        return new FuzzyCollectMaterialObjective(name, quest, ProfessionMaterials.logs, targetAmount);
     }
 
     public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
@@ -66,7 +67,7 @@ public class CollectQuestFactory {
         boolean isCoalQuest = RandomUtils.getRandomNumberInRange(1, 10) > 6;
 
         int targetAmount = (isCoalQuest) ? GetRandomAmountOfCoal(difficultyTier) : GetRandomAmountOfBulkBlocks(difficultyTier);
-        Material targetMaterial = (isCoalQuest) ? Material.COAL : GetRandomMinerStoneMaterial();
+        Material targetMaterial = (isCoalQuest) ? Material.COAL : GetRandomProfessionMaterial(PlayerProfession.MINER);
 
         String name = (isCoalQuest) ? "Collect Coal" : String.format("Collect %s", StringUtils.formatEnumString(targetMaterial.name()) );
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
@@ -83,7 +84,7 @@ public class CollectQuestFactory {
         return quest;
     }
     public CollectMaterialObjective GenFarmerObjective(Quest quest, DifficultyTier difficultyTier){
-        Material targetMaterial = GetRandomFarmerMaterial();
+        Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.FARMER);
         String name = String.format("Collect " + QuestParser.BruteForcePlural(targetMaterial));
         int targetAmount = GetRandomAmountOfCrops(difficultyTier);
 
@@ -102,7 +103,7 @@ public class CollectQuestFactory {
         return quest;
     }
     public CollectMaterialObjective GenFisherObjective(Quest quest, DifficultyTier difficultyTier){
-        Material targetMaterial = GetRandomFisherMaterial();
+        Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.FISHER);
         String name = "Collect " + StringUtils.formatEnumString(targetMaterial.name());
         int targetAmount = GetRandomAmountOfFish(difficultyTier);
 
@@ -125,20 +126,8 @@ public class CollectQuestFactory {
         return difficultyTier.GetRange("CollectOre").GetRandomInRange();
     }
 
-    public Material GetRandomFisherMaterial(){
-        Material[] materials = FisherQuestMaterials.materials;
-        return materials[RandomUtils.getRandomNumberInRange(0, materials.length-1)];
-    }
-    public Material GetRandomFarmerMaterial(){
-        Material[] materials = FarmerQuestMaterials.materials;
-        return materials[RandomUtils.getRandomNumberInRange(0, materials.length - 1)];
-    }
-    public Material GetRandomExcavatorMaterial(){
-        Material[] excavatorMaterials = ExcavatorQuestMaterials.materials;
-        return excavatorMaterials[RandomUtils.getRandomNumberInRange(0, excavatorMaterials.length - 1)];
-    }
-    public Material GetRandomMinerStoneMaterial(){
-        Material[] minerMaterials = MinerQuestMaterials.materials;
-        return minerMaterials[RandomUtils.getRandomNumberInRange(0, minerMaterials.length - 1)];
+    public Material GetRandomProfessionMaterial(PlayerProfession profession){
+        Material[] materials = Allimorequest.PROFESSION_MATERIALS.GetProfessionMaterials(profession);
+        return materials[RandomUtils.getRandomNumberInRange(0, materials.length)];
     }
 }

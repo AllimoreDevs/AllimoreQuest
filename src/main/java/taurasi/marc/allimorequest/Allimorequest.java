@@ -13,10 +13,12 @@ import taurasi.marc.allimorequest.Observers.EventListener;
 import taurasi.marc.allimorequest.Observers.PlayerConnectionListener;
 import taurasi.marc.allimorequest.ProcGen.DifficultyManager;
 import taurasi.marc.allimorequest.ProcGen.QuestFactory;
+import taurasi.marc.allimorequest.Professions.ProfessionMaterials;
 
 public final class Allimorequest extends JavaPlugin {
 
     public static Allimorequest INSTANCE;
+    public static ProfessionMaterials PROFESSION_MATERIALS;
     public static PlayerDataIndex PLAYER_DATA;
     public static EventListener EVENT_LISTENER;
     public static GUIEventRouter GUI_ROUTER;
@@ -34,6 +36,7 @@ public final class Allimorequest extends JavaPlugin {
         ConfigWrapper.ReadFromConfig(getConfig());
 
         INSTANCE = this;
+        PROFESSION_MATERIALS = new ProfessionMaterials();
         EVENT_LISTENER = new EventListener();
         GUI_ROUTER = new GUIEventRouter(this);
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));

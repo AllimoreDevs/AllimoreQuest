@@ -37,3 +37,11 @@ Title Notifications:
 Player Data:
   Auto Save Interval: 30
   Player Data Unload Delay: 5
+  Use mySQL: true
+
+mySQL:
+  Host: localhost
+  Database: tutorial
+  Username: root
+  Password: password
+  Port: 3306

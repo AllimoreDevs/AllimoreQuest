@@ -66,3 +66,8 @@ Collect:
       Melon:
         Healing Potions: "QUEST_GIVER desperately needs TARGET_AMOUNT Melon Slices in order to brew Healing potions for several injured Sentinels."
         A Sweet Treat: "QUEST_GIVER would like something sweet to eat. PRONOUN is paying for TARGET_AMOUNT Melon Slices."
+    Fisher:
+      General:
+        The Fisherman Challenge: "QUEST_GIVER has issued a Fisherman's challenge to you! Catch TARGET_AMOUNT TARGET_MATERIAL."
+        Feast Preperations: "QUEST_GIVER is preparing to host a feast and has placed an order for TARGET_AMOUNT fresh TARGET_MATERIAL."
+        Fish n Chips: "QUEST_GIVER wants to make Fish and chips and is paying for TARGET_AMOUNT TARGET_MATERIAL."

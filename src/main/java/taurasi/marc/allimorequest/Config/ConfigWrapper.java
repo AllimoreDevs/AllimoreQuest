@@ -6,6 +6,7 @@ import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import taurasi.marc.allimorecore.ConversionUtils;
 import taurasi.marc.allimorecore.SoundFX;
+import taurasi.marc.allimorequest.Database.SQLCredentials;
 
 public class ConfigWrapper {
     // Chat Notificaiton Settings
@@ -79,5 +80,16 @@ public class ConfigWrapper {
         String playerData = "Player Data.";
         PLAYER_DATA_AUTOSAVE_INTERVAL = config.getInt(playerData + "Auto Save Interval");
         PLAYER_UNLOAD_DATA_DELAY_MINUTES = config.getInt(playerData + "Player Data Unload Delay");
+    }
+
+    public static SQLCredentials ReadSQLConfig(FileConfiguration config){
+        String sqlPath = "mySQL.";
+        return new SQLCredentials(
+                config.getString(sqlPath + "Host"),
+                config.getString(sqlPath + "Database"),
+                config.getString(sqlPath + "Username"),
+                config.getString(sqlPath + "Password"),
+                config.getInt(sqlPath + "Port")
+        );
     }
 }

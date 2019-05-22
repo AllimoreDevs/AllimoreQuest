@@ -8,6 +8,7 @@ import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.GenerateQuestTabComplete;
 import taurasi.marc.allimorequest.Commands.QuestNameTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.Database.DatabaseManager;
 import taurasi.marc.allimorequest.Observers.EventListener;
 import taurasi.marc.allimorequest.Observers.PlayerConnectionListener;
 import taurasi.marc.allimorequest.ProcGen.DifficultyManager;

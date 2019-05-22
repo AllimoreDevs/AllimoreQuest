@@ -38,6 +38,10 @@ Tiers:
         unit: SINGLE
         min: 10
         max: 32
+      CollectFish:
+        unit: SINGLE
+        min: 5
+        max: 10
   Adventurer:
     Appearance Chance: 30
     Ranges:
@@ -61,6 +65,10 @@ Tiers:
         unit: STACK
         min: 0.5
         max: 1
+      CollectFish:
+        unit: SINGLE
+        min: 15
+        max: 32
   Champion:
     Appearance Chance: 25
     Ranges:
@@ -84,6 +92,10 @@ Tiers:
         unit: STACK
         min: 1
         max: 3
+      CollectFish:
+        unit: SINGLE
+        min: 32
+        max: 64
   Legend:
     Appearance Chance: 15
     Ranges:
@@ -107,3 +119,7 @@ Tiers:
         unit: STACK
         min: 3
         max: 6
+      CollectFish:
+        unit: STACK
+        min: 1
+        max: 2

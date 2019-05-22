@@ -17,7 +17,7 @@ public class KillQuestFactory {
         this.questFactory = questFactory;
     }
 
-    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty){
+    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
         Quest quest = new Quest(questGiver.name, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));

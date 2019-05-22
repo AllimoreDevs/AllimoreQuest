@@ -67,19 +67,31 @@ public class CommandManager implements CommandExecutor {
         PlayerProfession profession = null;
 
         if(args.length > 0){
+            if( !(PlayerProfession.Contains(args[0])) ){
+                AllimoreLogger.LogInfo("Could not find specified player profession!", player);
+                return false;
+            }
             profession = PlayerProfession.valueOf(args[0].toUpperCase());
         }
         else{
-            AllimoreLogger.LogInfo("You must provide a valid player profession!", player);
+            AllimoreLogger.LogInfo("You must provide a player profession!", player);
             return false;
         }
         if(args.length > 1){
             difficultyTier = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTier(args[1]);
+            if(difficultyTier == null){
+                AllimoreLogger.LogInfo("Could not find specified Difficulty Tier!", player);
+                return false;
+            }
         }
 
         Quest quest = (difficultyTier == null) ?
                 Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData) :
                 Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData, difficultyTier);
+
+        if(quest == null){
+            return false;
+        }
 
         playerData.AcceptQuest(quest);
         return true;

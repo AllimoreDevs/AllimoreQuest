@@ -41,6 +41,12 @@ public class QuestParser {
                 return "Wheat";
             case CHICKEN:
                 return "Chicken";
+            case COD:
+                return "Cod";
+            case SALMON:
+                return "Salmon";
+            case TROPICAL_FISH:
+                return "Tropical Fish";
         }
         return StringUtils.formatEnumString(material.name()) + "s";
     }

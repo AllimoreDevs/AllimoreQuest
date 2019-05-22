@@ -25,17 +25,23 @@ public class QuestFactory {
     }
 
     public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
-        switch(profession){
-            case MINER:
-                return collectQuestFactory.GenerateMinerQuest(playerData, difficultyTier);
-            case EXCAVATOR:
-                return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
-            case WOODCUTTER:
-                return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier);
-            case FARMER:
-                return collectQuestFactory.GenerateFarmerQuest(playerData, difficultyTier);
-            case SENTINEL:
-                return killQuestFactory.GenerateKillQuest(playerData, difficultyTier);
+        try {
+            switch (profession) {
+                case MINER:
+                    return collectQuestFactory.GenerateMinerQuest(playerData, difficultyTier);
+                case EXCAVATOR:
+                    return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
+                case WOODCUTTER:
+                    return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier);
+                case FARMER:
+                    return collectQuestFactory.GenerateFarmerQuest(playerData, difficultyTier);
+                case SENTINEL:
+                    return killQuestFactory.GenerateKillQuest(playerData, difficultyTier);
+                case FISHER:
+                    return collectQuestFactory.GenerateFisherQuest(playerData, difficultyTier);
+            }
+        }catch (Exception e){
+            AllimoreLogger.LogError("Failed to generate quest!", playerData.GetOnlinePlayer());
         }
         return null;
     }

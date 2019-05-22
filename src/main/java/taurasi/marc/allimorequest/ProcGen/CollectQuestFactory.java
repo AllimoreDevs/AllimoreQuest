@@ -5,11 +5,8 @@ import taurasi.marc.allimorecore.RandomUtils;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
-import taurasi.marc.allimorequest.Professions.ExcavatorQuestMaterials;
+import taurasi.marc.allimorequest.Professions.*;
 import taurasi.marc.allimorequest.PlayerQuestData;
-import taurasi.marc.allimorequest.Professions.FarmerQuestMaterials;
-import taurasi.marc.allimorequest.Professions.MinerQuestMaterials;
-import taurasi.marc.allimorequest.Professions.WoodcutterQuestMaterials;
 import taurasi.marc.allimorequest.Quest;
 
 public class CollectQuestFactory {
@@ -19,7 +16,7 @@ public class CollectQuestFactory {
         this.questFactory = questFactory;
     }
 
-    public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
+    public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
         Quest quest = new Quest(questGiver.name, playerData);
@@ -38,7 +35,7 @@ public class CollectQuestFactory {
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
 
-    public Quest GenerateWoodcutterQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
+    public Quest GenerateWoodcutterQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
         Quest quest = new Quest(questGiver.name, playerData);
@@ -54,7 +51,7 @@ public class CollectQuestFactory {
         return new FuzzyCollectMaterialObjective(name, quest, WoodcutterQuestMaterials.logs, targetAmount);
     }
 
-    public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
+    public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
         Quest quest = new Quest(questGiver.name, playerData);
@@ -75,7 +72,7 @@ public class CollectQuestFactory {
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
 
-    public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
+    public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
         Quest quest = new Quest(questGiver.name, playerData);
@@ -93,6 +90,28 @@ public class CollectQuestFactory {
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
 
+    public Quest GenerateFisherQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+
+
+        Quest quest = new Quest(questGiver.name, playerData);
+        CollectMaterialObjective objective = GenFisherObjective(quest, difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetFisherQuestFlair(quest, playerData, questGiver);
+        return quest;
+    }
+    public CollectMaterialObjective GenFisherObjective(Quest quest, DifficultyTier difficultyTier){
+        Material targetMaterial = GetRandomFisherMaterial();
+        String name = "Collect " + StringUtils.formatEnumString(targetMaterial.name());
+        int targetAmount = GetRandomAmountOfFish(difficultyTier);
+
+        return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
+    }
+
+    private int GetRandomAmountOfFish(DifficultyTier difficultyTier) {
+        return difficultyTier.GetRange("CollectFish").GetRandomInRange();
+    }
     private int GetRandomAmountOfCrops(DifficultyTier difficultyTier) {
         return difficultyTier.GetRange("CollectFarmable").GetRandomInRange();
     }
@@ -106,6 +125,10 @@ public class CollectQuestFactory {
         return difficultyTier.GetRange("CollectOre").GetRandomInRange();
     }
 
+    public Material GetRandomFisherMaterial(){
+        Material[] materials = FisherQuestMaterials.materials;
+        return materials[RandomUtils.getRandomNumberInRange(0, materials.length-1)];
+    }
     public Material GetRandomFarmerMaterial(){
         Material[] materials = FarmerQuestMaterials.materials;
         return materials[RandomUtils.getRandomNumberInRange(0, materials.length - 1)];

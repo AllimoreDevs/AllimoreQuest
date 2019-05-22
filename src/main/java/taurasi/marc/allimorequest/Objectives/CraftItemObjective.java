@@ -3,9 +3,11 @@ package taurasi.marc.allimorequest.Objectives;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.ConversionUtils;
+import taurasi.marc.allimorecore.InventoryUtils;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Observers.CraftItemObserver;
 import taurasi.marc.allimorequest.Quest;
@@ -45,9 +47,19 @@ public class CraftItemObjective extends Objective implements CraftItemObserver {
     public boolean IsComplete() {
         if(craftedAmount >= targetAmount){
             Disable();
+        }else{
+            return false;
+        }
+        Inventory playerInv = quest.GetOnlinePlayer().getInventory();
+        if(playerInv.contains(targetMaterial, targetAmount)){
+            SubmitItems(playerInv);
             return true;
         }
         return false;
+    }
+
+    private void SubmitItems(Inventory inv){
+        InventoryUtils.RemoveQuantityOfMaterial(inv, targetMaterial, targetAmount);
     }
 
     @Override

@@ -28,7 +28,6 @@ public class DifficultyTier {
 
     private void ReadRangesFromConfig(FileConfiguration config, String path){
         path = path + "Ranges.";
-        AllimoreLogger.LogInfo(path);
         ConfigurationSection section = config.getConfigurationSection(path);
         Set<String> keys = section.getKeys(false);
         ranges = new HashMap<>(keys.size());

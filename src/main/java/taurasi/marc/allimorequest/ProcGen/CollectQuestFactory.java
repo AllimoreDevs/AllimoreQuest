@@ -20,13 +20,13 @@ public class CollectQuestFactory {
     }
 
     public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
-        String questGiverName = questFactory.GenerateGiverName();
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
-        Quest quest = new Quest(questGiverName, playerData);
+        Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenExcavatorObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        questFactory.flairGenerator.SetExcavatorQuestFlair(quest, playerData);
+        questFactory.flairGenerator.SetExcavatorQuestFlair(quest, playerData, questGiver);
 
         return quest;
     }
@@ -39,13 +39,13 @@ public class CollectQuestFactory {
     }
 
     public Quest GenerateWoodcutterQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
-        String questGiverName = questFactory.GenerateGiverName();
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
-        Quest quest = new Quest(questGiverName, playerData);
+        Quest quest = new Quest(questGiver.name, playerData);
         FuzzyCollectMaterialObjective objective = GenWoodcutterObjective(quest ,difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, playerData);
+        questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, playerData, questGiver);
         return quest;
     }
     public FuzzyCollectMaterialObjective GenWoodcutterObjective(Quest quest, DifficultyTier difficultyTier){
@@ -55,13 +55,13 @@ public class CollectQuestFactory {
     }
 
     public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
-        String questGiverName = questFactory.GenerateGiverName();
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
-        Quest quest = new Quest(questGiverName, playerData);
+        Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenMinerObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        questFactory.flairGenerator.SetMinerQuestFlair(quest, playerData);
+        questFactory.flairGenerator.SetMinerQuestFlair(quest, playerData, questGiver);
         return quest;
     }
     public CollectMaterialObjective GenMinerObjective(Quest quest, DifficultyTier difficultyTier){
@@ -71,19 +71,18 @@ public class CollectQuestFactory {
         int targetAmount = (isCoalQuest) ? GetRandomAmountOfCoal(difficultyTier) : GetRandomAmountOfBulkBlocks(difficultyTier);
         Material targetMaterial = (isCoalQuest) ? Material.COAL : GetRandomMinerStoneMaterial();
 
-        String name = (isCoalQuest) ? "Collect Coal" : String.format("Collect %s", targetMaterial);
+        String name = (isCoalQuest) ? "Collect Coal" : String.format("Collect %s", StringUtils.formatEnumString(targetMaterial.name()) );
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
 
     public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier){
-        String questGiverName = questFactory.GenerateGiverName();
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
-
-        Quest quest = new Quest(questGiverName, playerData);
+        Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenFarmerObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        questFactory.flairGenerator.SetFarmerQuestFlair(quest, playerData);
+        questFactory.flairGenerator.SetFarmerQuestFlair(quest, playerData, questGiver);
         return quest;
     }
     public CollectMaterialObjective GenFarmerObjective(Quest quest, DifficultyTier difficultyTier){
@@ -106,6 +105,7 @@ public class CollectQuestFactory {
     public int GetRandomAmountOfCoal(DifficultyTier difficultyTier){
         return difficultyTier.GetRange("CollectOre").GetRandomInRange();
     }
+
     public Material GetRandomFarmerMaterial(){
         Material[] materials = FarmerQuestMaterials.materials;
         return materials[RandomUtils.getRandomNumberInRange(0, materials.length - 1)];

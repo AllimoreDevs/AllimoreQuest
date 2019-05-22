@@ -20,19 +20,19 @@ public class QuestFlairGenerator {
         questParser = new QuestParser();
     }
 
-    public void SetKillQuestFlair(Quest quest, PlayerQuestData playerData){
-        SetRandomSummary(quest, playerData, "Kill.General");
+    public void SetKillQuestFlair(Quest quest, PlayerQuestData playerData, QuestGiver questGiver){
+        SetRandomSummary(quest, playerData, "Kill.General", questGiver);
     }
-    public void SetExcavatorQuestFlair(Quest quest, PlayerQuestData playerData){
+    public void SetExcavatorQuestFlair(Quest quest, PlayerQuestData playerData, QuestGiver questGiver){
         CollectMaterialObjective objective = (CollectMaterialObjective)quest.GetCurrentObjective();
         String path = String.format("Collect.Profession.Excavator.%s", objective.GetMaterial().name().toLowerCase());
 
-        SetRandomSummary(quest, playerData, path);
+        SetRandomSummary(quest, playerData, path, questGiver);
     }
-    public void SetWoodcutterQuestFlair(Quest quest, PlayerQuestData playerData){
-        SetRandomSummary(quest, playerData, "Collect.Profession.Woodcutter.General");
+    public void SetWoodcutterQuestFlair(Quest quest, PlayerQuestData playerData, QuestGiver questGiver){
+        SetRandomSummary(quest, playerData, "Collect.Profession.Woodcutter.General", questGiver);
     }
-    public void SetMinerQuestFlair(Quest quest, PlayerQuestData playerData){
+    public void SetMinerQuestFlair(Quest quest, PlayerQuestData playerData, QuestGiver questGiver){
         CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
         String path = "Collect.Profession.Miner.";
         if(objective.GetMaterial().equals(Material.COAL)){
@@ -40,9 +40,9 @@ public class QuestFlairGenerator {
         }else{
             path = path + "Bulk Stone";
         }
-        SetRandomSummary(quest, playerData, path);
+        SetRandomSummary(quest, playerData, path, questGiver);
     }
-    public void SetFarmerQuestFlair(Quest quest, PlayerQuestData playerData){
+    public void SetFarmerQuestFlair(Quest quest, PlayerQuestData playerData, QuestGiver questGiver){
         CollectMaterialObjective objective = (CollectMaterialObjective) quest.GetCurrentObjective();
         Material targetMaterial = objective.GetMaterial();
 
@@ -58,10 +58,10 @@ public class QuestFlairGenerator {
             path = path + "General";
         }
 
-        SetRandomSummary(quest, playerData, path);
+        SetRandomSummary(quest, playerData, path, questGiver);
     }
 
-    public void SetRandomSummary(Quest quest, PlayerQuestData playerQuestData, String sectionPath){
+    public void SetRandomSummary(Quest quest, PlayerQuestData playerQuestData, String sectionPath, QuestGiver questGiver){
         ConfigurationSection section = questFlairFile.GetConfig().getConfigurationSection(sectionPath);
 
         String[] keys = GetKeysArray(section);
@@ -69,7 +69,7 @@ public class QuestFlairGenerator {
         String questName = TryGetUnusedQuestName(playerQuestData, keys);
         // Assert was here
         String questSummary = section.getString(questName);
-        questSummary = questParser.ParseQuestSummary(questSummary, questName, quest);
+        questSummary = questParser.ParseQuestSummary(questSummary, questName, quest, questGiver);
 
         quest.SetQuestName(questName);
         quest.SetQuestSummary(questSummary);

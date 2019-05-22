@@ -2,7 +2,6 @@ package taurasi.marc.allimorequest.ProcGen;
 
 import org.bukkit.entity.EntityType;
 import taurasi.marc.allimorecore.RandomUtils;
-import taurasi.marc.allimorecore.Range;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 import taurasi.marc.allimorequest.PlayerQuestData;
@@ -19,11 +18,11 @@ public class KillQuestFactory {
     }
 
     public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty){
-        String questGiver = questFactory.GenerateGiverName();
-        Quest quest = new Quest(questGiver, playerData);
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+        Quest quest = new Quest(questGiver.name, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
 
-        questFactory.flairGenerator.SetKillQuestFlair(quest, playerData);
+        questFactory.flairGenerator.SetKillQuestFlair(quest, playerData, questGiver);
         return quest;
     }
 

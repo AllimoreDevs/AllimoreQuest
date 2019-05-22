@@ -1,6 +1,10 @@
 ## Automatically replaced text:
 ## All Quest Types:
 ## QUEST_GIVER -> Name of Npc who posted the quest
+## PRONOUN -> Quest Giver's Pronoun
+## PRONOUN_LOWER -> Same as above but lower case
+## POSSESSIVE -> Quest Giver's Possessive Pronoun
+## POSSESSIVE_LOWER -> Same as above but lower case
 ## QUEST_NAME -> Display Name of Quest
 
 ## Collect, Craft, Smelt
@@ -19,7 +23,7 @@ Kill:
     The Common Good: "QUEST_GIVER thinks the world would be a safer place with fewer TARGET_TYPE and is offering a reward to anyone who kills TARGET_AMOUNT."
     Taming The Wilderness: "QUEST_GIVER is paying adventurers to wipe out TARGET_TYPE around the world."
     Monster Bounty: "QUEST_GIVER has posted a bounty on TARGET_AMOUNT TARGET_TYPE."
-    I Hate Monster: "QUEST_GIVER just really hates monsters. They are paying adventurers to kill TARGET_TYPE anywhere they can be found."
+    I Hate Monster: "QUEST_GIVER just really hates monsters. PRONOUN is paying adventurers to kill TARGET_TYPE anywhere they can be found."
   Nearby:
     Threat and Respone: "QUEST_GIVER has noticed an increase in TARGET_TYPE_PLURAL in the nearby area is offering a bounty to adventurers willing to clear them out."
 
@@ -27,38 +31,38 @@ Collect:
   Profession:
     Woodcutter:
       General:
-        Small Home Repairs: "QUEST_GIVER is repairing the damage to their home from the last siege and needs resources."
+        Small Home Repairs: "QUEST_GIVER is repairing the damage to POSSESSIVE_LOWER home from the last siege and needs resources."
         Getting a Handle on It: "QUEST_GIVER is swamped with orders for tool handles would like help collecting lumber."
         Stockade Construction: "QUEST_GIVER is overseeing the construction of a new Stockade and has placed an order for lumber."
         Grave Need: "QUEST_GIVER needs more lumber to keep up with the orders for new coffins."
     Miner:
       Bulk Stone:
         Wall Repairs: "QUEST_GIVER needs stone to repair the town wall before the next attack."
-        New Guard Tower: "QUEST_GIVER would stone to speed up the construction of a new Guard Tower to get management off their back."
+        New Guard Tower: "QUEST_GIVER would stone to speed up the construction of a new Guard Tower to get management off POSSESSIVE_LOWER back."
         Real Road Problem: "QUEST_GIVER needs more stone for roads and highways before management checks in."
       Coal:
-        Sleeping Furnace: "QUEST_GIVER has run out of coal for their furnace and is falling behind on their orders. They are paying for a new shipment."
-        Cold Home: "QUEST_GIVER wants more coal to warm their home at night."
+        Sleeping Furnace: "QUEST_GIVER has run out of coal for POSSESSIVE_LOWER furnace and is falling behind on POSSESSIVE_LOWER orders. PRONOUN is paying for a new shipment."
+        Cold Home: "QUEST_GIVER wants more coal to warm POSSESSIVE_LOWER home at night."
     Excavator:
       sand:
         Stained Glass: "QUEST_GIVER is working on stained glass for the cathedral and would like a shipment of TARGET_AMOUNT Sand."
-        Windows for Home: "QUEST_GIVER is adding windows to their home and is paying for TARGET_AMOUNT Sand."
+        Windows for Home: "QUEST_GIVER is adding windows to POSSESSIVE_LOWER home and is paying for TARGET_AMOUNT Sand."
       gravel:
-        Arrows in Demmand: "QUEST_GIVER needs more flint to keep up with all the orders of arrows. They are offering a reward to anyone who can bring them TARGET_AMOUNT Gravel."
-        A Cool Trap Idea: "QUEST_GIVER is trying out new trap designs would like TARGET_AMOUNT gravel for their newest concept."
+        Arrows in Demmand: "QUEST_GIVER needs more flint to keep up with all the orders of arrows. PRONOUN is offering a reward to anyone who can bring them TARGET_AMOUNT Gravel."
+        A Cool Trap Idea: "QUEST_GIVER is trying out new trap designs would like TARGET_AMOUNT gravel for POSSESSIVE_LOWER newest concept."
       dirt:
-        Farming Needs: "QUEST_GIVER would like to expand their farm and needs TARGET_AMOUNT dirt."
+        Farming Needs: "QUEST_GIVER would like to expand POSSESSIVE_LOWER farm and needs TARGET_AMOUNT dirt."
         Strong Foundations: "QUEST_GIVER is building a home would like TARGET_AMOUNT dirt in order to build a strong foundation."
-        Garden Project: "QUEST_GIVER is working on a garden would like more dirt for their landscaping."
+        Garden Project: "QUEST_GIVER is working on a garden would like more dirt for POSSESSIVE_LOWER landscaping."
     Farmer:
       General:
-        Feast Preperations: "QUEST_GIVER is preparing to host a feast has placed an order for TARGET_AMOUNT fresh TARGET_MATERIAL."
-        Rations: "QUEST_GIVER would like to prepare rations to give to the Sentinels in their town. They are paying anyone who can bring them TARGET_AMOUNT TARGET_MATERIAL."
-        Alchemical Experimention: "QUEST_GIVER is testing the alchemical applications of TARGET_MATERIAL and is paying for TARGET_AMOUNT to use in their experiments."
+        Feast Preperations: "QUEST_GIVER is preparing to host a feast and has placed an order for TARGET_AMOUNT fresh TARGET_MATERIAL."
+        Rations: "QUEST_GIVER would like to prepare rations to give to the Sentinels in POSSESSIVE_LOWER town. PRONOUN is paying anyone who can bring them TARGET_AMOUNT TARGET_MATERIAL."
+        Alchemical Experimention: "QUEST_GIVER is testing the alchemical applications of TARGET_MATERIAL and is paying for TARGET_AMOUNT to use in POSSESSIVE_LOWER experiments."
       Wheat:
-        Thank You Cake: "QUEST_GIVER is baking a cake for the Sentinels in their town and is paying for TARGET_AMOUNT fresh wheat to use."
-        Animal Feed: "QUEST_GIVER would like to restock their barn with hay and is paying for TARGET_AMOUNT Wheat."
+        Thank You Cake: "QUEST_GIVER is baking a cake for the Sentinels in POSSESSIVE_LOWER town and is paying for TARGET_AMOUNT fresh wheat to use."
+        Animal Feed: "QUEST_GIVER would like to restock POSSESSIVE_LOWER barn with hay and is paying for TARGET_AMOUNT Wheat."
         Pastries: "QUEST_GIVER has received a huge order for pastries and would like help collecting TARGET_AMOUNT Wheat."
       Melon:
         Healing Potions: "QUEST_GIVER desperately needs TARGET_AMOUNT Melon Slices in order to brew Healing potions for several injured Sentinels."
-        A Sweet Treat: "QUEST_GIVER would like something sweet to eat. They are paying for TARGET_AMOUNT Melon Slices."
+        A Sweet Treat: "QUEST_GIVER would like something sweet to eat. PRONOUN is paying for TARGET_AMOUNT Melon Slices."

@@ -1,10 +1,7 @@
 package taurasi.marc.allimorequest.ProcGen;
 
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.bukkit.Material;
-import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.RandomUtils;
-import taurasi.marc.allimorecore.Range;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.CollectMaterialObjective;
 import taurasi.marc.allimorequest.Objectives.FuzzyCollectMaterialObjective;
@@ -78,61 +75,13 @@ public class CollectQuestFactory {
     }
 
     public int GetRandomAmountOfBulkBlocks(DifficultyTier difficultyTier){
-        Range range;
-        switch (difficultyTier){
-            case NOVICE:
-                range = DifficultyTier.NOVICE.collectBulkBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case ADVENTURER:
-                range = DifficultyTier.ADVENTURER.collectBulkBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case LEGEND:
-                range = DifficultyTier.LEGEND.collectBulkBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case CHAMPION:
-                range = DifficultyTier.CHAMPION.collectBulkBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-        }
-        AllimoreLogger.LogError("Could not resolve difficulty type!");
-        return 1;
+        return difficultyTier.GetRange("CollectBulkBlocksRange").GetRandomInRange();
     }
     public int GetRandomAmountOfLogs(DifficultyTier difficultyTier){
-        Range range;
-        switch(difficultyTier){
-            case NOVICE:
-                range = DifficultyTier.NOVICE.collectLogsBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case ADVENTURER:
-                range = DifficultyTier.ADVENTURER.collectLogsBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case LEGEND:
-                range = DifficultyTier.LEGEND.collectLogsBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case CHAMPION:
-                range = DifficultyTier.CHAMPION.collectLogsBlockAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-        }
-        AllimoreLogger.LogError("Could not resolve difficulty type!");
-        return 1;
+        return difficultyTier.GetRange("CollectLogs").GetRandomInRange();
     }
     public int GetRandomAmountOfCoal(DifficultyTier difficultyTier){
-        Range range;
-        switch(difficultyTier){
-            case NOVICE:
-                range = DifficultyTier.NOVICE.collectOreAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case ADVENTURER:
-                range = DifficultyTier.ADVENTURER.collectOreAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case LEGEND:
-                range = DifficultyTier.LEGEND.collectOreAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-            case CHAMPION:
-                range = DifficultyTier.CHAMPION.collectOreAmountRange;
-                return RandomUtils.getRandomNumberInRange(range.min, range.max);
-        }
-        AllimoreLogger.LogError("Could not resolve difficulty type!");
-        return 1;
+        return difficultyTier.GetRange("CollectOre").GetRandomInRange();
     }
     public Material GetRandomExcavatorMaterial(){
         Material[] excavatorMaterials = ExcavatorQuestMaterials.materials;

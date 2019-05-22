@@ -74,7 +74,7 @@ public class CommandManager implements CommandExecutor {
             return false;
         }
         if(args.length > 1){
-            difficultyTier = DifficultyTier.valueOf(args[1].toUpperCase());
+            difficultyTier = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTier(args[1]);
         }
 
         Quest quest = (difficultyTier == null) ?

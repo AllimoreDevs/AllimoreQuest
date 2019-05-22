@@ -3,6 +3,7 @@ package taurasi.marc.allimorequest.Commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
 import taurasi.marc.allimorequest.Professions.PlayerProfession;
 
@@ -33,9 +34,9 @@ public class GenerateQuestTabComplete implements TabCompleter {
     }
 
     private void AddDifficultyTiers(ArrayList<String> suggestions) {
-        DifficultyTier[] difficultyTiers = DifficultyTier.values();
+        DifficultyTier[] difficultyTiers = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTiersArray();
         for (DifficultyTier difficultyTier : difficultyTiers) {
-            suggestions.add(difficultyTier.name().toLowerCase());
+            suggestions.add(difficultyTier.name.toLowerCase());
         }
     }
 }

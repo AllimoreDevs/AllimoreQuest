@@ -2,6 +2,7 @@ package taurasi.marc.allimorequest.ProcGen;
 
 import org.bukkit.entity.EntityType;
 import taurasi.marc.allimorecore.RandomUtils;
+import taurasi.marc.allimorecore.Range;
 import taurasi.marc.allimorecore.StringUtils;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 import taurasi.marc.allimorequest.PlayerQuestData;
@@ -32,7 +33,7 @@ public class KillQuestFactory {
         return new KillObjective(String.format("Kill %ss", StringUtils.formatEnumString(type.name())), quest, type, amount);
     }
     private int GetKillTargetAmountFromTier(DifficultyTier difficulty){
-        return RandomUtils.getRandomNumberInRange(difficulty.killAmountRange.min, difficulty.killAmountRange.max);
+        return difficulty.GetRange("KillMobRange").GetRandomInRange();
     }
     private EntityType GetRandomHostileType(){
         return hostileTypes[RandomUtils.getRandomNumberInRange(0, hostileTypes.length-1)];

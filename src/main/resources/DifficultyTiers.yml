@@ -1,0 +1,93 @@
+## Configuration from which quest Difficulties are read
+## Instructions:
+## Appearance Chance: chance for quests of this difficulty to appear in percentages, 30 -> 30% chance of appearing
+## Appearance Chance must add up to 100, System will not re-map values if you spill over!
+## Ranges: List of Rages for quest generation
+
+## Range Format: <Name>:
+## unit: <UNIT>
+## min: 3
+## max: 5
+
+## Available Unit Types: SINGLE no special mapping, numbers provided are used as is. STACK numbers are multiplied by 64, supports decimals
+
+## Max must be greater than min, cannot be less than or equal too!
+## If you add a range to one Difficulty tier, you must add it to all difficulty tiers (name must be the same, values can be different)
+
+Tiers:
+  Novice:
+    Appearance Chance: 30
+    Ranges:
+      KillMobRange:
+        unit: SINGLE
+        min: 3
+        max: 7
+      CollectBulkBlocksRange:
+        unit: STACK
+        min: 1
+        max: 3
+      CollectLogs:
+        unit: STACK
+        min: 0.5
+        max: 1
+      CollectOre:
+        unit: SINGLE
+        min: 7
+        max: 32
+  Adventurer:
+    Appearance Chance: 30
+    Ranges:
+      KillMobRange:
+        unit: SINGLE
+        min: 10
+        max: 15
+      CollectBulkBlocksRange:
+        unit: STACK
+        min: 3
+        max: 6
+      CollectLogs:
+        unit: STACK
+        min: 1
+        max: 3
+      CollectOre:
+        unit: STACK
+        min: 0.5
+        max: 1.5
+  Champion:
+    Appearance Chance: 25
+    Ranges:
+      KillMobRange:
+        unit: SINGLE
+        min: 17
+        max: 25
+      CollectBulkBlocksRange:
+        unit: STACK
+        min: 6
+        max: 12
+      CollectLogs:
+        unit: STACK
+        min: 3
+        max: 5
+      CollectOre:
+        unit: STACK
+        min: 1.5
+        max: 3
+  Legend:
+    Appearance Chance: 15
+    Ranges:
+      KillMobRange:
+        unit: SINGLE
+        min: 25
+        max: 30
+      CollectBulkBlocksRange:
+        unit: STACK
+        min: 12
+        max: 24
+      CollectLogs:
+        unit: STACK
+        min: 5
+        max: 10
+      CollectOre:
+        unit: STACK
+        min: 3
+        max: 5

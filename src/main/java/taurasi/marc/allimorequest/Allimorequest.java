@@ -10,6 +10,7 @@ import taurasi.marc.allimorequest.Commands.QuestNameTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Observers.EventListener;
 import taurasi.marc.allimorequest.Observers.PlayerConnectionListener;
+import taurasi.marc.allimorequest.ProcGen.DifficultyManager;
 import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 
 public final class Allimorequest extends JavaPlugin {
@@ -19,6 +20,7 @@ public final class Allimorequest extends JavaPlugin {
     public static EventListener EVENT_LISTENER;
     public static GUIEventRouter GUI_ROUTER;
     public static QuestFactory QUEST_FACTORY;
+    public static DifficultyManager DIFFICULTY_MANAGER;
 
     private CommandManager cmdManager;
     private QuestNameTabComplete tabComplete;
@@ -34,6 +36,7 @@ public final class Allimorequest extends JavaPlugin {
         EVENT_LISTENER = new EventListener();
         GUI_ROUTER = new GUIEventRouter(this);
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
+        DIFFICULTY_MANAGER = new DifficultyManager();
         QUEST_FACTORY = new QuestFactory();
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);

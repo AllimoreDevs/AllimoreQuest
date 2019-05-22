@@ -2,8 +2,6 @@ package taurasi.marc.allimorequest.ProcGen;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.junit.Assert;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.RandomUtils;
@@ -18,7 +16,7 @@ public class QuestFlairGenerator {
     private QuestParser questParser;
 
     public QuestFlairGenerator(){
-        questFlairFile = new CustomConfig("Quests.yml", Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
+        questFlairFile = new CustomConfig("QuestGenerationStrings.yml", Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
         questParser = new QuestParser();
     }
 

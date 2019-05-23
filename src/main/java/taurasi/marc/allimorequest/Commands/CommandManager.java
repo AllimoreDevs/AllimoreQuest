@@ -6,12 +6,18 @@ import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.PlayerDataIndex;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
 import taurasi.marc.allimorequest.Professions.PlayerProfession;
 import taurasi.marc.allimorequest.Quest;
 
 public class CommandManager implements CommandExecutor {
+    private PlayerDataIndex playerDataIndex;
+
+    public CommandManager(PlayerDataIndex playerDataIndex){
+        this.playerDataIndex = playerDataIndex;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -51,24 +57,25 @@ public class CommandManager implements CommandExecutor {
     }
 
     private boolean RunQuestBoardCommand(Player player) {
-        Allimorequest.PLAYER_DATA.GetPlayerData(player).OpenBoardGUI();
+        playerDataIndex.GetPlayerData(player).OpenBoardGUI();
         return true;
     }
     private boolean RunQuestJournalCommand(Player player){
-        Allimorequest.PLAYER_DATA.GetPlayerData(player).OpenJournalGUI();
+        playerDataIndex.GetPlayerData(player).OpenJournalGUI();
         return true;
     }
     private boolean RunAbandonQuestCommand(Player player, String[] args){
-        if(args.length != 1){
+        if(args.length < 1){
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_ABANDON_QUEST_USAGE , player);
             return false;
         }
-        Allimorequest.PLAYER_DATA.GetPlayerData(player).AbandonQuest(args[0]);
+        String questName = ConstructStringFromArgs(args);
+        playerDataIndex.GetPlayerData(player).AbandonQuest(questName);
         return true;
     }
     private boolean RunGenerateQuestCommand(Player player, String[] args){
-        PlayerQuestData playerData = Allimorequest.PLAYER_DATA.GetPlayerData(player);
+        PlayerQuestData playerData = playerDataIndex.GetPlayerData(player);
 
         DifficultyTier difficultyTier = null;
         PlayerProfession profession = null;
@@ -104,35 +111,52 @@ public class CommandManager implements CommandExecutor {
         return true;
     }
     private boolean RunCompleteQuestCommand(Player player, String[] args){
-        if(args.length != 1){
+        if(args.length < 1){
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_COMPLETE_QUEST_USAGE , player);
             return false;
         }
-        return Allimorequest.PLAYER_DATA.GetPlayerData(player).TryCompleteQuestObjective(args[0]);
+        String questName = ConstructStringFromArgs(args);
+        return playerDataIndex.GetPlayerData(player).TryCompleteQuestObjective(questName);
     }
     private boolean RunForceCompleteQuestCommand(Player player, String[] args){
-        if(args.length != 1){
+        if(args.length < 1){
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_FORCE_COMPLETE_QUEST_USAGE , player);
             return false;
         }
-        PlayerQuestData qp = Allimorequest.PLAYER_DATA.GetPlayerData(player);
-        qp.CompleteQuest(args[0]);
+        PlayerQuestData qp = playerDataIndex.GetPlayerData(player);
+        String questName = ConstructStringFromArgs(args);
+        qp.CompleteQuest(questName);
         return true;
     }
     private boolean RunQuestStatusCommand(Player player, String[] args){
-        if(args.length != 1){
-            Allimorequest.PLAYER_DATA.GetPlayerData(player).SendQuestsToChat();
+        if(args.length == 0){
+            playerDataIndex.GetPlayerData(player).SendQuestsToChat();
             return true;
         }
 
-        Allimorequest.PLAYER_DATA.GetPlayerData(player).SendQuestStatusToChat(args[0]);
+        String questName = ConstructStringFromArgs(args);
+        playerDataIndex.GetPlayerData(player).SendQuestStatusToChat(questName);
         return true;
     }
     private boolean RunWriteDataCommand(){
-        Allimorequest.PLAYER_DATA.WriteData();
+        playerDataIndex.WriteData();
         return true;
+    }
+
+    private String ConstructStringFromArgs(String[] args, int skipArgs){
+        StringBuilder sb = new StringBuilder();
+        for(int i = skipArgs; i < args.length; i++){
+            sb.append(args[i]);
+            // If statement prevents a space form being appended at the end
+            if(i < args.length - 1) sb.append(' ');
+        }
+
+        return sb.toString();
+    }
+    private String ConstructStringFromArgs(String[] args){
+        return ConstructStringFromArgs(args, 0);
     }
 
     private boolean IsCommand(Command command,String name){

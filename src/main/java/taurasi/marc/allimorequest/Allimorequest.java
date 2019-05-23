@@ -1,8 +1,6 @@
 package taurasi.marc.allimorequest;
 
-import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
-import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
@@ -28,29 +26,34 @@ public final class Allimorequest extends JavaPlugin {
     public static QuestFactory QUEST_FACTORY;
     public static DifficultyManager DIFFICULTY_MANAGER;
 
-    private CommandManager cmdManager;
-    private QuestNameTabComplete tabComplete;
-    private GenerateQuestTabComplete generateQuestTabComplete;
+    private PlayerConnectionListener playerConnectionListener;
+    private BlockListener blockListener;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         saveDefaultConfig();
         ConfigWrapper.ReadFromConfig(getConfig());
 
         INSTANCE = this;
         PROFESSION_MATERIALS = new ProfessionMaterials();
-        EVENT_LISTENER = new EventListener();
-        GUI_ROUTER = new GUIEventRouter(this);
+
         PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
         DIFFICULTY_MANAGER = new DifficultyManager();
         QUEST_FACTORY = new QuestFactory();
 
-        getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
-        getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
-        getServer().getPluginManager().registerEvents(new BlockListener(), this);
+        RegisterListeners();
+        RegisterCommands();
+    }
 
-        cmdManager = new CommandManager();
+    @Override
+    public void onDisable() {
+        UnregisterListeners();
+
+        PLAYER_DATA.WriteData();
+    }
+
+    private void RegisterCommands() {
+        CommandManager cmdManager = new CommandManager(PLAYER_DATA);
         this.getCommand("QuestJournal").setExecutor(cmdManager);
         this.getCommand("QuestBoard").setExecutor(cmdManager);
         this.getCommand("QuestStatus").setExecutor(cmdManager);
@@ -60,20 +63,35 @@ public final class Allimorequest extends JavaPlugin {
         this.getCommand("ForceCompleteQuest").setExecutor(cmdManager);
         this.getCommand("WriteData").setExecutor(cmdManager);
 
-        tabComplete = new QuestNameTabComplete();
+        QuestNameTabComplete tabComplete = new QuestNameTabComplete();
         this.getCommand("QuestStatus").setTabCompleter(tabComplete);
         this.getCommand("AbandonQuest").setTabCompleter(tabComplete);
         this.getCommand("CompleteQuest").setTabCompleter(tabComplete);
         this.getCommand("ForceCompleteQuest").setTabCompleter(tabComplete);
 
-        generateQuestTabComplete = new GenerateQuestTabComplete();
+        GenerateQuestTabComplete generateQuestTabComplete = new GenerateQuestTabComplete();
         this.getCommand("GenerateQuest").setTabCompleter(generateQuestTabComplete);
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+    private void InitListeners() {
+        EVENT_LISTENER = new EventListener();
+        playerConnectionListener = new PlayerConnectionListener();
+        blockListener = new BlockListener();
+    }
+    private void RegisterListeners(){
+        InitListeners();
+
+        getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
+        GUI_ROUTER = new GUIEventRouter(this);
+        getServer().getPluginManager().registerEvents(playerConnectionListener, this);
+        getServer().getPluginManager().registerEvents(blockListener, this);
+    }
+
+    private void UnregisterListeners(){
         HandlerList.unregisterAll(EVENT_LISTENER);
-        PLAYER_DATA.WriteData();
+        HandlerList.unregisterAll(GUI_ROUTER);
+        HandlerList.unregisterAll(playerConnectionListener);
+        HandlerList.unregisterAll(blockListener);
+
     }
 }

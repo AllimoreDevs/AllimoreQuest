@@ -75,6 +75,9 @@ public class Quest {
     public String GetQuestName(){
         return name;
     }
+    public String GetQuestSummary(){
+        return summary;
+    }
     public void SetQuestName(String name){
         this.name = name;
     }

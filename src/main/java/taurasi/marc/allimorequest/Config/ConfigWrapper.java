@@ -28,7 +28,7 @@ public class ConfigWrapper {
     public static SoundFX QUEST_COMPLETE_SOUNDFX = new SoundFX("Quest Complete", Sound.ENTITY_PLAYER_LEVELUP, 1f, 1.3f);
     public static SoundFX QUEST_ABANDON_SOUNDFX = new SoundFX("Quest Abandon", Sound.ENTITY_ARROW_HIT_PLAYER, 1f, .5f);
 
-    // Player Data Settings;
+    // Player Data Settings
     public static int PLAYER_UNLOAD_DATA_DELAY_MINUTES = 5;
     public static int PLAYER_DATA_AUTOSAVE_INTERVAL = 30;
 
@@ -41,6 +41,11 @@ public class ConfigWrapper {
     public static ChatColor POSITIVE_BUTTON_COLOR = ChatColor.GREEN;
     public static ChatColor QUEST_BUTTON_TITLE_COLOR = ChatColor.GOLD;
     public static ChatColor QUEST_BUTTON_LORE_COLOR = ChatColor.YELLOW;
+
+    // Quest Board Settings
+    public static int BOARD_QUESTS_TO_GENERATE = 10;
+    public static int BOARD_INVENTORY_SIZE = 27;
+    public static long BOARD_GENERATION_PERIOD = 60 * 60 * 1000;
 
     // Info Strings for Command Usage
     public static String INFO_NO_QUEST_NAME_PROVIDED = "Incorrect command usage, please provide the quest name.";

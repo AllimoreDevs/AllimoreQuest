@@ -21,6 +21,9 @@ public class CommandManager implements CommandExecutor {
             if(IsCommand(command, "QuestJournal")){
                 return RunQuestJournalCommand(player);
             }
+            if(IsCommand(command, "QuestBoard")){
+                return RunQuestBoardCommand(player);
+            }
             if(IsCommand(command, "AbandonQuest")){
                 return RunAbandonQuestCommand(player, args);
             }
@@ -47,6 +50,10 @@ public class CommandManager implements CommandExecutor {
         return false;
     }
 
+    private boolean RunQuestBoardCommand(Player player) {
+        Allimorequest.PLAYER_DATA.GetPlayerData(player).OpenBoardGUI();
+        return true;
+    }
     private boolean RunQuestJournalCommand(Player player){
         Allimorequest.PLAYER_DATA.GetPlayerData(player).OpenJournalGUI();
         return true;

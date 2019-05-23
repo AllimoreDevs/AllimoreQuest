@@ -8,7 +8,7 @@
 ## QUEST_NAME -> Display Name of Quest
 
 ## Collect, Craft, Smelt
-## MATERIAL -> Material to be collected, crafted, or smelted
+## TARGET_MATERIAL -> Material to be collected, crafted, or smelted
 ## TARGET_AMOUNT -> Amount of materials to be collected
 
 ## Kill, Kill Near
@@ -23,7 +23,7 @@ Kill:
     The Common Good: "QUEST_GIVER thinks the world would be a safer place with fewer TARGET_TYPE and is offering a reward to anyone who kills TARGET_AMOUNT."
     Taming The Wilderness: "QUEST_GIVER is paying adventurers to wipe out TARGET_TYPE around the world."
     Monster Bounty: "QUEST_GIVER has posted a bounty on TARGET_AMOUNT TARGET_TYPE."
-    I Hate Monster: "QUEST_GIVER just really hates monsters. PRONOUN is paying adventurers to kill TARGET_TYPE anywhere they can be found."
+    I Hate Monsters: "QUEST_GIVER just really hates monsters. PRONOUN is paying adventurers to kill TARGET_TYPE anywhere they can be found."
   Nearby:
     Threat and Respone: "QUEST_GIVER has noticed an increase in TARGET_TYPE_PLURAL in the nearby area is offering a bounty to adventurers willing to clear them out."
 
@@ -71,3 +71,32 @@ Collect:
         The Fisherman Challenge: "QUEST_GIVER has issued a Fisherman's challenge to you! Catch TARGET_AMOUNT TARGET_MATERIAL."
         Feast Preperations: "QUEST_GIVER is preparing to host a feast and has placed an order for TARGET_AMOUNT fresh TARGET_MATERIAL."
         Fish n Chips: "QUEST_GIVER wants to make Fish and chips and is paying for TARGET_AMOUNT TARGET_MATERIAL."
+    Toolsmith:
+      General:
+        Expedition Supplies: "QUEST_GIVER is organizing an expedition into the wilderness and is purchasing tools to for POSSESSIVE_LOWER party."
+        Construction Supplies Needed: "QUEST_GIVER would like to restock POSSESSIVE_LOWER with TARGET_AMOUNT new TARGET_MATERIAL."
+        Broken Tools: "QUEST_GIVER lost all their tools in the recent siege and is paying for TARGET_AMOUNT TARGET_MATERIAL to replace them."
+        Missing Tools: "QUEST_GIVER woke up today to find all POSSESSIVE_LOWER tools missing and is desperately trying to replace them. POSSESSIVE is paying for TARGET_AMOUNT TARGET_MATERIAL."
+      Pickaxe:
+        Mine Supplies: "QUEST_GIVER is opening a new mine and has placed an order for TARGET_AMOUNT pickaxes to give to the miners."
+      Axe:
+        Stolen Axes: "QUEST_GIVER would like TARGET_AMOUNT TARGET_MATERIAL to replace several that where recently stolen from POSSESSIVE_LOWER Lumber Mill."
+        Skull Splitter: "QUEST_GIVER broke their last axe in a fight after going for the head and is paying for TARGET_AMOUNT replacements."
+      Shovel:
+      Hoe:
+    Weaponsmith:
+      General:
+        Local Militia: "QUEST_GIVER would like to form a Militia to protect POSSESSIVE_LOWER town. But PRONOUN_LOWER needs TARGET_AMOUNT TARGET_MATERIAL to give to it's members."
+        Sentinel Armaments: "QUEST_GIVER has placed an order for TARGET_AMOUNT TARGET_MATERIAL to issue to local Sentinels."
+        The Vanguard Squadron: "QUEST_GIVER is preparing a squad of Vanguards to raid a Mob Nest and needs TARGET_AMOUNT extra TARGET_MATERIAL."
+        Mercanary Band: "QUEST_GIVER has placed an order for TARGET_AMOUNT TARGET_MATERIAL to give to members of his band of Mercs."
+      Bow:
+        The Fletcher: "QUEST_GIVER is behind on their orders and would like help crafting TARGET_AMOUNT Bows."
+    Armorsmith:
+      General:
+        Armor up: "QUEST_GIVER a captain of the guard has commisioned TARGET_AMOUNT TARGET_MATERIAL to armor up town Sentinels."
+        Sentinel Armaments: "QUEST_GIVER has placed an order for TARGET_AMOUNT TARGET_MATERIAL to issue to local Sentinels."
+        The Vanguard Squadron: "QUEST_GIVER is preparing a squad of Vanguards to raid a Mob Nest and needs TARGET_AMOUNT extra TARGET_MATERIAL."
+        Local Militia: "QUEST_GIVER would like to form a Militia to protect POSSESSIVE_LOWER town. But PRONOUN_LOWER needs TARGET_AMOUNT TARGET_MATERIAL to give to it's members."
+      Shield:
+        The Unyielding: "QUEST_GIVER is desperately in need of TARGET_AMOUNT TARGET_MATERIAL to keep POSSESSIVE_LOWER their Sentinels alive."

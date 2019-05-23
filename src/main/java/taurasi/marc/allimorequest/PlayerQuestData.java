@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.GUI.QuestBoardGUI;
 import taurasi.marc.allimorequest.GUI.QuestJournalGUI;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
 
@@ -15,6 +16,7 @@ public class PlayerQuestData {
     private OfflinePlayer offlinePlayer;
     private QuestJournal questJorunal;
     private QuestJournalGUI questJournalGUI;
+    private QuestBoardGUI questBoardGUI;
     private EntityLock entityLocker;
 
     // Construct New
@@ -22,6 +24,7 @@ public class PlayerQuestData {
         this.offlinePlayer = offlinePlayer;
         questJorunal = new QuestJournal(this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
+        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this);
         entityLocker = new EntityLock();
     }
     // Serialization
@@ -31,6 +34,7 @@ public class PlayerQuestData {
         offlinePlayer = Allimorequest.INSTANCE.getServer().getOfflinePlayer(id);
         questJorunal =  new QuestJournal(config, uuid + ".", this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
+        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this);
         entityLocker = new EntityLock();
         entityLocker.LockTypesFromQuests(questJorunal);
     }
@@ -41,23 +45,23 @@ public class PlayerQuestData {
     }
     // End of Serialization
 
-    public void AcceptQuest(Quest quest){
+    public boolean AcceptQuest(Quest quest){
        // TODO: Refactor Method and cleanup code
         if(questJorunal.ContainsQuestName(quest.GetQuestName())){
            AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_SAME_NAME, GetOnlinePlayer());
-           return;
+           return false;
        }
        if(quest.GetCurrentObjective() instanceof KillObjective){
            KillObjective objective = (KillObjective) quest.GetCurrentObjective();
            if(entityLocker.IsTypeLocked(objective.GetEntityType())){
                AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_SAME_ENTITY, GetOnlinePlayer());
-               return;
+               return false;
            }
        }
 
        if( !(questJorunal.AddQuestToJournal(quest)) ){
            AllimoreLogger.LogInfo(ConfigWrapper.INFO_CANNOT_ACCEPT_QUEST_NO_FREE_SLOTS, GetOnlinePlayer());
-           return;
+           return false;
        }
 
        quest.notificationService.PlayStartNotification();
@@ -65,6 +69,7 @@ public class PlayerQuestData {
             KillObjective objective = (KillObjective) quest.GetCurrentObjective();
             entityLocker.LockType(objective.GetEntityType());
         }
+        return true;
     }
 
     public void AbandonQuest(Quest quest){
@@ -123,6 +128,9 @@ public class PlayerQuestData {
     // GUI Wrapper
     public void OpenJournalGUI(){
         questJournalGUI.OpenGUI(GetOnlinePlayer());
+    }
+    public void OpenBoardGUI(){
+        questBoardGUI.OpenGUI(GetOnlinePlayer());
     }
 
     // Getters and Setters

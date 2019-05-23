@@ -11,8 +11,12 @@ commands:
     description: Abandons a quest, removing it from your quest journal and freeing up one slot.
   GenerateQuest:
     description: Adds a randomly generated Quest to your journal if you have a free slot.
+    permission: allimore.quest.generatequest
   QuestJournal:
     description: Displays your quests in the chat log.
+  QuestBoard:
+    description: Forces your quest board to open.
+    permission: allimore.quest.questboard
   QuestStatus:
     description: Displays the status of a specified quest.
   CompleteQuest:
@@ -22,3 +26,8 @@ commands:
     permission: allimore.quest.forcecomplete
   WriteData:
     description: Attempts to write quest data to config.
+
+permissions:
+  allimore.quest.placenoticeboards:
+    description: Allows users to place Notice board signs around the world
+    default: op

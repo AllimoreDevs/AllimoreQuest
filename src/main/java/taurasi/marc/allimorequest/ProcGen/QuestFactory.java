@@ -1,5 +1,6 @@
 package taurasi.marc.allimorequest.ProcGen;
 
+import org.bukkit.entity.Villager;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.RandomUtils;
@@ -48,6 +49,9 @@ public class QuestFactory {
     public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData){
         return GenerateQuest(profession, playerData, GetRandomDifficulty());
     }
+    public Quest GenerateQuest(PlayerQuestData playerData){
+        return GenerateQuest(GetRandomProfession(), playerData, GetRandomDifficulty());
+    }
 
     public DifficultyTier GetRandomDifficulty() {
         int randomValue = RandomUtils.getRandomNumberInRange(0, 100);
@@ -62,6 +66,10 @@ public class QuestFactory {
         }
         AllimoreLogger.LogError("Failed to generate random Tier.");
         return null;
+    }
+    public PlayerProfession GetRandomProfession(){
+        PlayerProfession[] professions = PlayerProfession.values();
+        return professions[RandomUtils.getRandomNumberInRange(0, professions.length-1)];
     }
     public QuestGiver GenerateQuestGiver() {
         boolean isMale = Math.random() > .5;

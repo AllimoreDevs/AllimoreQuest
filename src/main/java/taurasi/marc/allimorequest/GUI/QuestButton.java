@@ -6,15 +6,16 @@ import taurasi.marc.allimorequest.Quest;
 
 public class QuestButton extends Button {
     private Quest quest;
+    private QuestButtonListener listener;
 
-    public QuestButton(Quest quest, InventoryGUI inv) {
-        super(inv.CreatePreformatedItem(quest.GetQuestName(), quest.QuestFullSummary(), ConfigWrapper.QUEST_GUI_ITEM), inv);
+    public QuestButton(Quest quest, InventoryGUI inv, QuestButtonListener listener) {
+        super(inv.CreatePreformatedItem(quest.GetQuestName(), quest.GetSummary(), ConfigWrapper.QUEST_GUI_ITEM), inv);
         this.quest = quest;
+        this.listener = listener;
     }
 
     @Override
     public void Run() {
-        QuestJournalGUI gui = (QuestJournalGUI)inv;
-        gui.OpenQuestDataPanel(quest);
+        listener.OnQuestButton(quest);
     }
 }

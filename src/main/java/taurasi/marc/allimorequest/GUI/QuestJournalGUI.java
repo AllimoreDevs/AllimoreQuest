@@ -11,7 +11,7 @@ import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Quest;
 
-public class QuestJournalGUI extends InventoryGUI implements StandardButtonListener {
+public class QuestJournalGUI extends InventoryGUI implements StandardButtonListener, QuestButtonListener {
     private PlayerQuestData playerData;
     private Quest displayedQuest = null;
 
@@ -33,7 +33,8 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
         displayedQuest = null;
         PopulateInventoryWithQuestButtons();
     }
-    void OpenQuestDataPanel(Quest quest){
+    @Override
+    public void OnQuestButton(Quest quest){
         PopulateInventoryWithQuestData(quest);
     }
 
@@ -42,14 +43,14 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
         Quest[] quests = playerData.GetQuests();
         for(Quest quest : quests){
             if(quest == null) continue;;
-            CreateAndAddButton(new QuestButton(quest,this));
+            CreateAndAddButton(new QuestButton(quest,this, this));
         }
     }
     private void PopulateInventoryWithQuestData(Quest quest){
         ClearInv();
         displayedQuest = quest;
 
-        ItemStack itemStack = CreatePreformatedItem(quest.GetQuestName(), quest.QuestFullSummary(), Material.BOOK);
+        ItemStack itemStack = CreatePreformatedItem(quest.GetQuestName(), quest.GetSummary(), Material.BOOK);
         inv.addItem(itemStack);
         itemStack = CreatePreformatedItem(quest.GetCurrentObjective().GetName(), quest.GetCurrentObjective().GetProgress(), Material.BOOK);
         inv.addItem(itemStack);

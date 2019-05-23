@@ -12,10 +12,6 @@ public class ProfessionMaterials {
             Material.STRIPPED_OAK_LOG, Material.STRIPPED_SPRUCE_LOG
     });
 
-    public static FuzzyMaterial planks = new FuzzyMaterial(new Material[]{
-            Material.ACACIA_PLANKS, Material.BIRCH_PLANKS, Material.DARK_OAK_PLANKS, Material.JUNGLE_PLANKS, Material.OAK_PLANKS, Material.SPRUCE_PLANKS
-    });
-
     private static Material[] minerMaterials = new Material[]{
             Material.COBBLESTONE, Material.ANDESITE, Material.GRANITE, Material.DIORITE
     };

@@ -1,6 +1,8 @@
 package taurasi.marc.allimorequest;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
+import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
@@ -9,6 +11,7 @@ import taurasi.marc.allimorequest.Commands.GenerateQuestTabComplete;
 import taurasi.marc.allimorequest.Commands.QuestNameTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Database.DatabaseManager;
+import taurasi.marc.allimorequest.Observers.BlockListener;
 import taurasi.marc.allimorequest.Observers.EventListener;
 import taurasi.marc.allimorequest.Observers.PlayerConnectionListener;
 import taurasi.marc.allimorequest.ProcGen.DifficultyManager;
@@ -45,9 +48,11 @@ public final class Allimorequest extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(EVENT_LISTENER, this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
+        getServer().getPluginManager().registerEvents(new BlockListener(), this);
 
         cmdManager = new CommandManager();
         this.getCommand("QuestJournal").setExecutor(cmdManager);
+        this.getCommand("QuestBoard").setExecutor(cmdManager);
         this.getCommand("QuestStatus").setExecutor(cmdManager);
         this.getCommand("GenerateQuest").setExecutor(cmdManager);
         this.getCommand("AbandonQuest").setExecutor(cmdManager);
@@ -63,7 +68,6 @@ public final class Allimorequest extends JavaPlugin {
 
         generateQuestTabComplete = new GenerateQuestTabComplete();
         this.getCommand("GenerateQuest").setTabCompleter(generateQuestTabComplete);
-
     }
 
     @Override

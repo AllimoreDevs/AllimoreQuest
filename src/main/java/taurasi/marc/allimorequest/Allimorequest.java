@@ -5,8 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Commands.CommandManager;
-import taurasi.marc.allimorequest.Commands.GenerateQuestTabComplete;
-import taurasi.marc.allimorequest.Commands.QuestNameTabComplete;
+import taurasi.marc.allimorequest.Commands.QuestCommandTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.Database.DatabaseManager;
 import taurasi.marc.allimorequest.Observers.BlockListener;
@@ -25,6 +24,7 @@ public final class Allimorequest extends JavaPlugin {
     public static GUIEventRouter GUI_ROUTER;
     public static QuestFactory QUEST_FACTORY;
     public static DifficultyManager DIFFICULTY_MANAGER;
+    public static CommandManager cmdManager;
 
     private PlayerConnectionListener playerConnectionListener;
     private BlockListener blockListener;
@@ -53,24 +53,11 @@ public final class Allimorequest extends JavaPlugin {
     }
 
     private void RegisterCommands() {
-        CommandManager cmdManager = new CommandManager(PLAYER_DATA);
-        this.getCommand("QuestJournal").setExecutor(cmdManager);
-        this.getCommand("QuestBoard").setExecutor(cmdManager);
-        this.getCommand("QuestStatus").setExecutor(cmdManager);
-        this.getCommand("GenerateQuest").setExecutor(cmdManager);
-        this.getCommand("AbandonQuest").setExecutor(cmdManager);
-        this.getCommand("CompleteQuest").setExecutor(cmdManager);
-        this.getCommand("ForceCompleteQuest").setExecutor(cmdManager);
-        this.getCommand("WriteData").setExecutor(cmdManager);
+        cmdManager = new CommandManager(PLAYER_DATA);
+        QuestCommandTabComplete tabComplete = new QuestCommandTabComplete();
 
-        QuestNameTabComplete tabComplete = new QuestNameTabComplete();
-        this.getCommand("QuestStatus").setTabCompleter(tabComplete);
-        this.getCommand("AbandonQuest").setTabCompleter(tabComplete);
-        this.getCommand("CompleteQuest").setTabCompleter(tabComplete);
-        this.getCommand("ForceCompleteQuest").setTabCompleter(tabComplete);
-
-        GenerateQuestTabComplete generateQuestTabComplete = new GenerateQuestTabComplete();
-        this.getCommand("GenerateQuest").setTabCompleter(generateQuestTabComplete);
+        this.getCommand("Quest").setExecutor(cmdManager);
+        this.getCommand("Quest").setTabCompleter(tabComplete);
     }
 
     private void InitListeners() {

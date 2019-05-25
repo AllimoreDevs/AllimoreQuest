@@ -26,7 +26,7 @@ public class KillPlayerObjective extends Objective implements EntityDeathObserve
     public KillPlayerObjective(FileConfiguration config, String path, String name, Quest quest){
         super(name, quest);
         UUID id = UUID.fromString(config.getString(path + "Target"));
-        targetPlayer = Allimorequest.INSTANCE.getServer().getOfflinePlayer(id);
+        targetPlayer = Allimorequest.GetInstance().getServer().getOfflinePlayer(id);
         killedPlayer = config.getBoolean(path + "Killed");
 
         Allimorequest.EVENT_LISTENER.Subscribe(this);

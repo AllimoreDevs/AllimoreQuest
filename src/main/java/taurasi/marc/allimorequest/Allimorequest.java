@@ -2,7 +2,6 @@ package taurasi.marc.allimorequest;
 
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
-import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.QuestCommandTabComplete;
@@ -15,15 +14,16 @@ import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 import taurasi.marc.allimorequest.Professions.ProfessionMaterials;
 
 public final class Allimorequest extends JavaPlugin {
+    private static Allimorequest INSTANCE;
 
-    public static Allimorequest INSTANCE;
-    public static ProfessionMaterials PROFESSION_MATERIALS;
-    public static PlayerDataIndex PLAYER_DATA;
     public static EventListener EVENT_LISTENER;
     public static GUIEventRouter GUI_ROUTER;
-    public static QuestFactory QUEST_FACTORY;
-    public static DifficultyManager DIFFICULTY_MANAGER;
-    public static CommandManager cmdManager;
+
+    // Core Manager Singletons
+    private PlayerDataIndex playerDataIndex;
+    private QuestFactory questFactory;
+    public CommandManager cmdManager;
+    private DifficultyManager difficultyManager;
 
     private PlayerConnectionListener playerConnectionListener;
     private BlockListener blockListener;
@@ -34,11 +34,10 @@ public final class Allimorequest extends JavaPlugin {
         ConfigWrapper.ReadFromConfig(getConfig());
 
         INSTANCE = this;
-        PROFESSION_MATERIALS = new ProfessionMaterials();
+        questFactory = new QuestFactory(new ProfessionMaterials(), difficultyManager);
+        playerDataIndex = new PlayerDataIndex(questFactory);
+        difficultyManager = new DifficultyManager();
 
-        PLAYER_DATA = new PlayerDataIndex( new CustomConfig("PlayerData.yml", getDataFolder().getPath(), this));
-        DIFFICULTY_MANAGER = new DifficultyManager();
-        QUEST_FACTORY = new QuestFactory();
 
         RegisterListeners();
         RegisterCommands();
@@ -48,12 +47,12 @@ public final class Allimorequest extends JavaPlugin {
     public void onDisable() {
         UnregisterListeners();
 
-        PLAYER_DATA.WriteData();
+        playerDataIndex.WriteData();
     }
 
     private void RegisterCommands() {
-        cmdManager = new CommandManager(PLAYER_DATA);
-        QuestCommandTabComplete tabComplete = new QuestCommandTabComplete();
+        cmdManager = new CommandManager(playerDataIndex, questFactory, difficultyManager);
+        QuestCommandTabComplete tabComplete = new QuestCommandTabComplete(cmdManager, difficultyManager, playerDataIndex);
 
         this.getCommand("Quest").setExecutor(cmdManager);
         this.getCommand("Quest").setTabCompleter(tabComplete);
@@ -61,8 +60,8 @@ public final class Allimorequest extends JavaPlugin {
 
     private void InitListeners() {
         EVENT_LISTENER = new EventListener();
-        playerConnectionListener = new PlayerConnectionListener();
-        blockListener = new BlockListener();
+        playerConnectionListener = new PlayerConnectionListener(playerDataIndex);
+        blockListener = new BlockListener(playerDataIndex);
     }
     private void RegisterListeners(){
         InitListeners();
@@ -79,5 +78,14 @@ public final class Allimorequest extends JavaPlugin {
         HandlerList.unregisterAll(playerConnectionListener);
         HandlerList.unregisterAll(blockListener);
 
+    }
+
+    // Getters and Setters
+    public QuestFactory GetQuestFactory(){
+        return questFactory;
+    }
+
+    public static Allimorequest GetInstance(){
+        return INSTANCE;
     }
 }

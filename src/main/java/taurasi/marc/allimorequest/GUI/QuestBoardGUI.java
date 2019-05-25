@@ -10,21 +10,24 @@ import taurasi.marc.allimorecore.GUI.StandardButtonListener;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
+import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 import taurasi.marc.allimorequest.Quest;
 
 public class QuestBoardGUI extends InventoryGUI implements StandardButtonListener, QuestButtonListener {
     private PlayerQuestData playerData;
+    private QuestFactory questFactory;
     private Quest[] quests;
     private Quest displayedQuest;
     private long lastGenerationTime = 0;
 
-    public QuestBoardGUI(GUIEventRouter router, PlayerQuestData playerData) {
+    public QuestBoardGUI(GUIEventRouter router, PlayerQuestData playerData, QuestFactory questFactory) {
         super(ConfigWrapper.BOARD_INVENTORY_SIZE, router);
         quests = new Quest[ConfigWrapper.BOARD_QUESTS_TO_GENERATE];
         characterPerLoreLine = ConfigWrapper.QUEST_LORE_WRAPPING;
         itemTitleColor = ConfigWrapper.QUEST_BUTTON_TITLE_COLOR;
         loreColor = ConfigWrapper.QUEST_BUTTON_LORE_COLOR;
         this.playerData = playerData;
+        this.questFactory = questFactory;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class QuestBoardGUI extends InventoryGUI implements StandardButtonListene
 
     public void GenerateQuests(PlayerQuestData playerData){
         for(int i = 0; i < ConfigWrapper.BOARD_QUESTS_TO_GENERATE; i++){
-            quests[i] = Allimorequest.QUEST_FACTORY.GenerateQuest(playerData);
+            quests[i] = questFactory.GenerateQuest(playerData);
             if(quests[i] == null) i--;
         }
         lastGenerationTime = System.currentTimeMillis();

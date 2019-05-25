@@ -8,6 +8,7 @@ import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.GUI.QuestBoardGUI;
 import taurasi.marc.allimorequest.GUI.QuestJournalGUI;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
+import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -20,21 +21,21 @@ public class PlayerQuestData {
     private EntityLock entityLocker;
 
     // Construct New
-    public PlayerQuestData(Player offlinePlayer){
+    public PlayerQuestData(Player offlinePlayer ,QuestFactory questFactory){
         this.offlinePlayer = offlinePlayer;
         questJorunal = new QuestJournal(this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
-        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this);
+        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this, questFactory);
         entityLocker = new EntityLock();
     }
     // Serialization
     // Re-Construct from Config
-    public PlayerQuestData(FileConfiguration config, String uuid){
+    public PlayerQuestData(FileConfiguration config, String uuid, QuestFactory questFactory){
         UUID id = UUID.fromString(uuid);
-        offlinePlayer = Allimorequest.INSTANCE.getServer().getOfflinePlayer(id);
+        offlinePlayer = Allimorequest.GetInstance().getServer().getOfflinePlayer(id);
         questJorunal =  new QuestJournal(config, uuid + ".", this);
         questJournalGUI = new QuestJournalGUI(9, Allimorequest.GUI_ROUTER,this);
-        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this);
+        questBoardGUI = new QuestBoardGUI(Allimorequest.GUI_ROUTER, this, questFactory);
         entityLocker = new EntityLock();
         entityLocker.LockTypesFromQuests(questJorunal);
     }
@@ -148,7 +149,7 @@ public class PlayerQuestData {
     }
     public Player GetOnlinePlayer(){
         if(offlinePlayer.isOnline()){
-            return Allimorequest.INSTANCE.getServer().getPlayer(offlinePlayer.getUniqueId());
+            return Allimorequest.GetInstance().getServer().getPlayer(offlinePlayer.getUniqueId());
         }else{
             AllimoreLogger.LogError("Player is not currently online!");
             return null;

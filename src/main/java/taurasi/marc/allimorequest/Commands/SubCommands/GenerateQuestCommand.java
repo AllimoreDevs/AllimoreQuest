@@ -37,7 +37,7 @@ public class GenerateQuestCommand extends AllimoreCommand {
             return false;
         }
         if(args.length > 3){
-            difficultyTier = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTier(args[2]);
+            difficultyTier = cmdManager.GetDifficultyManager().GetDifficultyTier(args[2]);
             if(difficultyTier == null){
                 AllimoreLogger.LogInfo("Could not find specified Difficulty Tier!", player);
                 return false;
@@ -45,8 +45,8 @@ public class GenerateQuestCommand extends AllimoreCommand {
         }
 
         Quest quest = (difficultyTier == null) ?
-                Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData) :
-                Allimorequest.QUEST_FACTORY.GenerateQuest(profession, playerData, difficultyTier);
+                cmdManager.GetQuestFactory().GenerateQuest(profession, playerData) :
+                cmdManager.GetQuestFactory().GenerateQuest(profession, playerData, difficultyTier);
 
         if(quest == null){
             return false;

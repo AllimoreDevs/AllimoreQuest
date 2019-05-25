@@ -13,7 +13,7 @@ public class DifficultyManager {
 
     public DifficultyManager(){
         String configFileName = "DifficultyTiers.yml";
-        configFile = new CustomConfig(configFileName, Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
+        configFile = new CustomConfig(configFileName, Allimorequest.GetInstance().getDataFolder().getPath(), Allimorequest.GetInstance());
         ReadFromConfig();
     }
 

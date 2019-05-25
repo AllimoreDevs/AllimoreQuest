@@ -10,16 +10,23 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import taurasi.marc.allimorequest.Allimorequest;
+import taurasi.marc.allimorequest.PlayerDataIndex;
 
 public class BlockListener implements Listener {
     private static String NOTICE_BOARD_TITLE_LINE = ChatColor.GREEN + "[Notice Board]";
     private static String NOTIICE_BOARD_RAW = "[Notice Board]";
 
+    private PlayerDataIndex playerDataIndex;
+
+    public BlockListener(PlayerDataIndex playerDataIndex){
+        this.playerDataIndex = playerDataIndex;
+    }
+
     @EventHandler
     public void OnRightClickSign(PlayerInteractEvent event){
         if ( !(event.getAction() == Action.RIGHT_CLICK_BLOCK) ) return;
         if(IsNoticeBoard(event.getClickedBlock())){
-            Allimorequest.PLAYER_DATA.GetPlayerData(event.getPlayer()).OpenBoardGUI();
+            playerDataIndex.GetPlayerData(event.getPlayer()).OpenBoardGUI();
             event.setCancelled(true);
         }
     }

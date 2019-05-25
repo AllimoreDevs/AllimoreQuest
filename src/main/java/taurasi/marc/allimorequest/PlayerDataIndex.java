@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitTask;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 import taurasi.marc.allimorequest.Tasks.AutoSaveDataTask;
 
 import java.util.ArrayList;
@@ -16,15 +17,18 @@ import java.util.UUID;
 public class PlayerDataIndex {
     private ArrayList<PlayerQuestData> questPlayers;
     private CustomConfig configWrapper;
+    private QuestFactory questFactory;
 
     private long autoSaveDelay;
 
-    public PlayerDataIndex(CustomConfig configWrapper){
+    public PlayerDataIndex(QuestFactory questFactory){
+        this.questFactory = questFactory;
+
+        configWrapper = new CustomConfig("PlayerData.yml", Allimorequest.GetInstance().getDataFolder().getPath(), Allimorequest.GetInstance());
         questPlayers = new ArrayList<>();
-        this.configWrapper = configWrapper;
         autoSaveDelay = (20 * 60) * ConfigWrapper.PLAYER_DATA_AUTOSAVE_INTERVAL;
 
-        BukkitTask autoSaveTask = new AutoSaveDataTask().runTaskTimer(Allimorequest.INSTANCE, autoSaveDelay, autoSaveDelay);
+        BukkitTask autoSaveTask = new AutoSaveDataTask(this).runTaskTimer(Allimorequest.GetInstance(), autoSaveDelay, autoSaveDelay);
     }
 
     private void AddPlayerData(PlayerQuestData questPlayer){
@@ -40,7 +44,7 @@ public class PlayerDataIndex {
     }
 
     public PlayerQuestData CreateAndAddPlayerData(Player player){
-        PlayerQuestData playerData = new PlayerQuestData(player);
+        PlayerQuestData playerData = new PlayerQuestData(player, questFactory);
         questPlayers.add(playerData);
         return playerData;
     }
@@ -64,7 +68,7 @@ public class PlayerDataIndex {
     }
 
     public void LoadPlayer(Player player){
-        AddPlayerData(new PlayerQuestData(configWrapper.GetConfig(), player.getUniqueId().toString()));
+        AddPlayerData(new PlayerQuestData(configWrapper.GetConfig(), player.getUniqueId().toString(), questFactory));
     }
     public void UnloadPlayer(OfflinePlayer player){
         WriteData(player);
@@ -91,7 +95,7 @@ public class PlayerDataIndex {
         Object[] uuidKeys = keys.toArray();
 
         for(int i = 0; i < keys.size(); i++){
-            AddPlayerData(new PlayerQuestData(configWrapper.GetConfig(), (String)uuidKeys[i]));
+            AddPlayerData(new PlayerQuestData(configWrapper.GetConfig(), (String)uuidKeys[i], questFactory));
         }
     }
 }

@@ -12,9 +12,11 @@ import taurasi.marc.allimorequest.Quest;
 
 public class CollectQuestFactory {
     private QuestFactory questFactory;
+    private ProfessionMaterials professionMaterialsIndex;
 
-    public CollectQuestFactory(QuestFactory questFactory){
+    public CollectQuestFactory(QuestFactory questFactory, ProfessionMaterials professionMaterialsIndex){
         this.questFactory = questFactory;
+        this.professionMaterialsIndex = professionMaterialsIndex;
     }
 
     public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
@@ -49,7 +51,7 @@ public class CollectQuestFactory {
     public FuzzyCollectMaterialObjective GenWoodcutterObjective(Quest quest, DifficultyTier difficultyTier){
         String name = "Collects Logs";
         int targetAmount = GetRandomAmountOfLogs(difficultyTier);
-        return new FuzzyCollectMaterialObjective(name, quest, ProfessionMaterials.logs, targetAmount);
+        return new FuzzyCollectMaterialObjective(name, quest, professionMaterialsIndex.logs, targetAmount);
     }
 
     public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
@@ -127,7 +129,7 @@ public class CollectQuestFactory {
     }
 
     public Material GetRandomProfessionMaterial(PlayerProfession profession){
-        Material[] materials = Allimorequest.PROFESSION_MATERIALS.GetProfessionMaterials(profession);
+        Material[] materials = professionMaterialsIndex.GetProfessionMaterials(profession);
         return materials[RandomUtils.getRandomNumberInRange(0, materials.length)];
     }
 }

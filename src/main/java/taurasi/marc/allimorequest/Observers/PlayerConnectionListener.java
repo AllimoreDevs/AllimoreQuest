@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitTask;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.PlayerDataIndex;
 import taurasi.marc.allimorequest.Tasks.UnloadPlayerTask;
 
 import java.util.HashMap;
@@ -17,8 +18,10 @@ public class PlayerConnectionListener implements Listener {
     private long UNLOADING_DELAY = (20 * 60) * ConfigWrapper.PLAYER_UNLOAD_DATA_DELAY_MINUTES;
 
     private HashMap<OfflinePlayer, BukkitTask> unloadingTasks;
+    private PlayerDataIndex playerDataIndex;
 
-    public PlayerConnectionListener(){
+    public PlayerConnectionListener(PlayerDataIndex playerDataIndex){
+        this.playerDataIndex = playerDataIndex;
         unloadingTasks = new HashMap<>(3);
     }
 
@@ -32,12 +35,12 @@ public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void OnPlayerConnect(PlayerJoinEvent event){
         TryCancelUnloadingTask(event.getPlayer());
-        Allimorequest.PLAYER_DATA.LoadPlayer(event.getPlayer());
+        playerDataIndex.LoadPlayer(event.getPlayer());
     }
 
     @EventHandler
     public void OnPlayerDisconect(PlayerQuitEvent event){
-        BukkitTask task = new UnloadPlayerTask(event.getPlayer()).runTaskLater(Allimorequest.INSTANCE, UNLOADING_DELAY);
+        BukkitTask task = new UnloadPlayerTask(event.getPlayer(), playerDataIndex).runTaskLater(Allimorequest.GetInstance(), UNLOADING_DELAY);
         unloadingTasks.put(event.getPlayer(), task);
     }
 

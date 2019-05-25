@@ -6,14 +6,20 @@ import org.bukkit.entity.Player;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorequest.Commands.SubCommands.*;
 import taurasi.marc.allimorequest.PlayerDataIndex;
+import taurasi.marc.allimorequest.ProcGen.DifficultyManager;
+import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 
 public class CommandManager implements CommandExecutor {
     public PlayerDataIndex playerDataIndex;
 
     private AllimoreCommand[] subCommands;
+    private DifficultyManager difficultyManager;
+    private QuestFactory questFactory;
 
-    public CommandManager(PlayerDataIndex playerDataIndex) {
+    public CommandManager(PlayerDataIndex playerDataIndex, QuestFactory questFactory, DifficultyManager difficultyManager) {
         this.playerDataIndex = playerDataIndex;
+        this.difficultyManager = difficultyManager;
+        this.questFactory = questFactory;
         SetupSubCommands();
     }
 
@@ -78,5 +84,11 @@ public class CommandManager implements CommandExecutor {
             }
         }
         return null;
+    }
+    public DifficultyManager GetDifficultyManager(){
+        return difficultyManager;
+    }
+    public QuestFactory GetQuestFactory(){
+        return questFactory;
     }
 }

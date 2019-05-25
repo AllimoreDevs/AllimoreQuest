@@ -16,7 +16,7 @@ public class QuestFlairGenerator {
     private QuestParser questParser;
 
     public QuestFlairGenerator(){
-        questFlairFile = new CustomConfig("QuestGenerationStrings.yml", Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
+        questFlairFile = new CustomConfig("QuestGenerationStrings.yml", Allimorequest.GetInstance().getDataFolder().getPath(), Allimorequest.GetInstance());
         questParser = new QuestParser();
     }
 

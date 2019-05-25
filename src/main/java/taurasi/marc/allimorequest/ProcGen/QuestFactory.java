@@ -1,12 +1,12 @@
 package taurasi.marc.allimorequest.ProcGen;
 
-import org.bukkit.entity.Villager;
 import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.CustomConfig;
 import taurasi.marc.allimorecore.RandomUtils;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Professions.PlayerProfession;
+import taurasi.marc.allimorequest.Professions.ProfessionMaterials;
 import taurasi.marc.allimorequest.Quest;
 
 import java.util.ArrayList;
@@ -15,14 +15,16 @@ public class QuestFactory {
     public QuestFlairGenerator flairGenerator;
     private KillQuestFactory killQuestFactory;
     private CollectQuestFactory collectQuestFactory;
+    private DifficultyManager difficultyManager;
 
     private CustomConfig questGiverNamesConfig;
 
-    public QuestFactory(){
+    public QuestFactory(ProfessionMaterials professionMaterials, DifficultyManager difficultyManager){
         flairGenerator = new QuestFlairGenerator();
         killQuestFactory = new KillQuestFactory(this);
-        collectQuestFactory = new CollectQuestFactory(this);
-        questGiverNamesConfig = new CustomConfig("QuestGiverNames.yml", Allimorequest.INSTANCE.getDataFolder().getPath(), Allimorequest.INSTANCE);
+        collectQuestFactory = new CollectQuestFactory(this, professionMaterials);
+        questGiverNamesConfig = new CustomConfig("QuestGiverNames.yml", Allimorequest.GetInstance().getDataFolder().getPath(), Allimorequest.GetInstance());
+        this.difficultyManager = difficultyManager;
     }
 
     public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
@@ -56,7 +58,7 @@ public class QuestFactory {
     public DifficultyTier GetRandomDifficulty() {
         int randomValue = RandomUtils.getRandomNumberInRange(0, 100);
         int runningTotal = 0;
-        DifficultyTier[] difficultyTiers = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTiersArray();
+        DifficultyTier[] difficultyTiers = difficultyManager.GetDifficultyTiersArray();
 
         for(DifficultyTier tier : difficultyTiers){
             runningTotal += tier.appearanceChance;

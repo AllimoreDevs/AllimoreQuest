@@ -59,7 +59,7 @@ public class QuestJournal {
                 return;
             }
         }
-        AllimoreLogger.LogError("Could not find quest in quest journal! Player:" + playerData.GetPlayer().getName());
+        AllimoreLogger.LogError(ConfigWrapper.INFO_CANNOT_FIND_QUEST, playerData.GetOnlinePlayer());
     }
     public void RemoveQuestFromJournal(String name){
         Quest quest = Find(name);

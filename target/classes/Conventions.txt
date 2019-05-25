@@ -1,8 +1,3 @@
-- Route Debugging from the Logging Class
-    - Display Miss-Use Error Messages with Red Text
-    - Display Code Error Messages with the "[Error]" Prefix and Red Text
-    - Error Messages should log appropriately leveled warnings to the console
+- Route Debugging from the Allimore Logger and use correct Level of importance
 - Read Error and Info messages from a Language Class
-- Read Chat Color Formating tags from a Config Class
-
-- Logging should happen in Player Quest Data and not the Quest Journal
+- Read Chat Color Formatting tags from a Config Class

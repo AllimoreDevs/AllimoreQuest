@@ -1,22 +1,24 @@
 package taurasi.marc.allimorequest.Commands.SubCommands;
 
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 import taurasi.marc.allimorecore.AllimoreLogger;
-import taurasi.marc.allimorequest.Commands.AllimoreCommand;
+import taurasi.marc.allimorequest.Commands.AllimorePermissionCommand;
 import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.TabCompleteOptions;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
 
-public class ForceCompleteQuestCommand extends AllimoreCommand {
-    public ForceCompleteQuestCommand(String name, CommandManager cmdManager) {
-        super(name, cmdManager);
+public class ForceCompleteQuestCommand extends AllimorePermissionCommand {
+    public ForceCompleteQuestCommand(String name, CommandManager cmdManager, String PermssionString) throws Exception {
+        super(name, cmdManager, PermssionString);
+    }
+    public ForceCompleteQuestCommand(String name, CommandManager cmdManager, Permission permission) throws Exception {
+        super(name, cmdManager, permission);
     }
 
     @Override
-    public boolean Run(Player player, String[] args) {
-        if( !(player.hasPermission("allimore.quest.command.force-complete")) ) return false;
-
+    public boolean Execute(Player player, String[] args) {
         if(args.length < 2){
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_NO_QUEST_NAME_PROVIDED, player);
             AllimoreLogger.LogInfo(ConfigWrapper.INFO_FORCE_COMPLETE_QUEST_USAGE , player);

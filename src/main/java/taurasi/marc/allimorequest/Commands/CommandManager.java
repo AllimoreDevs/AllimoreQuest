@@ -1,4 +1,5 @@
 package taurasi.marc.allimorequest.Commands;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,16 +25,20 @@ public class CommandManager implements CommandExecutor {
     }
 
     public void SetupSubCommands() {
-        subCommands = new AllimoreCommand[]{
-                new AbandonQuestCommand("Abandon", this),
-                new CompleteQuestCommand("Complete", this),
-                new QuestStatusCommand("Status", this),
-                new ForceCompleteQuestCommand("ForceComplete", this),
-                new GenerateQuestCommand("Generate", this),
-                new QuestBoardCommand("NoticeBoard", this),
-                new QuestJournalCommand("QuestJournal", this),
-                new WriteDataCommand("WriteData", this)
-        };
+        try {
+            subCommands = new AllimoreCommand[]{
+                    new AbandonQuestCommand("Abandon", this),
+                    new CompleteQuestCommand("Complete", this),
+                    new QuestStatusCommand("Status", this),
+                    new ForceCompleteQuestCommand("ForceComplete", this, Bukkit.getPluginManager().getPermission("allimore.quest.command.force-complete")),
+                    new GenerateQuestCommand("Generate", this, Bukkit.getPluginManager().getPermission("allimore.quest.command.generate-quest")),
+                    new QuestBoardCommand("NoticeBoard", this, Bukkit.getPluginManager().getPermission("allimore.quest.command.open-board")),
+                    new QuestJournalCommand("QuestJournal", this),
+                    new WriteDataCommand("WriteData", this, Bukkit.getPluginManager().getPermission("allimore.quest.command.write-data"))
+            };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

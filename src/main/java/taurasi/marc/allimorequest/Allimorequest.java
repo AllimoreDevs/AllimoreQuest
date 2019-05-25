@@ -34,10 +34,9 @@ public final class Allimorequest extends JavaPlugin {
         ConfigWrapper.ReadFromConfig(getConfig());
 
         INSTANCE = this;
+        difficultyManager = new DifficultyManager();
         questFactory = new QuestFactory(new ProfessionMaterials(), difficultyManager);
         playerDataIndex = new PlayerDataIndex(questFactory);
-        difficultyManager = new DifficultyManager();
-
 
         RegisterListeners();
         RegisterCommands();

@@ -51,6 +51,7 @@ public class ConfigWrapper {
     public static long BOARD_GENERATION_PERIOD = 60 * 60 * 1000;
 
     // Info Strings for Command Usage
+    public static String INFO_NO_PERMISSIONS = "Opps! It looks like you don't have permissions to run that command!";
     public static String INFO_NO_QUEST_NAME_PROVIDED = "Incorrect command usage, please provide the quest name.";
     public static String INFO_CANNOT_FIND_QUEST = "Could not find quest. Make sure to spell the name correctly.";
 

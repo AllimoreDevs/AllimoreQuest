@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.PlayerDataIndex;
 import taurasi.marc.allimorequest.ProcGen.DifficultyManager;
 import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
@@ -26,9 +25,11 @@ public class QuestCommandTabComplete implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
+        Player player = (Player)commandSender;
         AllimoreCommand[] subCommands = cmdManager.getSubCommands();
+
         if(args.length < 2){
-            return GetSubcommandStrings(subCommands);
+            return GetSubcommandStrings(subCommands, player);
         }
         AllimoreCommand subcommand = cmdManager.getSubcommand(args[0]);
         if(subcommand == null || subcommand.arguementTabTypes == null){
@@ -47,9 +48,15 @@ public class QuestCommandTabComplete implements TabCompleter {
         return null;
     }
 
-    private ArrayList<String> GetSubcommandStrings(AllimoreCommand[] subCommands){
+    private ArrayList<String> GetSubcommandStrings(AllimoreCommand[] subCommands, Player player){
         ArrayList<String> suggestions = new ArrayList<>(subCommands.length);
         for(int i = 0; i < subCommands.length; i++){
+            if(subCommands[i] instanceof AllimorePermissionCommand){
+                AllimorePermissionCommand permissionCommand = (AllimorePermissionCommand)subCommands[i];
+                if(!permissionCommand.HasPermission(player)){
+                    continue;
+                }
+            }
             suggestions.add(subCommands[i].name);
         }
         return suggestions;

@@ -16,6 +16,6 @@ public class UnloadPlayerTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        Allimorequest.PLAYER_DATA.UnloadPlayer(player);
+        playerDataIndex.UnloadPlayer(player);
     }
 }

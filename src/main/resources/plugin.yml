@@ -13,6 +13,7 @@ commands:
 permissions:
   allimore.quest.notice-boards.admin:
     description: Premits users to place and break Notice Board signs around the world
+    default: op
 
   allimore.quest.notice-boards.place:
     description: Allows users to place Notice Board signs around the world
@@ -32,6 +33,10 @@ permissions:
 
   allimore.quest.command.generate-quest:
     description: Tries to generate a quest and add it to the player's quest book
+    default: op
+
+  allimore.quest.command.open-board:
+    description: Opens the quest board GUI
     default: op
 
   allimore.quest.command.write-data:

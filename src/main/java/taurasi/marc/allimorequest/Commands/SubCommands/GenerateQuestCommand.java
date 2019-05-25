@@ -1,9 +1,9 @@
 package taurasi.marc.allimorequest.Commands.SubCommands;
 
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 import taurasi.marc.allimorecore.AllimoreLogger;
-import taurasi.marc.allimorequest.Allimorequest;
-import taurasi.marc.allimorequest.Commands.AllimoreCommand;
+import taurasi.marc.allimorequest.Commands.AllimorePermissionCommand;
 import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.TabCompleteOptions;
 import taurasi.marc.allimorequest.PlayerQuestData;
@@ -11,15 +11,16 @@ import taurasi.marc.allimorequest.ProcGen.DifficultyTier;
 import taurasi.marc.allimorequest.Professions.PlayerProfession;
 import taurasi.marc.allimorequest.Quest;
 
-public class GenerateQuestCommand extends AllimoreCommand {
-    public GenerateQuestCommand(String name, CommandManager cmdManager) {
-        super(name, cmdManager);
+public class GenerateQuestCommand extends AllimorePermissionCommand {
+    public GenerateQuestCommand(String name, CommandManager cmdManager, String permissionString) throws Exception {
+        super(name, cmdManager, permissionString);
+    }
+    public GenerateQuestCommand(String name, CommandManager commandManager, Permission permission) throws Exception {
+        super(name, commandManager, permission);
     }
 
     @Override
-    public boolean Run(Player player, String[] args) {
-        if( !(player.hasPermission("allimore.quest.command.generate-quest")) ) return false;
-
+    public boolean Execute(Player player, String[] args) {
         PlayerQuestData playerData = cmdManager.playerDataIndex.GetPlayerData(player);
 
         DifficultyTier difficultyTier = null;

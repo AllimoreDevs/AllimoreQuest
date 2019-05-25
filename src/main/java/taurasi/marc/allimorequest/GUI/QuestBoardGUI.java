@@ -70,9 +70,9 @@ public class QuestBoardGUI extends InventoryGUI implements StandardButtonListene
                 ConfigWrapper.POSITIVE_BUTTON_ITEM);
         CreateAndAddButton(new StandardButton("Accept Quest", itemStack, this, this));
 
-        itemStack = CreateGUIItem(ConfigWrapper.DANGEROUS_BUTTON_COLOR + "Go Back",
+        itemStack = CreateGUIItem(ConfigWrapper.NEGATIVE_BUTTON_COLOR + "Go Back",
                 "Takes you back to the previous menu.",
-                ConfigWrapper.DANGEROUS_BUTTON_ITEM);
+                ConfigWrapper.NEGATIVE_BUTTON_ITEM);
         CreateAndAddButton(new StandardButton("Go Back", itemStack, this, this));
     }
 

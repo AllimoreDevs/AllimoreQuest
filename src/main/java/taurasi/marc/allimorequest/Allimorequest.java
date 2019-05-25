@@ -7,7 +7,6 @@ import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.QuestCommandTabComplete;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
-import taurasi.marc.allimorequest.Database.DatabaseManager;
 import taurasi.marc.allimorequest.Observers.BlockListener;
 import taurasi.marc.allimorequest.Observers.EventListener;
 import taurasi.marc.allimorequest.Observers.PlayerConnectionListener;
@@ -31,7 +30,7 @@ public final class Allimorequest extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
+        saveResource("config.yml", ConfigWrapper.NeedsUpdate(getConfig()));
         ConfigWrapper.ReadFromConfig(getConfig());
 
         INSTANCE = this;

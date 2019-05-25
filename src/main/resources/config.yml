@@ -2,7 +2,11 @@
 ## Possible Colors:
 ## Black, Dark_Blue, Dark_Green, Dark_Aqua, Dark_Red, Dark_Purple, Gold, Gray, Dark_Gray, Blue, Green, Aqua, Red, Light_Purple, Yellow, White
 
+## Internal use only, do not modify! Used for configuration versioning to determine when a config must be regenerated
+version: 1.2
+
 ## Settings for Chat Notifications
+## Look above for applicable Chat Formatting colors
 Chat Notifications:
     Title Color: Gold
     Summary Color: Yellow
@@ -11,6 +15,12 @@ Chat Notifications:
     Complete Quest Color: Green
 
 ## Settings for Sound Notifications
+## Look up available sound effects at https://www.digminecraft.com/lists/sound_list_pc.php
+## You can also use look up sound effects using the play sound in Minecraft, this allows you try out volume and pitch values as well (Recommended way)
+## Just remember that you don't need the "Minecraft." part of the name only what comes after that
+## Volume and Pitch can have decimal values
+## Pitch Ranges between 0 and 3
+## Volume is uncapped (?)
 Sound Notifications:
   Quest Start:
     Clip: Entity_Arrow_Hit_Player
@@ -25,19 +35,35 @@ Sound Notifications:
     Volume: 1
     Pitch: .5
 
+## GUI Settings:
+GUI Settings:
+  ## Soft limit used for forward spill word wrapping
+  Lore characters per line: 30
+  Generic Button Item: Book
+  Generic Title Color: Gold
+  Genertic Lore Color: Yellow
+  Positive Button Item: Green_Wool
+  Positive Button Color: Green
+  Negative Button Item: Red_Wool
+  Negative Button Color: Red
+
+
 ## Settings for Title Based Notifications
+## Fade In, Stay, and Fade Out times are read as seconds. You can use decimals
 Title Notifications:
   Title Color: Green
   Subtitle Color: White
-  Quest Notification Fade In: 10
-  Quest Notification Stay: 20
-  Quest Notification Fade Out: 10
+  Quest Notification Fade In: 0.5
+  Quest Notification Stay: 1
+  Quest Notification Fade Out: 0.5
 
 ## Settings for Player Data
 Player Data:
+  ## Time delay in minutes between each Auto-Save
   Auto Save Interval: 30
+  ## Time delay in minutes after a player disconnects before their data is unloaded
   Player Data Unload Delay: 5
-  Use mySQL: true
+  Use mySQL: false
 
 mySQL:
   Host: localhost

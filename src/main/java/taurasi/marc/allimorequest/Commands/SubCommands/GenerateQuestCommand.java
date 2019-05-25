@@ -26,18 +26,18 @@ public class GenerateQuestCommand extends AllimoreCommand {
         PlayerProfession profession = null;
 
         if(args.length > 2){
-            if( !(PlayerProfession.Contains(args[0])) ){
+            if( !(PlayerProfession.Contains(args[1])) ){
                 AllimoreLogger.LogInfo("Could not find specified player profession!", player);
                 return false;
             }
-            profession = PlayerProfession.valueOf(args[0].toUpperCase());
+            profession = PlayerProfession.valueOf(args[1].toUpperCase());
         }
         else{
             AllimoreLogger.LogInfo("You must provide a player profession!", player);
             return false;
         }
         if(args.length > 3){
-            difficultyTier = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTier(args[1]);
+            difficultyTier = Allimorequest.DIFFICULTY_MANAGER.GetDifficultyTier(args[2]);
             if(difficultyTier == null){
                 AllimoreLogger.LogInfo("Could not find specified Difficulty Tier!", player);
                 return false;

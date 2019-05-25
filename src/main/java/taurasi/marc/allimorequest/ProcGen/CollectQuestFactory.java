@@ -19,17 +19,59 @@ public class CollectQuestFactory {
         this.professionMaterialsIndex = professionMaterialsIndex;
     }
 
-    public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
+    public Quest GenerateExcavtorQuest(PlayerQuestData playerData, DifficultyTier difficultyTier, QuestCollection questCollection) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
 
         Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenExcavatorObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
 
-        questFactory.flairGenerator.SetExcavatorQuestFlair(quest, playerData, questGiver);
+        questFactory.flairGenerator.SetExcavatorQuestFlair(quest, questCollection, questGiver);
 
         return quest;
     }
+    public Quest GenerateWoodcutterQuest(PlayerQuestData playerData, DifficultyTier difficultyTier, QuestCollection questCollection) throws Exception {
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+
+        Quest quest = new Quest(questGiver.name, playerData);
+        FuzzyCollectMaterialObjective objective = GenWoodcutterObjective(quest ,difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, questCollection, questGiver);
+        return quest;
+    }
+    public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier, QuestCollection questCollection) throws Exception {
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+
+        Quest quest = new Quest(questGiver.name, playerData);
+        CollectMaterialObjective objective = GenMinerObjective(quest, difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetMinerQuestFlair(quest, questCollection, questGiver);
+        return quest;
+    }
+    public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier, QuestCollection questCollection) throws Exception {
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+
+        Quest quest = new Quest(questGiver.name, playerData);
+        CollectMaterialObjective objective = GenFarmerObjective(quest, difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetFarmerQuestFlair(quest, questCollection, questGiver);
+        return quest;
+    }
+    public Quest GenerateFisherQuest(PlayerQuestData playerData, DifficultyTier difficultyTier, QuestCollection questCollection) throws Exception {
+        QuestGiver questGiver = questFactory.GenerateQuestGiver();
+
+
+        Quest quest = new Quest(questGiver.name, playerData);
+        CollectMaterialObjective objective = GenFisherObjective(quest, difficultyTier);
+        quest.SetCurrentObjective(objective);
+
+        questFactory.flairGenerator.SetFisherQuestFlair(quest, questCollection, questGiver);
+        return quest;
+    }
+
     private CollectMaterialObjective GenExcavatorObjective(Quest quest, DifficultyTier difficultyTier){
         Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.EXCAVATOR);;
         int targetAmount = GetRandomAmountOfBulkBlocks(difficultyTier);
@@ -37,32 +79,10 @@ public class CollectQuestFactory {
         String name = String.format("Collect %s", StringUtils.formatEnumString(targetMaterial.name())) ;
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
-
-    public Quest GenerateWoodcutterQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
-        QuestGiver questGiver = questFactory.GenerateQuestGiver();
-
-        Quest quest = new Quest(questGiver.name, playerData);
-        FuzzyCollectMaterialObjective objective = GenWoodcutterObjective(quest ,difficultyTier);
-        quest.SetCurrentObjective(objective);
-
-        questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, playerData, questGiver);
-        return quest;
-    }
     public FuzzyCollectMaterialObjective GenWoodcutterObjective(Quest quest, DifficultyTier difficultyTier){
         String name = "Collects Logs";
         int targetAmount = GetRandomAmountOfLogs(difficultyTier);
         return new FuzzyCollectMaterialObjective(name, quest, professionMaterialsIndex.logs, targetAmount);
-    }
-
-    public Quest GenerateMinerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
-        QuestGiver questGiver = questFactory.GenerateQuestGiver();
-
-        Quest quest = new Quest(questGiver.name, playerData);
-        CollectMaterialObjective objective = GenMinerObjective(quest, difficultyTier);
-        quest.SetCurrentObjective(objective);
-
-        questFactory.flairGenerator.SetMinerQuestFlair(quest, playerData, questGiver);
-        return quest;
     }
     public CollectMaterialObjective GenMinerObjective(Quest quest, DifficultyTier difficultyTier){
         // Coal quests have a 4/10 chance of appearing
@@ -74,35 +94,12 @@ public class CollectQuestFactory {
         String name = (isCoalQuest) ? "Collect Coal" : String.format("Collect %s", StringUtils.formatEnumString(targetMaterial.name()) );
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
     }
-
-    public Quest GenerateFarmerQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
-        QuestGiver questGiver = questFactory.GenerateQuestGiver();
-
-        Quest quest = new Quest(questGiver.name, playerData);
-        CollectMaterialObjective objective = GenFarmerObjective(quest, difficultyTier);
-        quest.SetCurrentObjective(objective);
-
-        questFactory.flairGenerator.SetFarmerQuestFlair(quest, playerData, questGiver);
-        return quest;
-    }
     public CollectMaterialObjective GenFarmerObjective(Quest quest, DifficultyTier difficultyTier){
         Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.FARMER);
         String name = String.format("Collect " + QuestParser.BruteForcePlural(targetMaterial));
         int targetAmount = GetRandomAmountOfCrops(difficultyTier);
 
         return new CollectMaterialObjective(name, quest, targetMaterial, targetAmount);
-    }
-
-    public Quest GenerateFisherQuest(PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
-        QuestGiver questGiver = questFactory.GenerateQuestGiver();
-
-
-        Quest quest = new Quest(questGiver.name, playerData);
-        CollectMaterialObjective objective = GenFisherObjective(quest, difficultyTier);
-        quest.SetCurrentObjective(objective);
-
-        questFactory.flairGenerator.SetFisherQuestFlair(quest, playerData, questGiver);
-        return quest;
     }
     public CollectMaterialObjective GenFisherObjective(Quest quest, DifficultyTier difficultyTier){
         Material targetMaterial = GetRandomProfessionMaterial(PlayerProfession.FISHER);

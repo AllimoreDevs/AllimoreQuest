@@ -17,12 +17,12 @@ public class KillQuestFactory {
         this.questFactory = questFactory;
     }
 
-    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty) throws Exception {
+    public Quest GenerateKillQuest(PlayerQuestData playerData, DifficultyTier difficulty, QuestCollection questCollection) throws Exception {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
         Quest quest = new Quest(questGiver.name, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
 
-        questFactory.flairGenerator.SetKillQuestFlair(quest, playerData, questGiver);
+        questFactory.flairGenerator.SetKillQuestFlair(quest, questCollection, questGiver);
         return quest;
     }
 

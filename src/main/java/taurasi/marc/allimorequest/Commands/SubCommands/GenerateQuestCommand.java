@@ -45,9 +45,14 @@ public class GenerateQuestCommand extends AllimorePermissionCommand {
             }
         }
 
-        Quest quest = (difficultyTier == null) ?
-                cmdManager.GetQuestFactory().GenerateQuest(profession, playerData) :
-                cmdManager.GetQuestFactory().GenerateQuest(profession, playerData, difficultyTier);
+        Quest quest = null;
+        try {
+            quest = (difficultyTier == null) ?
+                    cmdManager.GetQuestFactory().GenerateQuest(profession, playerData) :
+                    cmdManager.GetQuestFactory().GenerateQuest(profession, playerData, difficultyTier);
+        } catch (Exception e) {
+            AllimoreLogger.LogError("Quest Generation Failed!", player);
+        }
 
         if(quest == null){
             return false;

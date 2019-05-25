@@ -3,6 +3,7 @@ package taurasi.marc.allimorequest.GUI;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorecore.GUI.InventoryGUI;
 import taurasi.marc.allimorecore.GUI.StandardButton;
@@ -10,10 +11,11 @@ import taurasi.marc.allimorecore.GUI.StandardButtonListener;
 import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
+import taurasi.marc.allimorequest.ProcGen.QuestCollection;
 import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 import taurasi.marc.allimorequest.Quest;
 
-public class QuestBoardGUI extends InventoryGUI implements StandardButtonListener, QuestButtonListener {
+public class QuestBoardGUI extends InventoryGUI implements StandardButtonListener, QuestButtonListener, QuestCollection {
     private PlayerQuestData playerData;
     private QuestFactory questFactory;
     private Quest[] quests;
@@ -41,7 +43,11 @@ public class QuestBoardGUI extends InventoryGUI implements StandardButtonListene
 
     public void GenerateQuests(PlayerQuestData playerData){
         for(int i = 0; i < ConfigWrapper.BOARD_QUESTS_TO_GENERATE; i++){
-            quests[i] = questFactory.GenerateQuest(playerData);
+            try {
+                quests[i] = questFactory.GenerateQuest(playerData, this);
+            } catch (Exception e) {
+                AllimoreLogger.LogInfo("Quest Board quest generation failed!");
+            }
             if(quests[i] == null) i--;
         }
         lastGenerationTime = System.currentTimeMillis();
@@ -110,4 +116,13 @@ public class QuestBoardGUI extends InventoryGUI implements StandardButtonListene
     }
 
 
+    @Override
+    public boolean ContainsQuestName(String questName) {
+        for(Quest quest : quests){
+            if(quest == null) continue;
+            if(quest.GetQuestName().equalsIgnoreCase(questName))
+                return true;
+        }
+        return false;
+    }
 }

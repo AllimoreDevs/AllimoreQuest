@@ -27,32 +27,34 @@ public class QuestFactory {
         this.difficultyManager = difficultyManager;
     }
 
-    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier){
-        try {
-            switch (profession) {
-                case MINER:
-                    return collectQuestFactory.GenerateMinerQuest(playerData, difficultyTier);
-                case EXCAVATOR:
-                    return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier);
-                case WOODCUTTER:
-                    return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier);
-                case FARMER:
-                    return collectQuestFactory.GenerateFarmerQuest(playerData, difficultyTier);
-                case SENTINEL:
-                    return killQuestFactory.GenerateKillQuest(playerData, difficultyTier);
-                case FISHER:
-                    return collectQuestFactory.GenerateFisherQuest(playerData, difficultyTier);
-            }
-        }catch (Exception e){
-            AllimoreLogger.LogError("Failed to generate quest!", playerData.GetOnlinePlayer());
+    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, QuestCollection questCollection, DifficultyTier difficultyTier) throws Exception {
+        switch (profession) {
+            case MINER:
+                return collectQuestFactory.GenerateMinerQuest(playerData, difficultyTier, questCollection);
+            case EXCAVATOR:
+                return collectQuestFactory.GenerateExcavtorQuest(playerData, difficultyTier, questCollection);
+            case WOODCUTTER:
+                return collectQuestFactory.GenerateWoodcutterQuest(playerData, difficultyTier, questCollection);
+            case FARMER:
+                return collectQuestFactory.GenerateFarmerQuest(playerData, difficultyTier, questCollection);
+            case SENTINEL:
+                return killQuestFactory.GenerateKillQuest(playerData, difficultyTier, questCollection);
+            case FISHER:
+                return collectQuestFactory.GenerateFisherQuest(playerData, difficultyTier, questCollection);
         }
         return null;
     }
-    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData){
-        return GenerateQuest(profession, playerData, GetRandomDifficulty());
+    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData, DifficultyTier difficultyTier) throws Exception {
+        return GenerateQuest(profession, playerData, playerData, difficultyTier);
     }
-    public Quest GenerateQuest(PlayerQuestData playerData){
-        return GenerateQuest(GetRandomProfession(), playerData, GetRandomDifficulty());
+    public Quest GenerateQuest(PlayerProfession profession, PlayerQuestData playerData) throws Exception {
+        return GenerateQuest(profession, playerData, playerData, GetRandomDifficulty());
+    }
+    public Quest GenerateQuest(PlayerQuestData playerData) throws Exception {
+        return GenerateQuest(GetRandomProfession(), playerData, playerData, GetRandomDifficulty());
+    }
+    public Quest GenerateQuest(PlayerQuestData playerData, QuestCollection questCollection) throws Exception {
+        return GenerateQuest(GetRandomProfession(), playerData, questCollection, GetRandomDifficulty());
     }
 
     public DifficultyTier GetRandomDifficulty() {

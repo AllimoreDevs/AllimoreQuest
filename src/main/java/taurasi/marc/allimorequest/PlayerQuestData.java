@@ -8,12 +8,13 @@ import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.GUI.QuestBoardGUI;
 import taurasi.marc.allimorequest.GUI.QuestJournalGUI;
 import taurasi.marc.allimorequest.Objectives.KillObjective;
+import taurasi.marc.allimorequest.ProcGen.QuestCollection;
 import taurasi.marc.allimorequest.ProcGen.QuestFactory;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class PlayerQuestData {
+public class PlayerQuestData implements QuestCollection {
     private OfflinePlayer offlinePlayer;
     private QuestJournal questJorunal;
     private QuestJournalGUI questJournalGUI;

@@ -1,0 +1,39 @@
+Generic:
+  Sender Must be Player: "You must be logged in to use this command!"
+  Too Few Arguments: "Too few arguments!"
+  No Quest Name: "You must provide a valid quest name!"
+  Profession Find Error: "Could not find a profession with the specified name!"
+  Difficulty Tier Find Error: "Could not find a Difficulty Tier with the specified name!"
+
+Quests:
+  Cannot Accept Same Name: "You cannot accept that quest right now! You already have one with the same name!"
+  Cannot Accept Same Entity: "You cannot accept that quest right now! You already have a quest to kill that entity type!"
+  Cannot Accept No Space: "You cannot accept that quest right now! Your quest journal is full, complete or abandon a quest to make more room!"
+  Cannot Complete Quest: "You can't complete that quest right now! Check the objectives and make sure you have everything you need!"
+  Empty Journal: "Looks like your Quest Journal is empty right now. Why not get some new quests?"
+
+Quest Notifications:
+  Complete SubTitle String: "Completed!"
+  Abandon SubTitle String: "Abandoned!"
+  New Objective SubTitle String: "New Objective!"
+
+Other:
+  Auto-Saving: "Starting Data Auto-save"
+
+Error:
+  Objective Read Type Error: "Deserialization error! Could not resolve objective type!"
+  Cant Find Unusued Quest Name: "Failed to generate an unused quest name!"
+  Failed to Lock Entity: "Cannot lock that entity type, type is already locked!"
+  Failed to Unlock Entity: "Cannot unlock that entity type, type is not locked!"
+  Failed to Locate Quest: "Could not a find a quest with the provided name!"
+
+
+Usage Strings:
+  Abandon Quest: "/Quest Abandon <Quest Name>"
+  QuestStatus: "/Quest Status (Quest Name)"
+  Complete Quest: "/Quest Complete <Quest Name>"
+  Force Complete Quest: "/Quest ForceComplete <Quest Name>"
+  Generate Quest: "/Quest Generate <Profession> (Difficulty)"
+  Qustboard: "/Quest QuestBoard"
+  Questjournal: "/Quest QuestJournal"
+  Write Data: "/Quest WriteData"

@@ -73,6 +73,8 @@ public class QuestBoardGUI extends InventoryGUI implements StandardButtonListene
         inv.addItem(itemStack);
         itemStack = CreatePreformatedItem(quest.GetCurrentObjective().GetName(), quest.GetCurrentObjective().GetProgress(), Material.BOOK);
         inv.addItem(itemStack);
+        itemStack = CreatePreformatedItem("Quest Reward", CurrencyUtils.ParseCurrency(quest.GetQuestRewardMoney()) + " Alms", Material.PAPER);
+        inv.addItem(itemStack);
 
         itemStack = CreateGUIItem(ConfigWrapper.POSITIVE_BUTTON_COLOR + "Accept Quest",
                 "Accepts the quest if adds it to your quest journal.",

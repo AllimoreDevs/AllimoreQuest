@@ -1,7 +1,11 @@
 package taurasi.marc.allimorequest;
 
+import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import taurasi.marc.allimorecore.AllimoreLogger;
 import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorequest.Commands.CommandManager;
 import taurasi.marc.allimorequest.Commands.QuestCommandTabComplete;
@@ -15,6 +19,7 @@ import taurasi.marc.allimorequest.Professions.ProfessionMaterials;
 
 public final class Allimorequest extends JavaPlugin {
     private static Allimorequest INSTANCE;
+    private Economy economy;
 
     public static EventListener EVENT_LISTENER;
     public static GUIEventRouter GUI_ROUTER;
@@ -30,6 +35,12 @@ public final class Allimorequest extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if(!SetupEconomy()){
+            AllimoreLogger.LogError("No Vault Dependancy Found! Disabling plugin");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
         saveResource("config.yml", ConfigWrapper.NeedsUpdate(getConfig()));
         ConfigWrapper.ReadFromConfig(getConfig());
 
@@ -40,6 +51,19 @@ public final class Allimorequest extends JavaPlugin {
 
         RegisterListeners();
         RegisterCommands();
+    }
+
+    private boolean SetupEconomy() {
+        if(Bukkit.getPluginManager().getPlugin("Vault") == null){
+            return false;
+        }
+
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if(rsp == null){
+            return false;
+        }
+        economy = rsp.getProvider();
+        return economy != null;
     }
 
     @Override
@@ -82,6 +106,9 @@ public final class Allimorequest extends JavaPlugin {
     // Getters and Setters
     public QuestFactory GetQuestFactory(){
         return questFactory;
+    }
+    public Economy GetEconomy() {
+        return economy;
     }
 
     public static Allimorequest GetInstance(){

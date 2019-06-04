@@ -25,6 +25,7 @@ public class CollectQuestFactory {
         Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenExcavatorObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficultyTier));
 
         questFactory.flairGenerator.SetExcavatorQuestFlair(quest, questCollection, questGiver);
 
@@ -36,6 +37,7 @@ public class CollectQuestFactory {
         Quest quest = new Quest(questGiver.name, playerData);
         FuzzyCollectMaterialObjective objective = GenWoodcutterObjective(quest ,difficultyTier);
         quest.SetCurrentObjective(objective);
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficultyTier));
 
         questFactory.flairGenerator.SetWoodcutterQuestFlair(quest, questCollection, questGiver);
         return quest;
@@ -46,6 +48,7 @@ public class CollectQuestFactory {
         Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenMinerObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficultyTier));
 
         questFactory.flairGenerator.SetMinerQuestFlair(quest, questCollection, questGiver);
         return quest;
@@ -56,6 +59,7 @@ public class CollectQuestFactory {
         Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenFarmerObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficultyTier));
 
         questFactory.flairGenerator.SetFarmerQuestFlair(quest, questCollection, questGiver);
         return quest;
@@ -67,6 +71,7 @@ public class CollectQuestFactory {
         Quest quest = new Quest(questGiver.name, playerData);
         CollectMaterialObjective objective = GenFisherObjective(quest, difficultyTier);
         quest.SetCurrentObjective(objective);
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficultyTier));
 
         questFactory.flairGenerator.SetFisherQuestFlair(quest, questCollection, questGiver);
         return quest;

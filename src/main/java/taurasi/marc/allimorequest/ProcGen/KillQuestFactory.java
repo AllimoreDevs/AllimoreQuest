@@ -21,6 +21,7 @@ public class KillQuestFactory {
         QuestGiver questGiver = questFactory.GenerateQuestGiver();
         Quest quest = new Quest(questGiver.name, playerData);
         quest.SetCurrentObjective(GenerateKillObjective(quest, difficulty));
+        quest.SetQuestRewardMoney(questFactory.GetRandomPayout(difficulty));
 
         questFactory.flairGenerator.SetKillQuestFlair(quest, questCollection, questGiver);
         return quest;

@@ -8,4 +8,5 @@ public interface NotificationService {
     void PlayAbandonNotification();
     void DisplayQuestBriefInChat(Player inquirer);
     void DisplayQuestStatusInChat(Player inquirer);
+    void DisplayPayoutInChat(Player inquirer, double payOut);
 }

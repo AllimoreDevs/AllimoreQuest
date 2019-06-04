@@ -18,6 +18,10 @@ Tiers:
   Novice:
     Appearance Chance: 30
     Ranges:
+      PayoutRange:
+        unit: SINGLE
+        min: 100
+        max: 500
       KillMobRange:
         unit: SINGLE
         min: 3
@@ -53,6 +57,10 @@ Tiers:
   Adventurer:
     Appearance Chance: 30
     Ranges:
+      PayoutRange:
+        unit: SINGLE
+        min: 500
+        max: 1000
       KillMobRange:
         unit: SINGLE
         min: 10
@@ -88,6 +96,10 @@ Tiers:
   Champion:
     Appearance Chance: 25
     Ranges:
+      PayoutRange:
+        unit: SINGLE
+        min: 1000
+        max: 2000
       KillMobRange:
         unit: SINGLE
         min: 17
@@ -123,6 +135,10 @@ Tiers:
   Legend:
     Appearance Chance: 15
     Ranges:
+      PayoutRange:
+        unit: SINGLE
+        min: 2000
+        max: 5000
       KillMobRange:
         unit: SINGLE
         min: 25

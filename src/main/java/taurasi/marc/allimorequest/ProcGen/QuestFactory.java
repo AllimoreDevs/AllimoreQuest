@@ -82,4 +82,7 @@ public class QuestFactory {
         String name = names.get(RandomUtils.getRandomNumberInRange(0, names.size() - 1));
         return new QuestGiver(name, isMale);
     }
+    public double GetRandomPayout(DifficultyTier difficultyTier){
+        return difficultyTier.GetRange("PayoutRange").GetRandomInRange();
+    }
 }

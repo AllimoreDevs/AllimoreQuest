@@ -10,6 +10,7 @@ public class Quest {
     private String questGiverName;
     private String name;
     private String summary;
+    private double questRewardMoney;
     private Objective currentObjective;
     private PlayerQuestData playerData;
 
@@ -22,10 +23,11 @@ public class Quest {
         notificationService = new QuestNotifications(this);
     }
 
-    public Quest(String questGiverName, String name, String summary, PlayerQuestData playerData){
+    public Quest(String questGiverName, String name, String summary, double questRewardMoney, PlayerQuestData playerData){
         this(questGiverName, playerData);
         this.name = name;
         this.summary = summary;
+        this.questRewardMoney = questRewardMoney;
     }
     // Serialization
     // Re-Construct from Config
@@ -33,6 +35,7 @@ public class Quest {
         name = config.getString(path + "Name");
         questGiverName = config.getString(path + "Quest Giver");
         summary = config.getString(path + "Summary");
+        questRewardMoney = config.getDouble(path + "Reward Money");
         this.playerData = playerData;
         SetCurrentObjective(Objective.ReadObjective(config, path + "Objective.", this));
 
@@ -42,6 +45,7 @@ public class Quest {
         config.set(section + "Name", name);
         config.set(section + "Quest Giver", questGiverName);
         config.set(section + "Summary", summary);
+        config.set(section + "Reward Money", questRewardMoney);
         currentObjective.WriteToConfig(config, String.format("%s.Objective.", section) );
     }
     // End of Serialization
@@ -78,11 +82,17 @@ public class Quest {
     public String GetQuestSummary(){
         return summary;
     }
+    public double GetQuestRewardMoney(){
+        return questRewardMoney;
+    }
     public void SetQuestName(String name){
         this.name = name;
     }
     public void SetQuestSummary(String summary){
         this.summary = summary;
+    }
+    public void SetQuestRewardMoney(double questRewardMoney){
+        this.questRewardMoney = questRewardMoney;
     }
 
     public String GetSummary(){

@@ -1,7 +1,9 @@
 package taurasi.marc.allimorequest;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
+import taurasi.marc.allimorequest.GUI.CurrencyUtils;
 
 public class QuestNotifications implements NotificationService {
     private Quest quest;
@@ -44,6 +46,13 @@ public class QuestNotifications implements NotificationService {
         inquirer.sendMessage( String.format("%s %s%s %s", quest.QuestFullName(), ConfigWrapper.QUEST_OBJECTIVE_COLOR, quest.GetCurrentObjective().GetName(), quest.GetCurrentObjective().GetProgress()) );
     }
 
+    @Override
+    public void DisplayPayoutInChat(Player inquirer, double payout) {
+        if ( !inquirer.isOnline() ) return;
+        String currencyString = CurrencyUtils.ParseCurrency(payout) + " Alms";
+        inquirer.sendMessage( String.format("%sRewards issued! %s have been deposited into your account!", ChatColor.YELLOW, currencyString) );
+    }
+
     private void SendQuestBriefToChat(Player inquirer){
         inquirer.sendMessage( String.format("%s %s", quest.QuestFullName(), quest.QuestFullSummary()) );
     }
@@ -55,8 +64,7 @@ public class QuestNotifications implements NotificationService {
         SendObjectiveProgressToChat(inquirer);
     }
     private void SendQuestCompleteToChat(Player inquirer){
-        inquirer.sendMessage(quest.QuestFullDescription());
-        inquirer.sendMessage(String.format("%sCompleted!", ConfigWrapper.QUEST_COMPLETE_COLOR));
+        inquirer.sendMessage(quest.QuestFullName() + String.format(" %sCompleted!", ConfigWrapper.QUEST_COMPLETE_COLOR));
     }
     private void SendQuestAbandonedToChat(Player inquirer){
         inquirer.sendMessage(quest.QuestFullDescription());

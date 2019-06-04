@@ -104,7 +104,9 @@ public class PlayerQuestData implements QuestCollection {
         quest.notificationService.PlayCompleteNotification();
         questJorunal.RemoveQuestFromJournal(quest);
         quest.GetCurrentObjective().Disable();
-        // TODO: Issues out Quest Reward
+        // TODO: Inject Economy
+        Allimorequest.GetInstance().GetEconomy().depositPlayer(offlinePlayer, quest.GetQuestRewardMoney());
+        quest.notificationService.DisplayPayoutInChat(GetOnlinePlayer(), quest.GetQuestRewardMoney());
     }
     public void CompleteQuest(String name){
         Quest quest = questJorunal.Find(name);

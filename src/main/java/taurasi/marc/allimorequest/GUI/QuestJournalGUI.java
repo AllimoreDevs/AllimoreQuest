@@ -7,6 +7,7 @@ import taurasi.marc.allimorecore.GUI.GUIEventRouter;
 import taurasi.marc.allimorecore.GUI.InventoryGUI;
 import taurasi.marc.allimorecore.GUI.StandardButton;
 import taurasi.marc.allimorecore.GUI.StandardButtonListener;
+import taurasi.marc.allimorequest.Allimorequest;
 import taurasi.marc.allimorequest.Config.ConfigWrapper;
 import taurasi.marc.allimorequest.PlayerQuestData;
 import taurasi.marc.allimorequest.Quest;
@@ -53,6 +54,8 @@ public class QuestJournalGUI extends InventoryGUI implements StandardButtonListe
         ItemStack itemStack = CreatePreformatedItem(quest.GetQuestName(), quest.GetSummary(), Material.BOOK);
         inv.addItem(itemStack);
         itemStack = CreatePreformatedItem(quest.GetCurrentObjective().GetName(), quest.GetCurrentObjective().GetProgress(), Material.BOOK);
+        inv.addItem(itemStack);
+        itemStack = CreatePreformatedItem("Quest Reward", CurrencyUtils.ParseCurrency(quest.GetQuestRewardMoney()) + " Alms", Material.PAPER);
         inv.addItem(itemStack);
 
         itemStack = CreateGUIItem(ConfigWrapper.NEGATIVE_BUTTON_COLOR + "Abandon Quest",

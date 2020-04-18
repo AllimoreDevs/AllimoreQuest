@@ -36,7 +36,7 @@ public final class Allimorequest extends JavaPlugin {
     @Override
     public void onEnable() {
         if(!SetupEconomy()){
-            AllimoreLogger.LogError("No Vault Dependancy Found! Disabling plugin");
+            AllimoreLogger.LogError("No Vault Dependency Found! Disabling plugin");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
@@ -54,12 +54,12 @@ public final class Allimorequest extends JavaPlugin {
     }
 
     private boolean SetupEconomy() {
-        if(Bukkit.getPluginManager().getPlugin("Vault") == null){
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
 
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if(rsp == null){
+        if (rsp == null) {
             return false;
         }
         economy = rsp.getProvider();

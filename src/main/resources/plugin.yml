@@ -4,7 +4,7 @@ main: taurasi.marc.allimorequest.Allimorequest
 prefix: AllimoreQuest
 authors: [TodAtsu]
 description: Quest Framework for Allimore Wildlands
-depend: [AllimoreCore]
+depend: [AllimoreCore, Vault]
 api-version: 1.14
 commands:
   Quest:
